@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        .p{ font-size: 3rem; height: 300px; width: 300px; background-color: #000; color: #fff; line-height: 300px; text-align: center;}
+    </style>
+    <script type="text/javascript" src="http://cdn.aodianyun.com/static/jquery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jwplayer.js"></script>
+    <script src="js/jwpsrv_frq.js"></script>
+    <script src="js/jwpsrv.js"></script>
+    <script type="text/javascript">jwplayer.key="lsUqQ+PB1edH+bYoMb85Yr5CuPlXyhK/ngcyNQ==";</script>
+    <style>
+        .p{ font-size: 3rem; height: 300px; width: 300px; background-color: #000; color: #fff; line-height: 300px; text-align: center;}
+    </style>
+</head>
+<body>
+    <video preload="auto" id="video" src="http://26156.live-vod.cdn.aodianyun.com/m3u8/0x0/newlive20161209.5f738acf72094822854d6bfa7ead12c3.1483443743/newlive20161209.5f738acf72094822854d6bfa7ead12c3.1483443743.m3u8" webkit-playsinline="true" playsinline="true" x-webkit-airplay="true" autoplay x5-video-player-type="h5" x5-video-player-fullscreen="true" width="100%" height="100" poster="images/video.png"><p> 不支持video</p> </video>
+     <div class="p">Play</div>
+     <script>
+
+     $(".p").click(function(){
+        document.getElementById("video").play();
+     });
+
+     </script>
+</body>
+</html>

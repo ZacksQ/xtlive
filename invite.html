@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>象塔直播</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/main.css?v=1.1.3">
+	<style>
+	body{ overflow: auto;}
+		.invite-card{ padding: 10px 15% 0;}
+		.change-theme{ width: 70%; font-size: 1.6rem; line-height: 3rem; background-color: #62c3ff; margin: 10px auto; border: 0;color: #fff; display: block; border-radius: 6px;}
+		.card-rule{ background-color: #fff; padding: 0 15%;}
+		.card-rule h1{ font-size: 1.6rem; color:#62c3ff;}
+		.card-rule p{ font-size: 1.4rem; color: #555;}
+		.card-wrapper{  background-color: #f1f1f1; overflow: hidden;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="card-wrapper">
+			<div class="invite-card"></div>
+			<button class="change-theme">更换邀请卡主题</button>
+		</div>
+		<div class="card-rule">
+			<h1>如何玩转邀请卡</h1>
+			<p>1.邀请好友来看直播，榜上有名；</p>
+			<p>2.长按保存图片发送给好友即可邀请；</p>
+			<p>3.点击更换邀请卡主题，切换邀请卡主题样式。</p>
+		</div>
+	</div>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src='js/module.js?v=1.1.4'></script>
+	<script>
+		var request = xtAPI.request;
+		$(".invite-card").html('<img class="response" src="http://www.xiangtazhibo.com/newlive/tLivechannel/makeQrcode.do?liveid='+request["liveid"]+'" alt="" />')
+	</script>
+</body>
+</html>

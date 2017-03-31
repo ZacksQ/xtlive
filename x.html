@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="container"></div>
+	<script src="http://www.xiangtazhibo.com/newlive/dist/js/jquery-1.9.1.min.js"></script>
+	<script>
+		var tree = function(){
+			this.node = {
+				"name" : "A",
+				"children" : {
+					"name" : "B",
+					"children" : {
+						"name" : "C",
+						"children" : {}
+					}
+				}
+			};
+			this.deep_count = 0; //深度累计
+			this.htmlbody = '';
+		};
+
+		tree.prototype.showNode = function(obj){
+			console.log(this.node);
+		};
+
+		tree.prototype.showTag = function(node,htmlbody){
+			// htmlbody = this.htmlbody;
+			// htmlbody += "<div>" + node["name"] +"</div>";
+			if($.isEmptyObject(node.children)){
+				return node;
+			}else{
+				return arguments.callee(node.children);
+			}
+		};
+
+		tree.prototype.getLeafNode = function(node){
+			if($.isEmptyObject(node.children)){
+				return node;
+			}else{
+				return arguments.callee(node.children);
+			}
+		};
+
+		tree.prototype.createNode = function(obj){
+			var leaf = this.getLeafNode(this.node);
+			leaf.children = obj;
+			leaf.children.children = {}; //为后续叶子留空
+		};
+
+		tree.prototype.deleteNode = function(){
+			console.log(this.node);
+		};
+
+		var t = new tree();
+
+		//获取叶子节点
+		var leaf = t.getLeafNode(t.node);
+
+		//添加叶子节点
+		var newleaf = {
+			"name" : "D"
+		}
+		t.createNode(newleaf);
+
+		//显示树
+		t.showNode();		
+		t.showTag(t.node,t.htmlbody);
+		console.log(t.htmlbody)
+		// var arr = [1,2,3];
+
+		// function getPath (arr){
+		// 	var path = [[]];
+		// 	for(var i = 0, arr_length = arr.length; i < arr_length; i++){
+		// 		for(var j =0, path_length = path.length; j < path_length; j++){
+		// 			path.push(path[j].concat(arr[i]));
+		// 			// debugger;
+		// 		}
+		// 	}
+		// 	console.log(path);
+		// }
+
+		// getPath(arr);
+	</script>
+</body>
+</html>

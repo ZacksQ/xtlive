@@ -527,7 +527,7 @@ var xtAPI = function () {
 									switch (menutype) {
 										case 6:
 											swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
-											break;
+										break;
 										case 4:
 											swcontent += '<div class="content-slide discuss-pannel">' + '<ul class="message-list">' + '<li>' +
 											// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
@@ -556,10 +556,10 @@ var xtAPI = function () {
 											break;
 										default:
 											swcontent += '<div class="content-slide">' + indexitem["menu"][i]["menucontent"] + '</div>';
-											break;
+										break;
 									}
 									swcontent += '</div>';
-									$(".swiper-wrapper").append(swcontent);
+									$(".swiper-wrapper.menutab").append(swcontent);
 								}
 								if(liveinfo["questopen"]){
 									$("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
@@ -759,7 +759,7 @@ var xtAPI = function () {
 			success: function success(d) {
 				var getmoney = parseInt(d["data"]["getMoney"]);
 				if (getmoney > 0) {
-					$("#getredpacket .desc").html("<p>恭喜您获得" + getmoney + "元红包</p><p>红包直接发送到您的账户中，请注意查收</p>");
+					$("#getredpacket .desc").html("<p>恭喜您获得" + (getmoney/100).toFixed(2) + "元红包</p><p>红包直接发送到您的账户中，请注意查收</p>");
 				} else {
 					$("#getredpacket .desc").html("<p>红包已经被抢光了</p><p></p>");
 				}

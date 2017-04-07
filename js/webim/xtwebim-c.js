@@ -3,7 +3,7 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var chatOpen = true,
-    chatCheck = true;
+    chatCheck = false;
 var easemob = function () {
     var conn = new WebIM.connection({ //create connection
         https: WebIM.config.https,
@@ -78,13 +78,27 @@ var easemob = function () {
                         case "chatopenopen":
                             //这起的什么名。。。聊天开启
                             chatOpen = true;
-                            $(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '' }); //.removeClass("disable");
+                            $(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '' }); 
+                            if(chatCheck==true){
+                                $(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '弹幕审核已开启' });
+                            }
+                            //.removeClass("disable");
                             break;
                         case "chatopenclose":
                             //聊天关闭
                             chatOpen = false;
                             $(".discuss-input #msg-input").attr({ "readonly": true, "placeholder": '全员禁言中' }); //.addClass("disable");
                             break;
+                        case "chatcheckopen":
+                            chatCheck = true;
+                            if(chatOpen==true)
+                            $(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '弹幕审核已开启' });
+                        break;
+                        case "chatcheckclose":
+                            chatCheck = false;
+                            if(chatOpen==true)
+                            $(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '' });
+                        break;
                         case "openlive":
                             //直播开启
                             // liveState = true;

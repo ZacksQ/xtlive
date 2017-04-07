@@ -36,6 +36,16 @@ var handleControl = function () {
 		return theRequest;
 	};
 
+	var rollQT = function rollQT(){
+		var qt = $(".questionnaire");
+		var distance = 25;
+		if(qt.scrollTop()>=qt.height()){
+			qt.animate({"scrollTop":0});
+		}else{
+			qt.animate({"scrollTop":qt.scrollTop()+distance});
+		}									
+	};
+
 	var formatSeconds = function formatSeconds(value) {
 		//倒计时处理
 		var countdown_timer = null;
@@ -145,10 +155,10 @@ var handleControl = function () {
 		$("video").click(function () {
 			document.querySelector("#player video").play();
 		});
-		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/35 - parseInt($(".discuss-input-pannel").height()));
+		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
 		player.onplaying = function () {
 			// alert("op")
-			$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/35 - parseInt($(".discuss-input-pannel").height()));
+			$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
 			applicationInit.scrollIntoView();
 		};
 		applicationInit.scrollIntoView();
@@ -160,7 +170,8 @@ var handleControl = function () {
 		formatSeconds: formatSeconds,
 		showPlayer: showPlayer,
 		player: player,
-		playprop: playprop
+		playprop: playprop,
+		rollQT: rollQT
 	};
 }();
 
@@ -269,7 +280,7 @@ var applicationInit = function () {
 		$(".player-wrapper").css("height", $(window).width() * 6 / 9);
 		// $(".player-wrapper").css("height",$(window).width()*4/5);
 		// console.log(parseInt($(window).height()) , parseInt($(".hd").height()) , parseInt($(".player-wrapper").height()) , parseInt($(".adv").height()) , parseInt($(".discuss-input-pannel").height()));
-		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/35 - parseInt($(".discuss-input-pannel").height()));
+		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
 	};
 
 	var scrollIntoView = function scrollIntoView() {
@@ -505,6 +516,14 @@ var xtAPI = function () {
 								var _request = xtAPI.request;
 
 								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
+								document.title = liveinfo["channelname"];
+								var $body = $('body');
+								var $iframe = $('<iframe src="/sharelogo.png"></iframe>');
+								$iframe.on('load',function() {
+								  setTimeout(function() {
+								      $iframe.off('load').remove();
+								  }, 0);
+								}).appendTo($body);
 								share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
 								share.img = liveinfo["shareimg"];
 								applicationInit.init();
@@ -562,8 +581,17 @@ var xtAPI = function () {
 									$(".swiper-wrapper.menutab").append(swcontent);
 								}
 								if(liveinfo["questopen"]){
-									$("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
+									// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>");
+
+									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
 								}
+								if(liveinfo["voteopen"]){
+									// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />互动投票："+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
+									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />互动投票："+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
+								}
+
+								setInterval(handleControl.rollQT,5000);
+
 								// if(liveinfo["logoopen"]){
 								if (indexitem["logo"]["logoimg"]) {
 									$(".anchorheadimg").html('<img src="' + indexitem["logo"]["logoimg"] + '" alt="" class="response">');
@@ -577,7 +605,12 @@ var xtAPI = function () {
 								} else {
 									$(".adv").remove();
 								}
+								if (liveinfo["chatcheck"] == 1) {
+									chatCheck=true
+									$(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '弹幕审核已开启' });
+								}
 								if (liveinfo["chatopen"] == 0) {
+									chatOpen=false;
 									$(".discuss-input #msg-input").attr({ "readonly": true, "placeholder": '全员禁言中' });
 								}
 								$(".live-items .hd li:first").addClass("active");
@@ -587,10 +620,19 @@ var xtAPI = function () {
 								$(".player-wrapper").css("backgroundImage", "url(" + liveinfo["bakimg"] + ")");
 								var timecountend = indexitem["timer"]["timecountend"];
 								if (liveinfo["liveopen"] == 0 && liveinfo["videoopen"] == 0) {
+									$(".countdown-label").hide();
 									$(".countdown-label").text("直播已结束");
+									if (liveinfo["timecountopen"] != 1 ){
+										$(".countdown-wrapper").hide();
+									}else{
+										if(timecountend > 0)
+											handleControl.formatSeconds(timecountend);
+									}
+									
 								} else {
 									if (liveinfo["timecountopen"] != 1 || timecountend < 0) {
 										handleControl.showPlayer();
+										// $(".countdown").hide();
 									} else {
 										// console.log("调用倒计时");									
 										handleControl.formatSeconds(timecountend);

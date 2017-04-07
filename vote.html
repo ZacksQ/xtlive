@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>象塔直播-投票</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<link rel="stylesheet" href="layui/css/layui.css">
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/main.css">
+	<style>
+		html,body{ overflow-y: auto;}
+		.container{ padding: 0 4%;}
+	</style>
+</head>
+<body>
+	<div>
+		<!-- <img src="" class="coverimg" alt=""> -->
+	</div>	
+	<div class="container">
+		<h1 class="subject"></h1>
+		<ul class="joiner">
+<!-- 			<li>
+				<div class="box">
+					<h3 class="tit">编号1 烘焙</h3>
+					<img src="images/items_img.png" alt="">
+					<div class="info">
+						投票人数：1234
+						<a href="javascript:;" class="votebtn fr">
+							投票
+						</a>
+					</div>
+				</div>
+			</li> -->
+		</ul>
+	</div>
+	<script src='../js/jquery-1.9.1.min.js'></script>
+	<script src='js/module_c.js'></script>
+	<script src="layui/layui.js"></script>
+	<script>
+ 	var request=GetRequest();       
+
+	function GetRequest(){
+      var url = location.search;
+       var theRequest = new Object();
+       if (url.indexOf("?") != -1) {
+          var str = url.substr(1);
+          strs = str.split("&");
+          for(var i = 0; i < strs.length; i ++) {
+             theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+          }
+       }
+       return theRequest;
+    }
+
+    function vote(id,obj){
+    	$.ajax({
+    		url: xtAPI.commonUrl + "newlive/tVote/addRecord.do",
+    		type:"post",
+    		data:{
+    			voteId: request["voteid"],
+    			optionId: id,
+    			liveId: ""
+    		},
+    		dataType:"json",
+    		success:function(data){
+    			layui.use(['layer'], function () {
+	    			if(data["success"]==true){
+	    				// $.ajax({
+	    				// 	url:'/xtlive/tVoterecord/getOneOptionRecordNum.do',
+	    				// 	type:"post",
+	    				// 	data:{
+	    				// 		optionid:id
+	    				// 	},
+	    				// 	success:function(data){
+	    				// 		if(data["success"]==true){
+	    							// $(obj).parent().find(".votenum").text(data["data"]["num"]);
+	    							$(obj).parent().find(".votenum").text(Number($(obj).parent().find(".votenum").text())+1);
+	    				// 		}
+	    				// 	}
+	    				// });
+	    				layer.msg("投票成功");
+	    			}else{
+	    				layer.msg(data["msg"]);
+	    			}
+	    		});
+    		}
+    	});
+    }
+
+		$.ajax({
+			url: xtAPI.commonUrl + "newlive/tVote/getVoteOption.do",
+			type:"post",
+			data:{"voteId":request["voteid"],getNumber:1},
+			dataType:"json",
+			success:function(data){
+				var votelist=data["data"]["options"];
+				var votebody="";
+				for(var vl in votelist){
+					votebody+='<li>'+
+								'<div class="box">'+
+									'<h3 class="tit">'+votelist[vl]["name"]+'</h3>'+
+									'<img src="'+votelist[vl]["imgurl"]+'" alt="">'+
+									'<div class="info">'+
+										'投票人数：<span class="votenum">'+votelist[vl]["pn"]+'</span>'+
+										'<a href="javascript:;" class="votebtn fr" onclick=\'vote(\"'+votelist[vl]["id"]+'\",this)\'>'+
+											'投票'+
+										'</a>'+
+									'</div>'+
+								'</div>'+
+							'</li>';
+				}
+				// var voteinfo=data["data"]["tVoteinfo"];
+				// $(".coverimg").attr("src",voteinfo['imgurl']);
+				$(".joiner").html(votebody);
+				$(".subject").html(data["data"]["name"]);
+			}
+		});
+	</script>
+</body>
+</html>

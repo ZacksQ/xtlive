@@ -135,8 +135,11 @@ var handleControl = function () {
 			};
 			player.addEventListener("x5videoenterfullscreen", function () {
 				// alert("player enterfullscreen"); 
-
-				player.style["object-position"] = "0px 78px";
+				if(xtAPI.liveInfo["data"]["advopen"]){
+					player.style["object-position"] = "0px 78px";
+				}else{
+					player.style["object-position"] = "0px 43px";	
+				}				
 				$("body").addClass("androidfull androidpo");
 				player.style.background = "#000";
 			});

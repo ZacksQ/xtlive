@@ -66,16 +66,16 @@ section.discuss-input-pannel .dip-warp{ height: 48px;/* background-color: #ff7c7
 /*.discuss-input #msg-input.disable{ background-color: #c7c7c7;}*/
 .discuss-input .sendbtn{ position: absolute; right: 0; width: 3rem; top:0; bottom: 0; margin:auto;display: flex; display: -webkit-flex;align-items:center; padding-right: .8rem}
 .content-slide{ padding: .5rem 1rem; height: 100%;overflow-y:auto;}
-.content-slide{ padding: 3rem 1rem .5rem;}
+.content-slide{ padding: 3.6rem 1rem .5rem;}
 .redpacket-l{ position: fixed; bottom: 7%; right: 1%; width: 5.5rem; z-index: 10}
 .headimg{ border-radius: 100%; border: 2px solid #fff; width: 45px; height: 45px; box-shadow: 1px 2px 3px rgba(0,0,0,.4);}
 /*.nickname{ }*/
 .message-list li{ margin-bottom: .4rem; position: relative;}
 .message-list li:after,.ranklist li:after,.money-choose:after{content: '.'; visibility: hidden; width: 0; height: 0; clear: both; display: block}
 /*.message-list li{ }*/
-.message-list li .message{  background-color: #fff;max-width: 70%; min-width: 50%; margin-left: 1rem; padding:5px 1rem; border-radius: 2rem;  position: relative;}
+.message-list li .message{  background-color: #fff;max-width: 70%; min-width: 50%; margin-left: 1rem; padding:5px 1rem; border-radius: 2rem;  position: relative; box-shadow: 2px 1px 2px rgba(0,0,0,.2);}
 .message-list li .message:before{ content: ''; display: block; background-color: #fff; height: 15px; width: 10px; left: -.2rem; top: 1.5rem; position: absolute; z-index: -1; transform:skew(35deg) rotate(71deg);}
-.message-list li .message:after{ content: ''; display: block;/* background-color: rgba(165,109,109,.17); */height: 13px; width: 6px; left: -.2rem; top: 1.5rem; position: absolute; z-index: 4;box-shadow: 0 0 2px rgba(165,109,109,.17); transform:skew(35deg) rotate(71deg);-webkit-transform:skew(35deg) rotate(71deg);}
+.message-list li .message:after{ content: ''; display: block;/* background-color: rgba(165,109,109,.17); */height: 13px; width: 9px; left: -.2rem; top: 1.5rem; position: absolute; z-index: -1;box-shadow: 2px 1px 2px rgba(0,0,0,.2); transform:skew(35deg) rotate(71deg);-webkit-transform:skew(35deg) rotate(71deg);}
 .message .nickname{ color: #ff6884; font-size: 1.4rem}
 .message .message-content{ color: #4d606f; font-size: 1.4rem; word-wrap: break-word;}
 .message .redpacket-s{ vertical-align: middle; width: 1.8rem;}
@@ -291,7 +291,6 @@ body.brown{ background-color: #fff}
 .brown .rank-hd li.active{background-color: #9e695b;color:#fff;border: 1px solid #9e695b; }
 /*brown end*/
 
-
 /*purple start*/
 body.purple{ background-color: #fff}
 .purple .live-items{position: relative; background-color: #fff}
@@ -305,7 +304,7 @@ body.purple{ background-color: #fff}
 .purple .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .purple .discuss-input-pannel{ background-color: #fff}
 .purple .ranklist li{ background-color: #bc95df;}
-.purple .ranklist li:first-of-type{background-color: #bc95df;width: 100%; line-height: 45px; font-size: 1.rem}
+.purple .ranklist li:first-of-type{background-color: #bc95df;width: 100%; line-height: 45px; font-size: 1.6rem}
 .purple .countdown-wrapper .countdown-label{ background-color: #bc95df}
 .purple .countdown span.num{ color: #bc95df}
 .purple .message .nickname{ color: #bc95df}
@@ -322,6 +321,67 @@ body.purple{ background-color: #fff}
 .purple .rank-hd li.active{background-color: #bc95df;color:#fff;border: 1px solid #bc95df; }
 /*purple end*/
 
+
+/*future start*/
+body.future{ background-color: #fff}
+.future .live-items{position: relative; background-color: #fff}
+.future .hd{ background: #fff;/*padding: 0 7%; */background-size: cover; background-color: #182033;}
+.future .hd li{ color: #fff; line-height: 2; padding: 6px 0; }
+.future .hd li.active{ background-color: #182033; color:#63e7e9; border: 1px solid #63e7e9}
+.future .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
+.future .discuss-input-pannel{ background-color: #fff}
+.future .ranklist li{ background-color: #182033;}
+.future .ranklist li:first-of-type{background-color: #182033;width: 100%; line-height: 45px; font-size: 1.6rem}
+.future .countdown-wrapper .countdown{ background-color: rgba(49,104,130,.6)}
+.future .countdown-wrapper .countdown-label{ background-color: rgba(22,49,73,.8); color: #63e7e9}
+.future .countdown span.num{ color: #63e7e9; background-color: #163149}
+.future .message .nickname{ color: #63e7e9}
+.future .redpacket-l {
+    bottom: 9%;
+    right: 3%;
+    width: 4.5rem;
+}
+.future .generate-card{background-color: #182033; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
+.future section.discuss-input-pannel .dip-warp{background-color: #182033;}
+.future .tocustomer{background-color: #ff3150;box-shadow: 2px 7px 15px 0px rgba(255, 49, 80, 0.61)}
+.future li.sys-getrp .message{background-color: rgba(151, 77, 164,.15);}
+.future .rank-hd li{border: 1px solid #63e7e9; color: #182033;}
+.future .rank-hd li.active{background-color: #182033;color:#63e7e9;border: 1px solid #63e7e9;}
+.future .menutab{ background: url(../images/futurebg.png) no-repeat left bottom; background-size: 100% auto;}
+/*future end*/
+
+/*future start*/
+body.music{ background-color: #fff}
+.music .live-items{position: relative; background-color: #fff}
+.music .hd{ background: #fff;/*padding: 0 7%; */background-size: cover; background-color: #001121;}
+.music .hd li{ color: #abc4ff; line-height: 2; padding: 6px 0; }
+.music .hd li.active{ background-color: #284360; color:#8d90ff; 
+	border-width: 2px;
+	border-style: solid;
+	border-image: -webkit-linear-gradient(#6057fb, #8e6bc8 )  1 49%;
+border-image: -moz-linear-gradient#6057fb,  #8e6bc8)  1 49%;
+border-image: linear-gradient(#6057fb, #8e6bc8 )  1 49%; padding: 4px 0}
+.music .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
+.music .discuss-input-pannel{ background-color: #fff}
+.music .ranklist li{ background-color: #001121;}
+.music .ranklist li:first-of-type{background-color: #001121;width: 100%; line-height: 45px; font-size: 1.6rem}
+.music .countdown-wrapper .countdown{ background-color: rgba(1,35,83,.6)}
+.music .countdown-wrapper .countdown-label{ background-color: #012353; color: #5859ff}
+.music .countdown span.num{ color: #abc4ff; background-color: #163149}
+.music .message .nickname{ color: #abc4ff}
+.music .redpacket-l {
+    bottom: 9%;
+    right: 3%;
+    width: 4.5rem;
+}
+.music .generate-card{background-color: #182033; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
+.music section.discuss-input-pannel .dip-warp{background-color: #001121;}
+.music .tocustomer{background-color: #ff3150;box-shadow: 2px 7px 15px 0px rgba(255, 49, 80, 0.61)}
+.music li.sys-getrp .message{background-color: rgba(151, 77, 164,.15);}
+.music .rank-hd li{border: 1px solid #001121; color: #001121;}
+.music .rank-hd li.active{background-color: #001121;color:#abc4ff;border: 1px solid #001121;}
+.music .menutab{ background: url(../images/musicbg.png) no-repeat left bottom; background-size: 100% auto;}
+/*future end*/
 
 @media (max-width:372px){
 	html{

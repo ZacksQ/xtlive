@@ -3,7 +3,6 @@
 /*
 	module.js 模块集成
 	by zq 2016.12.29
-	这个文件 写了4个月多，改了无数东西，加了无数功能，然后现在写的我要爆炸了，每次看这个文件都是：诶？我这里为什么这么写？诶？我这里怎么当时会这么写 黑人问号脸
 */
 // alert(typeof(easemob)); 
 //控制处理模块
@@ -125,7 +124,7 @@ var handleControl = function () {
 		document.querySelector("#player video").setAttribute("x5-video-player-type", "h5");
 		var isAndroid = /Android/i.test(navigator.userAgent);
 
-		//安卓全屏模拟！@#￥%& 我也不知道这句话怎么编下去了 日了安卓
+		//安卓全屏模拟
 		if (isAndroid) {
 			document.querySelector("#player video").setAttribute("x5-video-player-fullscreen", true);
 			window.onresize = function () {
@@ -351,7 +350,7 @@ var xtAPI = function () {
 			data: postdata,
 			success: function success(d) {
 
-				if (d["success"] == true || localStorage.getItem("password") != null) {
+				if (d["success"] == true || localStorage.getItem("userid") != null) {
 					xtAPI.user = d["data"];
 					// alert(d["data"]["usercode"])
 					// resolve(xtAPI.user);
@@ -538,7 +537,7 @@ var xtAPI = function () {
 									localStorage.setItem("headimg", xtAPI.user["headimg"]);
 									localStorage.setItem("usercode", xtAPI.user["usercode"]);
 									localStorage.setItem("password", xtAPI.user["password"]);
-									// localStorage.setItem("userid",xtAPI.user["userid"]);
+									localStorage.setItem("userid",xtAPI.user["userid"]);
 								}
 
 								for (var i = 0, menu_length = indexitem["menu"].length; i < menu_length; i++) {
@@ -571,7 +570,7 @@ var xtAPI = function () {
 											}
 											if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "1") {
 												swcontent += '<div class="swiper-slide swiper-no-swiping">';
-												if (liveinfo["inviteopen"] == 1) swcontent += '<a href="javascript:;" class="generate-card">点击生成我的邀请卡</a>';
+												if (liveinfo["inviteopen"] == 1) swcontent += '<a href="invite.html?liveid=' + _request["liveid"] + '&nickname='+localStorage.getItem("nickname")+'&headImg='+localStorage.getItem("headimg")+'&userId='+localStorage.getItem("userid")+'" class="generate-card">点击生成我的邀请卡</a>';
 												swcontent += '<ul class="ranklist" id="inviterank"></ul></div>';
 											}
 											swcontent += '</div></div></div>';
@@ -664,7 +663,7 @@ var xtAPI = function () {
 									// easemob.sendMsg($("#msg-input").val());
 								});
 
-								$(".generate-card").attr("href", "invite.html?liveid=" + _request["liveid"]);
+								// $(".generate-card").attr("href", "invite.html?liveid=" + _request["liveid"]);
 
 								var rewardlist = indexitem["rewardlist"],
 								    invitelist = indexitem["invitelist"],
@@ -802,14 +801,21 @@ var xtAPI = function () {
 			dataType: 'json',
 			data: { 'liveid': request["liveid"], 'hongbaoid': rpid },
 			success: function success(d) {
-				var getmoney = parseInt(d["data"]["getMoney"]);
-				if (getmoney > 0) {
-					$("#getredpacket .desc").html("<p>恭喜您获得" + (getmoney/100).toFixed(2) + "元红包</p><p>红包直接发送到您的账户中，请注意查收</p>");
-				} else {
-					$("#getredpacket .desc").html("<p>红包已经被抢光了</p><p></p>");
+				if(d["success"]){					
+					var getmoney = parseInt(d["data"]["getMoney"]);
+					if (getmoney > 0) {
+						$("#getredpacket .desc").html("<p>恭喜您获得" + (getmoney/100).toFixed(2) + "元红包</p><p>红包直接发送到您的账户中，请注意查收</p>");
+					} else {
+						$("#getredpacket .desc").html("<p>红包已经被抢光了</p><p></p>");
+					}
+					$("#getredpacket").addClass("show");
+				}else{
+						$("#getredpacket .desc").html("<p>"+d.msg+"</p><p></p>");
+						$("#getredpacket").addClass("show");	
+					}					
 				}
-				$("#getredpacket").addClass("show");
-			}
+				
+		
 		});
 	};
 
@@ -1107,28 +1113,34 @@ var wxPay = function () {
 	};
 
 	var sendtocustomer = function sendtocustomer(money, hongbaotype, sendtxt, detailnum) {
-		$.ajax({
-			type: "post",
-			url: xtAPI.commonUrl + "newlive/tHongbao/sendHongbao.do",
-			data: { "money": money, "liveid": xtAPI.request["liveid"], "hongbaotype": hongbaotype, sendtxt: sendtxt, "detailnum": detailnum },
-			datatype: "json",
-			success: function success(data) {
-				var jsondata = data["data"];
-				brandwcpayrequest["package"] = jsondata["package"];
-				brandwcpayrequest["paySign"] = jsondata["paySign"];
-				brandwcpayrequest["timeStamp"] = jsondata["timeStamp"];
-				brandwcpayrequest["nonceStr"] = jsondata["nonceStr"];
-				WeixinJSBridge.invoke('getBrandWCPayRequest', brandwcpayrequest, function (res) {
-					$(".ctdialog").removeClass("show");
-					if (res.err_msg == "get_brand_wcpay_request:ok") {
+		if(parseFloat((money / detailnum)) >= 0.01){
+			$.ajax({
+				type: "post",
+				url: xtAPI.commonUrl + "newlive/tHongbao/sendHongbao.do",
+				data: { "money": money, "liveid": xtAPI.request["liveid"], "hongbaotype": hongbaotype, sendtxt: sendtxt, "detailnum": detailnum },
+				datatype: "json",
+				success: function success(data) {
+					var jsondata = data["data"];
+					brandwcpayrequest["package"] = jsondata["package"];
+					brandwcpayrequest["paySign"] = jsondata["paySign"];
+					brandwcpayrequest["timeStamp"] = jsondata["timeStamp"];
+					brandwcpayrequest["nonceStr"] = jsondata["nonceStr"];
+					WeixinJSBridge.invoke('getBrandWCPayRequest', brandwcpayrequest, function (res) {
 						$(".ctdialog").removeClass("show");
-					} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-				});
-			},
-			error: function error() {
-				alert("请求异常");
-			}
-		});
+						if (res.err_msg == "get_brand_wcpay_request:ok") {
+							$(".ctdialog").removeClass("show");
+						} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+					});
+				},
+				error: function error() {
+					alert("请求异常");
+				}
+			});
+		}else{
+			layui.use(['layer'], function () {
+				layer.msg("红包数值填写的不正确");
+			});
+		}
 	};
 
 	return {

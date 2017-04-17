@@ -576,7 +576,7 @@ var xtAPI = function () {
 											swcontent += '</div></div></div>';
 											break;
 										default:
-											swcontent += '<div class="content-slide">' + indexitem["menu"][i]["menucontent"] + '</div>';
+											swcontent += '<div class="content-slide contmenu">' + indexitem["menu"][i]["menucontent"] + '</div>';
 										break;
 									}
 									swcontent += '</div>';

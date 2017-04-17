@@ -67,6 +67,7 @@ section.discuss-input-pannel .dip-warp{ height: 48px;/* background-color: #ff7c7
 .discuss-input .sendbtn{ position: absolute; right: 0; width: 3rem; top:0; bottom: 0; margin:auto;display: flex; display: -webkit-flex;align-items:center; padding-right: .8rem}
 .content-slide{ padding: .5rem 1rem; height: 100%;overflow-y:auto;}
 .content-slide{ padding: 3.6rem 1rem .5rem;}
+.content-slide.contmenu{padding: 3.6rem 0 .5rem;}
 .redpacket-l{ position: fixed; bottom: 7%; right: 1%; width: 5.5rem; z-index: 10}
 .headimg{ border-radius: 100%; border: 2px solid #fff; width: 45px; height: 45px; box-shadow: 1px 2px 3px rgba(0,0,0,.4);}
 /*.nickname{ }*/

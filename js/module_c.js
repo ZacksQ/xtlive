@@ -520,7 +520,7 @@ var xtAPI = function () {
 								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
 								document.title = liveinfo["channelname"];
 								var $body = $('body');
-								var $iframe = $('<iframe src="/sharelogo.png"></iframe>');
+								var $iframe = $('<iframe src="images/sharelogo.png"></iframe>');
 								$iframe.on('load',function() {
 								  setTimeout(function() {
 								      $iframe.off('load').remove();
@@ -671,11 +671,11 @@ var xtAPI = function () {
 								    invitelistlength = invitelist.length;
 
 								for (var i = 0; i < rewardlistlength; i++) {
-									$("#payrank").prepend('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (rewardlistlength - i) + ' ' + rewardlist[i]["sendername"] + '</li>');
+									$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + rewardlist[i]["sendername"] + '</li>');
 								}
 
 								for (var i = 0; i < invitelistlength; i++) {
-									$("#inviterank").prepend('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (invitelistlength - i) + ' ' + invitelist[i]["username"] + '</li>');
+									$("#inviterank").append('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + invitelist[i]["username"] + '</li>');
 								}
 
 								// $(".numcount").text('1154人');

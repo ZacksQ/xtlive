@@ -100,8 +100,17 @@
 			'</li>');
 		    }
 
-		    xtAPI.share.tit = webGetChannels["username"]+"的直播间";
+		    xtAPI.share.tit = webGetChannels[0]["username"]+"的直播间";
 		    xtAPI.getWxsign();
+
+		    document.title = xtAPI.share.tit;
+			var $body = $('body');
+			var $iframe = $('<iframe src="/sharelogo.png"></iframe>');
+			$iframe.on('load',function() {
+			  setTimeout(function() {
+			      $iframe.off('load').remove();
+			  }, 0);
+			}).appendTo($body);
 		});
 	</script>
 </body>

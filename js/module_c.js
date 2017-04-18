@@ -527,7 +527,7 @@ var xtAPI = function () {
 								  }, 0);
 								}).appendTo($body);
 								share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
-								share.img = liveinfo["shareimg"];
+								// share.img = liveinfo["shareimg"];
 								applicationInit.init();
 								handleControl.playprop.width = liveinfo["width"];
 								handleControl.playprop.height = liveinfo["height"];
@@ -597,6 +597,7 @@ var xtAPI = function () {
 								// if(liveinfo["logoopen"]){
 								if (indexitem["logo"]["logoimg"]) {
 									$(".anchorheadimg").html('<img src="' + indexitem["logo"]["logoimg"] + '" alt="" class="response">');
+									share.img = indexitem["logo"]["logoimg"];
 									// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
 								}
 								// }

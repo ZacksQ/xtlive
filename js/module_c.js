@@ -317,6 +317,7 @@ var xtAPI = function () {
 		des: "我正在象塔看直播",
 		img: "http://www.xiangtazhibo.com/newlive/web/images/sharelogo.png"
 	};
+	var from = 1;
 
 	var wechatlogin = function wechatlogin() {
 
@@ -343,6 +344,18 @@ var xtAPI = function () {
 			postdata.inviter = request["state"];
 			postdata.liveid = request["liveid"];
 		}
+		this.from = request["from"];
+		switch(this.from){
+			case "singlemessage":
+				this.from = 3;
+			break;
+			case "timeline":
+				this.from = 2;
+			break;
+			default:
+				this.from = 1;
+			break;
+		}
 		$.ajax({
 			url: commonUrl + 'newlive/tUser/wxWeblogin.do',
 			type: 'post',
@@ -361,7 +374,7 @@ var xtAPI = function () {
 						if (watchtype == 0) {
 							initLiving();
 						} else {
-							console.log('showmodel'); //授权观看，功能越加越多，代码越来越乱，重写吧 宝贝
+							console.log('showmodel'); //授权观看
 							$(".auth-model-text").text(result[0]["auth"]["authtitle"]);
 							var ajaxurl = '';
 							postdata = { liveid: request["liveid"] };
@@ -442,7 +455,7 @@ var xtAPI = function () {
 
 							$(".auth-model-tit").text(result[0]["auth"]["authtitle"]);
 							$("#auth-wrapper").show();
-							//下次重构再模块化好好写吧 现在就这么着吧，自暴自弃。那下次是什么时候来着。。。
+
 							$(".watchlive").click(function () {
 								if (watchtype == 3) {
 									//付费观看预支付
@@ -585,11 +598,11 @@ var xtAPI = function () {
 								if(liveinfo["questopen"]){
 									// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>");
 
-									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
+									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
 								}
 								if(liveinfo["voteopen"]){
 									// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />互动投票："+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
-									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />互动投票："+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
+									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
 								}
 
 								setInterval(handleControl.rollQT,5000);
@@ -719,7 +732,7 @@ var xtAPI = function () {
 					});
 				} else {
 					// resolve(false);
-					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa5af90cb393880b6&redirect_uri=http://www.xiangtazhibo.com/newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa5af90cb393880b6&redirect_uri=http://www.xiangtazhibo.com/newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
 				}
 			}
 		});
@@ -731,7 +744,7 @@ var xtAPI = function () {
 				url: commonUrl + 'newlive/tLivechannel/loadChannel.do',
 				type: 'post',
 				dataType: 'json',
-				data: { "liveid": request["liveid"] },
+				data: { "liveid": request["liveid"],"userOrigin": xtAPI.from },
 				success: function success(d) {
 					// checkSession(d["code"]);
 					if (d["code"] == 1013) {
@@ -1061,7 +1074,8 @@ var xtAPI = function () {
 		share: share,
 		getPhoneUserAccount: getPhoneUserAccount,
 		anchor_applicationmoney: anchor_applicationmoney,
-		getAccountRecord: getAccountRecord
+		getAccountRecord: getAccountRecord,
+		from: from
 	};
 }();
 

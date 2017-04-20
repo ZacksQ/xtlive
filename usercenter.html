@@ -100,7 +100,9 @@
 			'</li>');
 		    }
 
-		    xtAPI.share.tit = webGetChannels[0]["username"]+"的直播间";
+		    xtAPI.share.tit = webGetChannels[0]["username"]+"的往期精彩直播";
+		    xtAPI.share.des = webGetChannels[0]["username"]+"的往期精彩直播";
+		    xtAPI.share.img = webGetChannels[0]["headimg"];
 		    xtAPI.getWxsign();
 
 		    document.title = xtAPI.share.tit;

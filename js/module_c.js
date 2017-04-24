@@ -685,11 +685,13 @@ var xtAPI = function () {
 								    invitelistlength = invitelist.length;
 
 								for (var i = 0; i < rewardlistlength; i++) {
-									$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + rewardlist[i]["sendername"] + '</li>');
+									var uname = rewardlist[i]["sendername"];
+									$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">打赏'+rewardlist[i]["total"]+'元</span></li>');
 								}
 
 								for (var i = 0; i < invitelistlength; i++) {
-									$("#inviterank").append('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + invitelist[i]["username"] + '</li>');
+									var uname = invitelist[i]["username"];
+									$("#inviterank").append('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">邀请'+invitelist[i]["total"]+'人</span></li>');
 								}
 
 								// $(".numcount").text('1154人');

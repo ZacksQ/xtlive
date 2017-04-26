@@ -153,10 +153,16 @@ var handleControl = function () {
 			document.querySelector("#player video").setAttribute("x5-video-player-fullscreen", false);
 		}
 
-		$(".player-wrapper").css("height", "auto");
-		$("video").click(function () {
-			document.querySelector("#player video").play();
-		});
+		
+		document.querySelector("video").addEventListener("play",function(){
+			console.log("play")
+         $(".player-wrapper").css("height", "auto");
+	     },false);
+
+		// $("video").click(function () {
+			
+		// 	document.querySelector("#player video").play();
+		// });
 		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
 		player.onplaying = function () {
 			// alert("op")
@@ -279,7 +285,7 @@ var applicationInit = function () {
 
 	//容器尺寸控制
 	var resizePlayer = function resizePlayer() {
-		$(".player-wrapper").css("height", $(window).width() * 6 / 9);
+		$(".player-wrapper").css("height", $(window).width() * 2 / 3);
 		// $(".player-wrapper").css("height",$(window).width()*4/5);
 		// console.log(parseInt($(window).height()) , parseInt($(".hd").height()) , parseInt($(".player-wrapper").height()) , parseInt($(".adv").height()) , parseInt($(".discuss-input-pannel").height()));
 		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));

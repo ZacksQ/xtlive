@@ -202,6 +202,7 @@ var applicationInit = function () {
 		// });				
 		// resizePlayer();
 		// scrollIntoView();
+		$(".discuss-input-pannel").show();
 		initEmoji();
 		$(".redpacked-xll-bottom").each(function () {
 			$(this).attr("href", "withdraw.html?liveid=" + handleControl.getRequest()["liveid"]);

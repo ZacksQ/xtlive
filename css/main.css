@@ -32,7 +32,7 @@ section.adv a{ display: block}
 .countdown span.num{  background-color: #fff; border-radius: 6px; padding-left:.7rem;padding-right:.7rem; }
 .live-items .hd{ /*display: flex; display: -webkit-flex; flex-direction:row; flex-wrap:nowrap;*/}
 .live-items .hd li{ float: left; /*box-flex:1;-webkit-box-flex:1; flex-grow:1;*/ text-align: center; width: 100%; line-height: 1.4; font-size: 1.5rem;}
-section.discuss-input-pannel{position: fixed; bottom: 0; width: 100%; left: 0;  z-index: 11; }
+section.discuss-input-pannel{position: fixed; display: none; bottom: 0; width: 100%; left: 0;  z-index: 11; }
 section.discuss-input-pannel .dip-warp{ height: 48px;/* background-color: #ff7c7f;*/display: flex; display: -webkit-flex; padding: 0 5px;}
 .function-menu{ background-color: #f1f1f1; height: 0;/* padding: 10px 5%; */transition:height .5s; -webkit-transition:height .5s;}
 .function-menu ul{ /*margin: 10px 5%;*/ padding: 0 5.5%}

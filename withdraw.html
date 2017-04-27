@@ -78,8 +78,8 @@
 		    var accountmoney = result[0];
 		    var withdrawlist = result[1];
 		    if (accountmoney == false) {
-		        //这里授权需要后端更改      ps:我当时写这句话的原因是什么来着。。。
-		        window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa5af90cb393880b6&redirect_uri=http://www.xiangtazhibo.com/newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+		        //这里授权需要后端更改   
+		        window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 		    }
 
 		    $(".account").text(accountmoney["money"]);

@@ -315,7 +315,9 @@ var applicationInit = function () {
 //应用初始化模块
 var xtAPI = function () {
 
-	var commonUrl = 'http://www.xiangtazhibo.com/';
+	var commonUrl = 'http://jcs.xiangtazhibo.com/';
+
+	var appid = 'wx9e47b80badd07ab2';
 
 	var request = handleControl.getRequest();
 
@@ -328,7 +330,7 @@ var xtAPI = function () {
 	var share = {
 		tit: "",
 		des: "我正在象塔看直播",
-		img: "http://www.xiangtazhibo.com/newlive/web/images/sharelogo.png"
+		img: "http://" + commonUrl + "/newlive/web/images/sharelogo.png"
 	};
 	var from = 1;
 
@@ -747,7 +749,7 @@ var xtAPI = function () {
 					});
 				} else {
 					// resolve(false);
-					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa5af90cb393880b6&redirect_uri=http://www.xiangtazhibo.com/newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
+					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
 				}
 			}
 		});
@@ -763,7 +765,7 @@ var xtAPI = function () {
 				success: function success(d) {
 					// checkSession(d["code"]);
 					if (d["code"] == 1013) {
-						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa5af90cb393880b6&redirect_uri=http://www.xiangtazhibo.com/newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 					} else {
 						xtAPI.liveInfo = d["data"];
 						resolve(xtAPI.liveInfo);
@@ -1022,7 +1024,7 @@ var xtAPI = function () {
 				if (data["success"] == true) {
 					wx.config({
 						debug: false,
-						appId: 'wxa5af90cb393880b6',
+						appId: xtAPI.appid,
 						timestamp: data["data"]["timestamp"],
 						nonceStr: data["data"]["nonceStr"],
 						signature: data["data"]["signature"],
@@ -1074,6 +1076,7 @@ var xtAPI = function () {
 	return {
 		request: request,
 		commonUrl: commonUrl,
+		appid: appid,
 		user: user,
 		wechatlogin: wechatlogin,
 		liveInfo: liveInfo,
@@ -1097,7 +1100,7 @@ var xtAPI = function () {
 var wxPay = function () {
 
 	var brandwcpayrequest = {
-		"appId": "wxa5af90cb393880b6",
+		"appId": xtAPI.appid,
 		"timeStamp": "",
 		"nonceStr": "",
 		"package": "",

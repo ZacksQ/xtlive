@@ -33,7 +33,7 @@
 	<script src='js/module_c.js?v=1.1.4'></script>
 	<script>
 		var request = xtAPI.request;
-		$(".invite-card").html('<img class="response" src="http://www.xiangtazhibo.com/newlive/tLivechannel/makeQrcode.do?liveid='+request["liveid"]+'&nickname='+request["nickname"]+'&headImg='+request["headImg"]+'&userId='+request["userId"]+'" alt="" />')
+		$(".invite-card").html('<img class="response" src="' + xtAPI.commonUrl + 'newlive/tLivechannel/makeQrcode.do?liveid='+request["liveid"]+'&nickname='+request["nickname"]+'&headImg='+request["headImg"]+'&userId='+request["userId"]+'" alt="" />')
 	</script>
 </body>
 </html>

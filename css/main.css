@@ -24,7 +24,8 @@ section.adv a{ display: block}
 .player-wrapper{ overflow: hidden; text-align: center; font-size: 0; display: flex; display: -webkit-flex;justify-content: center;align-items:center;}
 .numcount{position: absolute;right: 12px; top: 19px; border-radius: 10px; color: #fff; text-align: center; text-shadow:1px 1px 1px rgba(0,0,0,.4); font-size: 1.4rem; background-color: rgba(0,0,0,.2); padding: 0 3px; font-family: '黑体'}
 .anchorheadimg{position: absolute;left: 12px; top: 10px; width: 40px;}
-.countdown-wrapper{ /*position: absolute; */width: 100%; /*margin-top: 15%;*/ text-align: center; }
+.countdown-wrapper{ position: absolute;/* width: 100%;*/ bottom: 20px; right: 20px; background-color: rgba(255,255,255,.7); color: #000; /*margin-top: 15%;*/ text-align: center; border-radius: 20px;  text-align: center; width: 150px; }
+.countdown-wrapper .countdownv2{ font-size: 1.4rem; }
 .countdown-wrapper .countdown-label{font-size: 1.8rem;/* background-color: #ff8383;*/ color: #fff; text-align: center; width: 75%; display: block; margin: 0 auto; line-height: 1.6; border-radius: 1.4rem; box-shadow: 0 4px 10px rgba(83,83,83,.27); padding: 8px 0;}
 .countdown-wrapper .countdown{ background-color: rgba(255,255,255,.6); box-shadow: 0  4px 10px rgba(83,83,83,.27); width: 70%; margin: 0 auto; border-radius: 20px; margin-top: 15px; padding: 1.2rem 0; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif}
 .countdown span{ font-size: 3rem; margin:0 2.5px; color: #fff; line-height: 1.5; display: inline-block; padding-top: .4rem;padding-bottom: .4rem;}

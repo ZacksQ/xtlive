@@ -57,7 +57,8 @@ var handleControl = function () {
 			}
 			var second = parseInt(value),
 			    minute = 0,
-			    hour = 0; // 小时 
+			    hour = 0,
+			    day = 0; // 小时 
 			if (second > 60) {
 				minute = parseInt(second / 60);
 				second = parseInt(second % 60);
@@ -65,22 +66,27 @@ var handleControl = function () {
 					hour = parseInt(minute / 60);
 					minute = parseInt(minute % 60);
 				}
+				if(hour > 24){
+					day = parseInt(hour / 24);
+					hour = parseInt(hour % 24);
+				}
 			}
-			second = "0" + second, minute = "0" + minute, hour = "0" + hour;
+			second = "0" + second, minute = "0" + minute, hour = "0" + hour, day = "0" + day;
 			second = second.substring(second.length - 2);
-			$(".countdown .num").eq(5).text(second[1]);
-			$(".countdown .num").eq(4).text(second[0]);
+			// $(".countdown .num").eq(5).text(second[1]);
+			// $(".countdown .num").eq(4).text(second[0]);
 			if (minute > 0) {
 				minute = minute.substring(minute.length - 2);
 				// console.log(minute[1])
-				$(".countdown .num").eq(3).text(minute[1]);
-				$(".countdown .num").eq(2).text(minute[0]);
+				// $(".countdown .num").eq(3).text(minute[1]);
+				// $(".countdown .num").eq(2).text(minute[0]);
 			}
 			if (hour > 0) {
 				hour = hour.substring(hour.length - 2);
-				$(".countdown .num").eq(1).text(hour[1]);
-				$(".countdown .num").eq(0).text(hour[0]);
+				// $(".countdown .num").eq(1).text(hour[1]);
+				// $(".countdown .num").eq(0).text(hour[0]);
 			}
+			$(".countdownv2 span").text(day + "天" +hour + ":" + minute + ":"+second);
 			value--;
 			// console.log("second",hour+' '+minute+''+second)
 		}, 1000);

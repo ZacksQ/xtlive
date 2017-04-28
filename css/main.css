@@ -131,7 +131,8 @@ li.sys-getrp .message{ width: 70%; left: 15%; color: #fff; background-color:rgba
 .rank-hd li:last-of-type{border-radius: 0 5px 5px 0}
 .tocustomer{position: fixed; bottom: 25%; right: 4%; z-index: 10; background-color: #ff3150; color: #fff; width: 4rem; height: 4rem; border-radius: 4rem; font-size: 2rem; line-height: 4rem; text-align: center;    box-shadow: 2px 7px 15px 0px rgba(255, 49, 80, 0.61);}
 #auth-wrapper{ position: fixed; display: none; width: 100%; height: 100%; top: 0; left: 0; z-index: 20;}
-.auth-mask{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #fff url(../images/authbg.png) no-repeat top left; background-size: 100% auto;z-index: 21}
+.auth-mask{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; /*background: #fff url(../images/authbg.png) no-repeat top left; */background-size: 100% auto;z-index: 21; background-color: #fff; background-position: top left; background-repeat: no-repeat;}
+.welcome{position: fixed; left: 0; top: 0; width: 100%; height: 100%;background-size: 100% auto;z-index: 22; display: none; background-color: #fff; background-position: top left; background-repeat: no-repeat;}
 .auth-model-tit{ border-bottom: 1px solid #f1f1f1; color: #5383c3; text-align: center; font-size: 1.6rem; padding: 1.4rem 0;}
 .auth-model{ background-color: #fff; border-radius: 10px; position: absolute; z-index: 22; width: 86%; left: 7%; top: 10%;}
 .auth-model-body{ padding: 1.4rem 1.8rem;}

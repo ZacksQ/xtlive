@@ -315,9 +315,9 @@ var applicationInit = function () {
 //应用初始化模块
 var xtAPI = function () {
 
-	var commonUrl = 'http://jcs.xiangtazhibo.com/';
+	var commonUrl = 'http://www.xiangtazhibo.com/';
 
-	var appid = 'wx9e47b80badd07ab2';
+	var appid = 'wxa5af90cb393880b6';
 
 	var request = handleControl.getRequest();
 

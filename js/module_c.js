@@ -386,18 +386,28 @@ var xtAPI = function () {
 						console.log("result:", result); //用户信息返回
 						// var user = result[0],
 						var watchtype = result[0]["auth"]["authwatch"];
-						var defaultmask = result[0]["auth"]["leaderimg"] != null?result[0]["auth"]["leaderimg"]:'../images/authbg.png';
+						var defaultmask = 'images/authbg.png';
 						
 						if (watchtype == 0) {
-							if(result[0]["auth"]["leaderimgOpen"] == 0){
+							if(result[0]["auth"]["leaderimgOpen"] != 0){
+								//欢迎页
 								$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
 								$(".welcome").click(function(){
-									$(this).fadeOut();
+									$(this).fadeOut(1000);
 								});
+								setTimeout(function(){
+									$(".welcome").fadeOut(1000);
+								},3000);
 							}
 							initLiving();
 						} else {
-							$(".auth-mask").css("backgroundImage","url("+defaultmask+")");
+							if(result[0]["auth"]["leaderimgOpen"] != 0){
+								$(".auth-mask").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")");
+							}
+							else{
+								$(".auth-mask").css("backgroundImage","url("+defaultmask+")");
+							}								
+
 							console.log('showmodel'); //授权观看
 							$(".auth-model-text").text(result[0]["auth"]["authtitle"]);
 							var ajaxurl = '';

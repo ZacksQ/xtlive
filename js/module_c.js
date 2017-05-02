@@ -948,6 +948,24 @@ var xtAPI = function () {
 		});
 	};
 
+	var webGetCases = function webGetCases() {
+		return new Promise(function (resolve) {
+			$.ajax({
+				url: commonUrl + 'newlive/tLivechannel/getRecommendLiveChannels.do',
+				type: 'post',
+				dataType: 'json',
+				data: { liveid: request["liveid"] },
+				success: function success(d) {
+					if (d["code"] == 1013) {
+						resolve(false);
+					} else {
+						resolve(d["data"]);
+					}
+				}
+			});
+		});
+	};
+
 	var applicationmoney = function applicationmoney() {
 		$.ajax({
 			url: commonUrl + 'newlive/tAccount/drawMoney.do',
@@ -1112,7 +1130,8 @@ var xtAPI = function () {
 		getPhoneUserAccount: getPhoneUserAccount,
 		anchor_applicationmoney: anchor_applicationmoney,
 		getAccountRecord: getAccountRecord,
-		from: from
+		from: from,
+		webGetCases: webGetCases
 	};
 }();
 

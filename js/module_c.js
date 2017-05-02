@@ -386,18 +386,28 @@ var xtAPI = function () {
 						console.log("result:", result); //用户信息返回
 						// var user = result[0],
 						var watchtype = result[0]["auth"]["authwatch"];
-						var defaultmask = result[0]["auth"]["leaderimg"] != null?result[0]["auth"]["leaderimg"]:'../images/authbg.png';
+						var defaultmask = 'images/authbg.png';
 						
 						if (watchtype == 0) {
-							if(result[0]["auth"]["leaderimgOpen"] == 0){
+							if(result[0]["auth"]["leaderimgOpen"] != 0){
+								//欢迎页
 								$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
 								$(".welcome").click(function(){
-									$(this).fadeOut();
+									$(this).fadeOut(1000);
 								});
+								setTimeout(function(){
+									$(".welcome").fadeOut(1000);
+								},3000);
 							}
 							initLiving();
 						} else {
-							$(".auth-mask").css("backgroundImage","url("+defaultmask+")");
+							if(result[0]["auth"]["leaderimgOpen"] != 0){
+								$(".auth-mask").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")");
+							}
+							else{
+								$(".auth-mask").css("backgroundImage","url("+defaultmask+")");
+							}								
+
 							console.log('showmodel'); //授权观看
 							$(".auth-model-text").text(result[0]["auth"]["authtitle"]);
 							var ajaxurl = '';
@@ -938,6 +948,24 @@ var xtAPI = function () {
 		});
 	};
 
+	var webGetCases = function webGetCases() {
+		return new Promise(function (resolve) {
+			$.ajax({
+				url: commonUrl + 'newlive/tLivechannel/getRecommendLiveChannels.do',
+				type: 'post',
+				dataType: 'json',
+				data: { liveid: request["liveid"] },
+				success: function success(d) {
+					if (d["code"] == 1013) {
+						resolve(false);
+					} else {
+						resolve(d["data"]);
+					}
+				}
+			});
+		});
+	};
+
 	var applicationmoney = function applicationmoney() {
 		$.ajax({
 			url: commonUrl + 'newlive/tAccount/drawMoney.do',
@@ -1102,7 +1130,8 @@ var xtAPI = function () {
 		getPhoneUserAccount: getPhoneUserAccount,
 		anchor_applicationmoney: anchor_applicationmoney,
 		getAccountRecord: getAccountRecord,
-		from: from
+		from: from,
+		webGetCases: webGetCases
 	};
 }();
 

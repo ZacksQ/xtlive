@@ -650,7 +650,7 @@ var xtAPI = function () {
 								// }
 
 
-								if (liveinfo["advopen"]) {
+								if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
 									$(".adv").html('<a href="' + indexitem["adv"][0]["advurl"] + '"><img src="' + indexitem["adv"][0]["advtitle"] + '" class="response" alt=""></a>');
 								} else {
 									$(".adv").remove();

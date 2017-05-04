@@ -1071,7 +1071,7 @@ var xtAPI = function () {
 					wx.ready(function () {
 						wx.onMenuShareTimeline({
 							title: share.des, /*分享标题*/
-							link: window.location.href, /*分享链接*/
+							link: xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"], /*分享链接*/
 							imgUrl: share.img, /*分享图标*/
 							success: function success() {
 								// show_weui_alert("","分享成功");
@@ -1087,7 +1087,7 @@ var xtAPI = function () {
 						wx.onMenuShareAppMessage({
 							title: share.tit, /*分享标题*/
 							desc: share.des, // 分享描述
-							link: window.location.href, /*分享链接*/
+							link: xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"], /*分享链接*/
 							imgUrl: share.img, /*分享图标*/
 							success: function success() {
 								// show_weui_alert("","分享成功");

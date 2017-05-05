@@ -159,18 +159,18 @@ var handleControl = function () {
 			document.querySelector("#player video").setAttribute("x5-video-player-fullscreen", false);
 		}
 
-		
-		document.querySelector("video").addEventListener("loadedmetadata",function(){
-			console.log("play")
-			// alert(this.readyState)
-			// if(this.readyState==4)
-         		$(".player-wrapper").css("height", "auto");
-	     },false);
+		var isWeixin = /MicroMessenger/i.test(navigator.userAgent);
+		if(isWeixin){
+			document.querySelector("video").addEventListener("loadedmetadata",function(){
+				//safari中直接执行
+	         		$(".player-wrapper").css("height", "auto");
+		     },false);
+		}else{
+			document.querySelector("video").addEventListener("play",function(){
+	         		$(".player-wrapper").css("height", "auto");
+		     },false);
+		}
 
-		// $("video").click(function () {
-			
-		// 	document.querySelector("#player video").play();
-		// });
 		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
 		player.onplaying = function () {
 			// alert("op")

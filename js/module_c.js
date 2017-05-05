@@ -160,9 +160,11 @@ var handleControl = function () {
 		}
 
 		
-		document.querySelector("video").addEventListener("play",function(){
+		document.querySelector("video").addEventListener("loadedmetadata",function(){
 			console.log("play")
-         $(".player-wrapper").css("height", "auto");
+			// alert(this.readyState)
+			// if(this.readyState==4)
+         		$(".player-wrapper").css("height", "auto");
 	     },false);
 
 		// $("video").click(function () {

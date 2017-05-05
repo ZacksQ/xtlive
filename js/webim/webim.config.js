@@ -18,7 +18,7 @@ WebIM.config = {
     /*
      * Application AppKey
      */
-    appkey: '1139161206115828＃newlive',
+    appkey: '1172161017115117#hxdfwc',
     /*
      * Whether to use wss
      * @parameter {Boolean} true or false
@@ -29,7 +29,7 @@ WebIM.config = {
      * true: A visitor can sign in to multiple webpages and receive messages at all the webpages.
      * false: A visitor can sign in to only one webpage and receive messages at the webpage.
      */
-    isMultiLoginSessions: false,
+    isMultiLoginSessions: true,
     /*
      * Set to auto sign-in
      */

@@ -20,7 +20,8 @@
 section.adv{
 	/*max-height: 70px;*/ font-size: 0; overflow: hidden; text-align: center; height: 35px; text-align: center;
 }
-section.adv a{ display: block}
+section.adv a{ display: block;    height: 100%;}
+section.adv a img{ height: 100%}
 .player-wrapper{ overflow: hidden; text-align: center; font-size: 0; display: flex; display: -webkit-flex;justify-content: center;align-items:center;}
 .numcount{position: absolute;right: 12px; top: 19px; border-radius: 10px; color: #fff; text-align: center; text-shadow:1px 1px 1px rgba(0,0,0,.4); font-size: 1.4rem; background-color: rgba(0,0,0,.2); padding: 0 3px; font-family: '黑体'}
 .anchorheadimg{position: absolute;left: 12px; top: 10px; width: 40px;}

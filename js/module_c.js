@@ -565,8 +565,9 @@ var xtAPI = function () {
 								    giftlist = result[1],
 								    easemob = result[2];
 								// loadhistorymsg = result[4];
-
+								$(".loading").fadeOut();
 								$("body").addClass(liveinfo["skinid"]);
+
 								var _request = xtAPI.request;
 
 								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
@@ -924,6 +925,7 @@ var getoken = new Promise(function (resolve) {
 						Promise.all([xtAPI.getChannelInfo(),xtAPI.loadindexitem()]).then(function (result) {
 								var liveinfo = xtAPI.liveInfo["data"] = result[0],
 									indexitem = result[1];
+									$(".loading").fadeOut();
 $("body").addClass(liveinfo["skinid"]);
 								var _request = xtAPI.request;
 
@@ -1073,7 +1075,7 @@ easemob.roomId = liveinfo["chatroomid"];
 										layui.use(["layer"],function(){
 											layer.open({
 												title:"提示",
-												content:"想要体验更多功能？点击确定微信登录"
+												content:"想要体验更多功能？点击微信登录"
 												,btn: ['微信登录']
 												  ,yes: function(index, layero){
 												    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";

@@ -82,18 +82,17 @@
 		// }
 		var request = handleControl.getRequest();
 		Promise.all([xtAPI.webGetCases()]).then(function (result) {
-		    var webGetChannels = result[0];
+		    var webGetChannels = result[0],
+		    	defaultnickname = "象塔直播",
+		    	defaultheadimg = "images/usercenterdefault.png";
 		    	if(webGetChannels[0]["headimg"]){
-		    		$(".headimg").prepend('<img src="'+webGetChannels[0]["headimg"]+'" alt="">');
-		    	}else{
-		    		$(".headimg").prepend('<img src="images/usercenterdefault.png" alt="">');
+		    		defaultheadimg = webGetChannels[0]["headimg"];		    		
 		    	}
+		    	$(".headimg").prepend('<img src="'+defaultheadimg+'" alt="">');
 		    	if(webGetChannels[0]["username"]){
-		    		$(".nickname").text(webGetChannels[0]["username"]);
-		    	}else{
-		    		$(".nickname").text("象塔直播");
+		    		defaultnickname = webGetChannels[0]["username"];
 		    	}
-				
+				$(".nickname").text(defaultnickname);
 		    for (var c in webGetChannels) {
 		        $(".channelist").append('<li>'+
 				'<a href="index.html?liveid='+webGetChannels[c]["liveid"]+'">'+
@@ -107,9 +106,9 @@
 			'</li>');
 		    }
 
-		    xtAPI.share.tit = webGetChannels[0]["username"]+"的往期精彩直播";
-		    xtAPI.share.des = webGetChannels[0]["username"]+"的往期精彩直播";
-		    xtAPI.share.img = webGetChannels[0]["headimg"];
+		    xtAPI.share.tit = defaultnickname+"的往期精彩直播";
+		    xtAPI.share.des = defaultnickname+"的往期精彩直播";
+		    xtAPI.share.img = defaultheadimg;
 		    xtAPI.getWxsign();
 
 		    document.title = xtAPI.share.tit;

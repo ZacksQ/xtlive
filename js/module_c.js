@@ -384,7 +384,7 @@ var xtAPI = function () {
 			data: postdata,
 			success: function success(d) {
 
-				if (d["success"] == true || localStorage.getItem("userid") != null) {
+				if (d["success"] == true /*|| localStorage.getItem("userid") != null*/) {
 					xtAPI.user = d["data"];
 					// alert(d["data"]["usercode"])
 					// resolve(xtAPI.user);
@@ -421,6 +421,7 @@ var xtAPI = function () {
 							var count_down, tsetcountd;
 
 							(function () {
+								$(".loading").fadeOut();
 								switch (watchtype) {
 									case 1:
 										$(".auth-model-body").prepend('<div>' + '<input type="text" placeholder="请输入直播密码" name="password">' + '</div>');
@@ -980,7 +981,7 @@ if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
 											}
 											if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "1") {
 												swcontent += '<div class="swiper-slide swiper-no-swiping">';
-											
+												if (liveinfo["inviteopen"] == 1) swcontent += '<a href="javascript:;" class="generate-card">点击生成我的邀请卡</a>';
 												swcontent += '<ul class="ranklist" id="inviterank"></ul></div>';
 											}
 											swcontent += '</div></div></div>';
@@ -1062,17 +1063,14 @@ easemob.roomId = liveinfo["chatroomid"];
 									}
 									easemob.initWEBIM();
 
-									$(".sendbtn").click(function () {
-										layui.use(["layer"],function(){
-											layer.open({
-												title:"提示",
-												content:"想要体验更多功能？点击微信登录"
-												,btn: ['微信登录']
-												  ,yes: function(index, layero){
-												    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-												  }
-											})
-										});
+									$(".sendbtn,.generate-card").click(function () {
+										$("#iosDialog1").fadeIn(200);
+									});
+									$(".weui-dialog__btn_default").click(function () {
+										$("#iosDialog1").fadeOut(200);
+									});
+									$(".weui-dialog__btn_primary").click(function(){
+										window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 									});
 								});
 

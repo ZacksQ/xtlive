@@ -486,17 +486,22 @@ var xtAPI = function () {
 										$(".getcode").bind("click", sendCode);
 										ajaxurl = 'newlive/tLivechannel/loadChannelByPhone.do';
 
-										break;
+									break;
 									case 3:
 										$(".auth-model-body").prepend('<div class="redtip">' + '本次直播需支付' + (result[0]["auth"]["paymoneyint"] / 100).toFixed(2) + '元' + '</div>');
 										$(".watchlive").text("付费观看");
-										break;
+									break;
+									
 								}
 							})();
 
 							$(".auth-model-tit").text(result[0]["auth"]["authtitle"]);
 							$("#auth-wrapper").show();
-
+							if(watchtype == 4){
+								$("#auth-wrapper").hide();
+								xtAPI.liveInfo = result[0];
+								initLiving();
+							}
 							$(".watchlive").click(function () {
 								if (watchtype == 3) {
 									//付费观看预支付
@@ -536,7 +541,7 @@ var xtAPI = function () {
 											});
 										}
 									});
-								} else {
+								}else {
 									postdata.code = $("#code").val();
 									postdata.watchpwd = $("input[name=password]").val();
 									$.ajax({
@@ -557,6 +562,8 @@ var xtAPI = function () {
 										}
 									});
 								}
+
+
 							});
 						}
 
@@ -821,6 +828,17 @@ $("input[name='sendpic']").change(function () {
 		oReader.readAsDataURL(oFile);
 	}
 });
+$(".tocustomer").click(function () {
+	$(".moneysum").val('');
+	$(".redpacked-xll-body").removeClass("showcustom");
+	$("#redpacket-dialog").addClass('show');
+});
+
+$(".redpacket-l").click(function () {
+	$("#redpacket-dialog-to-customer").addClass("show");
+});
+
+
 var getoken = new Promise(function (resolve) {
 	$.post(xtAPI.commonUrl + "newlive/mImhistory/getImgUptoken.do", function (d) {
 		qiniu_token = d["data"]["uptoken"];
@@ -1063,17 +1081,30 @@ easemob.roomId = liveinfo["chatroomid"];
 									}
 									easemob.initWEBIM();
 
-									$(".sendbtn,.generate-card").click(function () {
-										$("#iosDialog1").fadeIn(200);
-									});
-									$(".weui-dialog__btn_default").click(function () {
-										$("#iosDialog1").fadeOut(200);
-									});
-									$(".weui-dialog__btn_primary").click(function(){
-										window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-									});
+									
 								});
 
+								var functions = indexitem["function"];
+								for (var i = 0; i < functions.length; i++) {
+									switch (functions[i]["functiontype"]) {
+										case 1:
+											$(".tocustomer").show();
+											break;
+										case 3:
+											$(".redpacket-l").show();
+											break;
+									}
+								}
+								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l").click(function () {
+										$("#iosDialog1").fadeIn(200);
+								});
+								$(".weui-dialog__btn_default").click(function () {
+									$("#iosDialog1").fadeOut(200);
+								});
+								$(".weui-dialog__btn_primary").click(function(){
+									window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+								});
+							
 						})
 						
 					}

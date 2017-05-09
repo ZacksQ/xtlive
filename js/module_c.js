@@ -1042,17 +1042,7 @@ var rewardlist = indexitem["rewardlist"],
 								// $(".numcount").text('1154人');
 								$(".numcount").text(liveinfo["uv"] + '人');
 								$(".anchorheadimg img").attr("src", indexitem["logo"]["logoimg"]);
-var functions = indexitem["function"];
-								for (var i = 0; i < functions.length; i++) {
-									switch (functions[i]["functiontype"]) {
-										case 1:
-											$(".tocustomer").show();
-											break;
-										case 3:
-											$(".redpacket-l").show();
-											break;
-									}
-								}
+
 applicationInit.tabInit();
 								applicationInit.resizePlayer();
 								$(".player-wrapper").css("backgroundImage", "url(" + liveinfo["bakimg"] + ")");

@@ -332,7 +332,8 @@ var xtAPI = function () {
 	var share = {
 		tit: "",
 		des: "我正在象塔看直播",
-		img: "http://" + commonUrl + "/newlive/web/images/sharelogo.png"
+		img: "http://" + commonUrl + "/newlive/web/images/sharelogo.png",
+		link: xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"]
 	};
 	var from = 1;
 
@@ -1406,7 +1407,7 @@ easemob.roomId = liveinfo["chatroomid"];
 					wx.ready(function () {
 						wx.onMenuShareTimeline({
 							title: share.des, /*分享标题*/
-							link: xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"], /*分享链接*/
+							link: share.link, /*分享链接*/
 							imgUrl: share.img, /*分享图标*/
 							success: function success() {
 								// show_weui_alert("","分享成功");
@@ -1422,7 +1423,7 @@ easemob.roomId = liveinfo["chatroomid"];
 						wx.onMenuShareAppMessage({
 							title: share.tit, /*分享标题*/
 							desc: share.des, // 分享描述
-							link: xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"], /*分享链接*/
+							link: share.link, /*分享链接*/
 							imgUrl: share.img, /*分享图标*/
 							success: function success() {
 								// show_weui_alert("","分享成功");

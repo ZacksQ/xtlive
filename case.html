@@ -85,11 +85,11 @@
 		    var webGetChannels = result[0],
 		    	defaultnickname = "象塔直播",
 		    	defaultheadimg = "images/usercenterdefault.png";
-		    	if(webGetChannels[0]["headimg"]){
+		    	if(typeof webGetChannels[0]["headimg"] != undefined){
 		    		defaultheadimg = webGetChannels[0]["headimg"];		    		
 		    	}
 		    	$(".headimg").prepend('<img src="'+defaultheadimg+'" alt="">');
-		    	if(webGetChannels[0]["username"]){
+		    	if(typeof webGetChannels[0]["username"] != undefined){
 		    		defaultnickname = webGetChannels[0]["username"];
 		    	}
 				$(".nickname").text(defaultnickname);

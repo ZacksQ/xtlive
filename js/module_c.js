@@ -333,7 +333,7 @@ var xtAPI = function () {
 		tit: "",
 		des: "我正在象塔看直播",
 		img: "http://" + commonUrl + "/newlive/web/images/sharelogo.png",
-		link: xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"]
+		link: commonUrl + "newlive/web/index.html?liveid=" + request["liveid"]
 	};
 	var from = 1;
 

@@ -1051,8 +1051,8 @@ applicationInit.tabInit();
 $(".numcount").text(liveinfo["uv"] + '人');
 
 easemob.roomId = liveinfo["chatroomid"];
-								easemob.options.user = '5337c9f4aac94047b63a4935902ae767';
-								easemob.options.pwd = '5337c9f4aac94047b63a4935902ae767';
+								easemob.options.user = '9a088d3826ae45cfbc7099857f487b8f';
+								easemob.options.pwd = '9a088d3826ae45cfbc7099857f487b8f';
 
 								$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": new Date().Format("yyyy-MM-dd hh:mm:ss") }, function (d) {
 									// console.log(d)

@@ -1031,6 +1031,15 @@ if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
 									$(".swiper-wrapper.menutab").append(swcontent);
 								}
 								$(".live-items .hd li:first").addClass("active");
+								if(liveinfo["questopen"]){
+									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["questtitle"]+"</p><a href='javascript:;' class='fr'>点击进入</a></div>")
+								}
+								if(liveinfo["voteopen"]){
+									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["votename"]+"</p><a href='javascript:;' class='fr'>点击进入</a></div>");
+								}
+
+								setInterval(handleControl.rollQT,5000);
+
 if (indexitem["logo"]["logoimg"]) {
 									$(".anchorheadimg").html('<img src="' + indexitem["logo"]["logoimg"] + '" alt="" class="response">');
 									share.img = indexitem["logo"]["logoimg"];
@@ -1114,7 +1123,7 @@ easemob.roomId = liveinfo["chatroomid"];
 											break;
 									}
 								}
-								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l").click(function () {
+								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems a").click(function () {
 										$("#iosDialog1").fadeIn(200);
 								});
 								$(".weui-dialog__btn_default").click(function () {

@@ -951,7 +951,16 @@ var getoken = new Promise(function (resolve) {
 					if(d["data"]["authwatch"]!=0){
 						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
 					}else{
-						
+						if(d["data"]["leaderimgOpen"] != 0){
+									//欢迎页
+									$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
+									$(".welcome").click(function(){
+										$(this).fadeOut(1000);
+									});
+									setTimeout(function(){
+										$(".welcome").fadeOut(1000);
+									},3000);
+								}
 						Promise.all([xtAPI.getChannelInfo(),xtAPI.loadindexitem()]).then(function (result) {
 								var liveinfo = xtAPI.liveInfo["data"] = result[0],
 									indexitem = result[1];

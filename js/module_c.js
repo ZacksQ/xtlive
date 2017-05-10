@@ -1032,10 +1032,10 @@ if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
 								}
 								$(".live-items .hd li:first").addClass("active");
 								if(liveinfo["questopen"]){
-									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["questtitle"]+"</p><a href='javascript:;' class='fr'>点击进入</a></div>")
+									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
 								}
 								if(liveinfo["voteopen"]){
-									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["votename"]+"</p><a href='javascript:;' class='fr'>点击进入</a></div>");
+									$(".questionnaire").show().append("<div class='qtitems v'> <p><img src='images/questionnarieicon.png' />"+liveinfo["votename"]+"</p><a href='javascript:;' class='fr'>点击进入</a></div>");
 								}
 
 								setInterval(handleControl.rollQT,5000);
@@ -1123,7 +1123,7 @@ easemob.roomId = liveinfo["chatroomid"];
 											break;
 									}
 								}
-								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems a").click(function () {
+								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems.v a").click(function () {
 										$("#iosDialog1").fadeIn(200);
 								});
 								$(".weui-dialog__btn_default").click(function () {

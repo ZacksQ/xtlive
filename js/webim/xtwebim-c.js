@@ -169,7 +169,10 @@ var easemob = function () {
     };
 
     //用templete改！
-    var appendMsg = function appendMsg(message, type) {
+    var appendMsg = function appendMsg(message, type, isappend) {
+        if(isappend == undefined){
+            isappend = true;
+        }
         var ext = _typeof(message["ext"]) == "object" ? message["ext"] : JSON.parse(message["ext"]);
         var msgbody = '',
             msgnode = document.createElement("li"),
@@ -183,6 +186,7 @@ var easemob = function () {
         messagediv.setAttribute("class", "message fl");
         var nicknamediv = document.createElement("div");
         msgnode.setAttribute("data-msgid",ext["msgid"]);
+        msgnode.setAttribute("data-createtime",ext["sendtime"]);
         var msgp = document.createElement("p"),
             data = message.data || message.msg;
         switch (message_type) {
@@ -304,8 +308,12 @@ var easemob = function () {
 
         messagediv.appendChild(msgp);
         msgnode.appendChild(messagediv);
-        document.querySelector(".message-list").appendChild(msgnode);
-        applicationInit.scrollIntoView();
+        if(isappend){
+            document.querySelector(".message-list").appendChild(msgnode);
+            applicationInit.scrollIntoView();
+        }else{
+            document.querySelector(".message-list").insertBefore(msgnode,document.querySelector(".message-list").firstChild);
+        }        
     };
 
     var sendToAPI = function sendToAPI(txt, type) {

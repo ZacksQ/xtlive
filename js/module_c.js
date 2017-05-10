@@ -18,6 +18,13 @@ var handleControl = function () {
 		// console.log(emoji);
 	};
 
+	var showhistorytop10 = function showhistorytop10(){
+		if($(".discuss-pannel").scrollTop() <= 43){
+			document.querySelector(".discuss-pannel").removeEventListener("scroll",handleControl.showhistorytop10,false);
+			xtAPI.showhistory();
+		}
+	}
+
 	var countdown = function countdown() {
 		console.log("countdown");
 	};
@@ -187,7 +194,8 @@ var handleControl = function () {
 		showPlayer: showPlayer,
 		player: player,
 		playprop: playprop,
-		rollQT: rollQT
+		rollQT: rollQT,
+		showhistorytop10: showhistorytop10
 	};
 }();
 
@@ -848,6 +856,7 @@ $(".redpacket-l").click(function () {
 	$("#redpacket-dialog-to-customer").addClass("show");
 });
 
+document.querySelector(".discuss-pannel").addEventListener("scroll",handleControl.showhistorytop10,false);
 
 var getoken = new Promise(function (resolve) {
 	$.post(xtAPI.commonUrl + "newlive/mImhistory/getImgUptoken.do", function (d) {
@@ -1123,6 +1132,9 @@ easemob.roomId = liveinfo["chatroomid"];
 											break;
 									}
 								}
+								
+								document.querySelector(".discuss-pannel").addEventListener("scroll",handleControl.showhistorytop10,false);
+
 								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems.v a").click(function () {
 										$("#iosDialog1").fadeIn(200);
 								});
@@ -1204,6 +1216,21 @@ easemob.roomId = liveinfo["chatroomid"];
 		});
 	};
 
+	var showhistory = function showhistory() {
+		var topli = document.querySelector(".message-list li[data-createtime]");
+		$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": topli.getAttribute("data-createtime") },function(d){
+			var historylist = d["data"]["historylist"];
+			if (d["success"] == true && historylist.length > 0) {
+				for (var _i = 0; _i < historylist.length; _i++) {
+					easemob.appendMsg(historylist[_i], 'txt', false);
+				}
+			}
+			// console.log(topli.attr("data-createtime"))
+			topli.scrollIntoView();
+			document.querySelector(".discuss-pannel").addEventListener("scroll",handleControl.showhistorytop10,false);
+		});
+	};
+
 	var loadindexitem = function loadindexitem() {
 		return new Promise(function (resolve) {
 			$.ajax({
@@ -1257,8 +1284,6 @@ easemob.roomId = liveinfo["chatroomid"];
 						$("#getredpacket").addClass("show");	
 					}					
 				}
-				
-		
 		});
 	};
 
@@ -1525,7 +1550,8 @@ easemob.roomId = liveinfo["chatroomid"];
 		getAccountRecord: getAccountRecord,
 		from: from,
 		webGetCases: webGetCases,
-		getChannelInfo: getChannelInfo
+		getChannelInfo: getChannelInfo,
+		showhistory: showhistory
 	};
 }();
 

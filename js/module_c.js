@@ -953,7 +953,7 @@ var getoken = new Promise(function (resolve) {
 					}else{
 						if(d["data"]["leaderimgOpen"] != 0){
 									//欢迎页
-									$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
+									$(".welcome").css("backgroundImage","url("+d["data"]["leaderimg"]+")").show();
 									$(".welcome").click(function(){
 										$(this).fadeOut(1000);
 									});

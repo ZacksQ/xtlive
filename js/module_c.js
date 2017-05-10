@@ -499,6 +499,16 @@ var xtAPI = function () {
 							$("#auth-wrapper").show();
 							if(watchtype == 4){
 								$("#auth-wrapper").hide();
+								if(result[0]["auth"]["leaderimgOpen"] != 0){
+									//欢迎页
+									$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
+									$(".welcome").click(function(){
+										$(this).fadeOut(1000);
+									});
+									setTimeout(function(){
+										$(".welcome").fadeOut(1000);
+									},3000);
+								}
 								xtAPI.liveInfo = result[0];
 								initLiving();
 							}

@@ -6,28 +6,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="layui/css/layui.css">
 	<link rel="stylesheet" href="css/global.css">
-	<link rel="stylesheet" href="css/main.css?v=1.1.3">
+	<link rel="stylesheet" href="css/main.css?v=1.1.5">
 	<link rel="stylesheet" href="css/swiper.min.css">
 </head>
 <body>
 	 <!--BEGIN dialog1-->
-        <div class="js_dialog" id="iosDialog1" style="display: none;">
-            <div class="weui-mask"></div>
-            <div class="weui-dialog">
-                <div class="weui-dialog__hd"><strong class="weui-dialog__title">确认登录</strong></div>
-                <div class="weui-dialog__bd">将跳转到微信登录界面，以参与更多直播互动</div>
-                <div class="weui-dialog__ft">
-                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
-                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
-                </div>
+    <div class="js_dialog" id="iosDialog1" style="display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">确认登录</strong></div>
+            <div class="weui-dialog__bd">将跳转到微信登录界面，以参与更多直播互动</div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
             </div>
         </div>
+    </div>
         <!--END dialog1-->
 	<svg style="position: absolute; width: 0; height: 0; overflow: hidden" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<defs>
 			<symbol id="icon-spinner9" viewBox="0 0 32 32">
 				<title>spinner9</title>
 				<path d="M16 0c-8.711 0-15.796 6.961-15.995 15.624 0.185-7.558 5.932-13.624 12.995-13.624 7.18 0 13 6.268 13 14 0 1.657 1.343 3 3 3s3-1.343 3-3c0-8.837-7.163-16-16-16zM16 32c8.711 0 15.796-6.961 15.995-15.624-0.185 7.558-5.932 13.624-12.995 13.624-7.18 0-13-6.268-13-14 0-1.657-1.343-3-3-3s-3 1.343-3 3c0 8.837 7.163 16 16 16z"></path>
+			</symbol>
+			<symbol id="icon-circle-plus" viewBox="0 0 24 24">
+				<title>circle-plus</title>
+				<path d="M12.4 21.8v0c-5.2 0-9.4-4.2-9.4-9.4s4.2-9.4 9.4-9.4 9.4 4.2 9.4 9.4-4.2 9.4-9.4 9.4zM12.4 21c4.8 0 8.6-3.9 8.6-8.6s-3.9-8.6-8.6-8.6-8.6 3.9-8.6 8.6 3.8 8.6 8.6 8.6v0zM17.8 12.9h-10.8c-0.3 0-0.5-0.2-0.5-0.5v0c0-0.3 0.2-0.5 0.5-0.5h10.8c0.3 0 0.5 0.2 0.5 0.5v0c0 0.2-0.2 0.5-0.5 0.5zM11.8 17.8v-10.8c0-0.3 0.2-0.5 0.5-0.5v0c0.3 0 0.5 0.2 0.5 0.5v10.8c0 0.3-0.2 0.5-0.5 0.5v0c-0.2 0-0.5-0.2-0.5-0.5z"></path>
+			</symbol>
+			<symbol id="icon-smile-o" viewBox="0 0 24 24">
+				<title>smile-o</title>
+				<path d="M12.375 21.75v0c-5.178 0-9.375-4.197-9.375-9.375s4.197-9.375 9.375-9.375c5.178 0 9.375 4.197 9.375 9.375s-4.197 9.375-9.375 9.375zM12.375 21c4.763 0 8.625-3.862 8.625-8.625s-3.862-8.625-8.625-8.625c-4.763 0-8.625 3.862-8.625 8.625s3.862 8.625 8.625 8.625v0zM9 10.5c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0zM15.75 10.5c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0zM12.361 16.5c-2.611 0-4.111-1.5-4.111-1.5v0.75c0 0 1.5 1.5 4.111 1.5s4.139-1.5 4.139-1.5v-0.75c0 0-1.528 1.5-4.139 1.5v0z"></path>
+			</symbol>
+			<symbol id="icon-email" viewBox="0 0 24 24">
+				<title>email</title>
+				<path d="M10.781 14.274l-0.781 7.726 4.77-5.893 4.564 2.060 4.666-16.167-13.219 12.274zM24 2l-24 9.865 5.666 1.135 4.334 9-3.125-9 17.125-11z"></path>
 			</symbol>
 		</defs>
 	</svg>  
@@ -225,16 +237,19 @@
 					<ul></ul>
 				</div>
 				<div class="facebtn">
-					<img src="images/facebtn.png" class="response" alt="">
+					<!-- <img src="images/facebtn.png" class="response" alt=""> -->
+					<svg class="icon icon-smile-o"><use xlink:href="#icon-smile-o"></use></svg>
 				</div>
 				<div class="callfunctionbtn">
-					<img src="images/sendpicbtn.png" class="response" alt="">
+					<!-- <img src="images/sendpicbtn.png" class="response" alt=""> -->
+					<svg class="icon icon-circle-plus"><use xlink:href="#icon-circle-plus"></use></svg>
 				</div>
 				<div class="discuss-input">
 					<input type="text" id="msg-input">
 					<!-- <div class="msg-input" contentEditable=true></div> -->
 					<div class="sendbtn">
-						<img src="images/sendbtn.png" class="response" alt="">
+						<!-- <img src="images/sendbtn.png" class="response" alt=""> -->
+						<svg class="icon icon-email"><use xlink:href="#icon-email"></use></svg>
 					</div>
 				</div>
 			</div>

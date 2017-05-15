@@ -303,15 +303,15 @@ body.college{ background-color: #c7eaff}
     width: 4.5rem;
 }
 .college .generate-card{background-color: #88d2ff; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
-.college section.discuss-input-pannel .dip-warp{background-color: #88d2ff; box-shadow: 0 -1px 2px rgba(255, 255, 255, 0.2)}
+.college section.discuss-input-pannel .dip-warp{box-shadow: 0 -1px 2px rgba(255, 255, 255, 0.2)}
 .college .tocustomer{background-color: #54beff;box-shadow: 2px 7px 15px 0px rgba(84, 190, 255,.15)}
 .college li.sys-getrp .message{background-color: rgba(84, 190, 255,.15);}
 .college .rank-hd li{border: 1px solid #88d2ff; color: #88d2ff;}
 .college .rank-hd li.active{background-color: #88d2ff;color:#fff;border: 1px solid #88d2ff; }
-.college .icon-smile-o {color: #fff;}
-.college .icon-circle-plus {color: #fff;}
-.college .icon-email {color: #fff;}
-.college .discuss-input #msg-input{ border-bottom: 1px solid #fff;background-color: #88d2ff; color: #fff; }
+.college .icon-smile-o {color: #88d2ff;}
+.college .icon-circle-plus {color: #88d2ff;}
+.college .icon-email {color: #88d2ff;}
+.college .discuss-input #msg-input{ border-bottom: 1px solid #88d2ff; }
 .college .weui-dialog__btn_primary {color: #88d2ff;}
 /*college end*/
 
@@ -363,21 +363,17 @@ body.orange{ background-color: #f9f9f9}
 .orange .countdown-wrapper .countdown-label{ background-color: #ff996c}
 .orange .countdown span.num{ color: #ff996c}
 .orange .message .nickname{ color: #ff996c}
-.orange .redpacket-l {
-    bottom: 9%;
-    right: 3%;
-    width: 4.5rem;
-}
+.orange .redpacket-l {bottom: 9%;right: 3%;width: 4.5rem;}
 .orange .generate-card{background-color: #ff996c; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
-.orange section.discuss-input-pannel .dip-warp{background-color: #f5ba3b;}
+/*.orange section.discuss-input-pannel .dip-warp{background-color: #f5ba3b;}*/
 .orange .tocustomer{background-color: #ff996c;box-shadow: 2px 7px 15px 0px rgba(245, 186, 59,.15)}
 .orange li.sys-getrp .message{background-color: rgba(245, 186, 59,.15);}
 .orange .rank-hd li{border: 1px solid #ff996c; color: #ff996c;}
 .orange .rank-hd li.active{background-color: #ff996c;color:#fff;border: 1px solid #ff996c; }
-.orange .icon-smile-o {color: #fff;}
-.orange .icon-circle-plus {color: #fff;}
-.orange .icon-email {color: #fff;}
-.orange .discuss-input #msg-input{ border-bottom: 1px solid #fff; background-color: #f5ba3b; color: #fff;}
+.orange .icon-smile-o {color: #f5ba3b;}
+.orange .icon-circle-plus {color: #f5ba3b;}
+.orange .icon-email {color: #f5ba3b;}
+.orange .discuss-input #msg-input{ border-bottom: 1px solid #f5ba3b;}
 .orange .weui-dialog__btn_primary {color: #f5ba3b;}
 /*orange end*/
 

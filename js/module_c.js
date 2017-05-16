@@ -1594,6 +1594,25 @@ var wxPay = function () {
 					$(".ctdialog").removeClass("show");
 					if (res.err_msg == "get_brand_wcpay_request:ok") {
 						$(".ctdialog").removeClass("show");
+
+					$.ajax({
+						url: xtAPI.commonUrl + 'newlive/tLivechannel/getLoaditems.do',
+						type: 'post',
+						dataType: 'json',
+						data: { "liveid": xtAPI.request["liveid"], types: 6 },
+						success: function success(d) {
+							if (d["success"] == true) {
+								var rewardlist = d["data"]["rewardlist"],
+					    			rewardlistlength = rewardlist.length;
+					    		$("#payrank").html('');
+								for (var i = 0; i < rewardlistlength; i++) {
+									var uname = rewardlist[i]["sendername"];
+									$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">打赏'+rewardlist[i]["total"]+'元</span></li>');
+								}
+							}
+						}
+					});
+						
 					} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
 				});
 			},

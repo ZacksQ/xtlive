@@ -617,7 +617,7 @@ var xtAPI = function () {
 								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
 								document.title = liveinfo["channelname"];
 								var $body = $('body');
-								var $iframe = $('<iframe src="images/sharelogo.png"></iframe>');
+								var $iframe = $('<iframe style="display:none" src="images/sharelogo.png"></iframe>');
 								$iframe.on('load',function() {
 								  setTimeout(function() {
 								      $iframe.off('load').remove();

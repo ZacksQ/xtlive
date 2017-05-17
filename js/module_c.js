@@ -233,11 +233,28 @@ var applicationInit = function () {
 			}
 			// }
 		}
-		facelist.find('li').click(function () {
-			// console.log($(this).find("img").attr("data-text"));
-			var _this = $(this);
-			$("#msg-input").val($("#msg-input").val() + _this.find("img").attr("data-text"));
-		});
+		// for(var l = 0; l < $("#facelist ul li").length; l++ ){
+		// 	$("#facelist ul li")[l].addEventListener("click", function (e) {
+		// 		// console.log($(this).find("img").attr("data-text"));
+		// 		var _this = $($("#facelist ul li")[l]);
+		// 		$("#msg-input").val($("#msg-input").val() + _this.find("img").attr("data-text"));
+		// 		e.stopPropagation();
+		// 	},false);
+		// }
+		facelist.find("li").on("touchend", function (e) {
+				// console.log($(this).find("img").attr("data-text"));
+				var _this = $(this);
+				$("#msg-input").val($("#msg-input").val() + _this.find("img").attr("data-text"));
+				e.stopPropagation();
+			});
+		document.querySelector(".facebtn").addEventListener("touchend",function (e) {
+			handleControl.showEmoji();			
+			e.stopPropagation();
+		},false);
+		document.querySelector("body").addEventListener("touchend",function (){
+			$(".discuss-input-pannel").removeClass("showemoji");
+		},false)
+		
 	};
 
 	var tabInit = function tabInit() {
@@ -630,13 +647,13 @@ var xtAPI = function () {
 											swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
 										break;
 										case 4:
-											swcontent += '<div class="content-slide discuss-pannel">' + '<ul class="message-list">' + '<li>' +
+											swcontent += '<div class="content-slide discuss-pannel scroll">' + '<ul class="message-list">' + '<li>' +
 											// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
 											// 						'<div class="message fl robredpacket">'+
 											// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
 											// 					'<img src="images/redpacket-xl.png" class="response" />'+
 											// 				'</div>'+
-											'</li>' + '</ul>' + '<div id="sth"></div>' + '</div>';
+											'</li>' + '</ul>' + '<div id="sth"></div>' + '<div class="tocustomer">赏</div><div class="redpacket-l"><img src="images/redpacket-l.png" alt="" class="response"></div></div>';
 											break;
 										case 5:
 											swcontent += '<div class="content-slide rank-wrapper">';
@@ -662,6 +679,7 @@ var xtAPI = function () {
 									swcontent += '</div>';
 									$(".swiper-wrapper.menutab").append(swcontent);
 								}
+								
 								if(liveinfo["questopen"]){
 									// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>");
 
@@ -1013,7 +1031,7 @@ if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
 											// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
 											// 					'<img src="images/redpacket-xl.png" class="response" />'+
 											// 				'</div>'+
-											'</li>' + '</ul>' + '<div id="sth"></div>' + '</div>';
+											'</li>' + '</ul>' + '<div id="sth"></div>' + '<div class="tocustomer">赏</div><div class="redpacket-l"><img src="images/redpacket-l.png" alt="" class="response"></div></div>';
 											break;
 										case 5:
 											swcontent += '<div class="content-slide rank-wrapper">';

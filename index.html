@@ -5,7 +5,7 @@
 	<title>象塔直播</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="layui/css/layui.css">
-	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/global.css?v=1.1.5">
 	<link rel="stylesheet" href="css/main.css?v=1.1.5">
 	<link rel="stylesheet" href="css/swiper.min.css">
 </head>
@@ -266,10 +266,7 @@
 				</ul>
 			</div>
 		</section>
-		<div class="tocustomer">赏</div>
-		<div class="redpacket-l">
-			<img src="images/redpacket-l.png" alt="" class="response">
-		</div>
+		
 	</div>
 	<script src="js/jquery-1.9.1.min.js"></script>
 	<script src="js/swiper.min.js"></script>
@@ -294,9 +291,9 @@
 
 var qiniu_token = "";
 
-$(".facebtn").click(function () {
-	handleControl.showEmoji();
-});
+// document.querySelector("body").addEventListener("touchstart",function (e){
+// 	e.preventdefault();
+// },false)
 
 window.onresize = function () {
 	applicationInit.resizePlayer();

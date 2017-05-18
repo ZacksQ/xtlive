@@ -269,7 +269,7 @@ body.sakura{ background-color: #ffe2e7}
 	background-image: -o-linear-gradient(top, #fcdf9a, #fc9dab);
 	background-image: -webkit-linear-gradient(top, #fcdf9a, #fc9dab);
 	background-image: linear-gradient(top, #fcdf9a, #fc9dab);
-	width: 100%; line-height: 45px; font-size: 1.4rem;
+	width: 100%; line-height: 40px; font-size: 1.4rem;
 }
 .sakura .generate-card{background-image: -moz-linear-gradient(top, #febdc7, #fc9dab);
 	background-image: -ms-linear-gradient(top, #febdc7, #fc9dab);
@@ -293,7 +293,7 @@ body.college{ background-color: #c7eaff}
 .college .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .college .discuss-input-pannel{ background-color: #fff}
 .college .ranklist li{ background-color: #88d2ff;}
-.college .ranklist li:first-of-type{background-color: #88d2ff;width: 100%; line-height: 45px; font-size: 1.6rem;}
+.college .ranklist li:first-of-type{background-color: #88d2ff;width: 100%; line-height: 40px; font-size: 1.6rem;}
 .college .countdown-wrapper .countdown-label{ background-color: #54beff}
 .college .countdown span.num{ color: #54beff}
 .college .message .nickname{ color: #54beff}
@@ -324,7 +324,7 @@ body.ngc{ background-color: #f1f1f1}
 .ngc .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .ngc .discuss-input-pannel{ background-color: #fff}
 .ngc .ranklist li{ background-color: #f4514b;}
-.ngc .ranklist li:first-of-type{background-color: #f4514b;width: 100%; line-height: 45px; font-size: 1.6rem;}
+.ngc .ranklist li:first-of-type{background-color: #f4514b;width: 100%; line-height: 40px; font-size: 1.6rem;}
 .ngc .countdown-wrapper .countdown-label{ background-color: #ec1e35}
 .ngc .countdown span.num{ color: #ec1e35}
 .ngc .message .nickname{ color: #ec1e35}
@@ -353,7 +353,7 @@ body.orange{ background-color: #f9f9f9}
 .orange .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .orange .discuss-input-pannel{ background-color: #fff}
 .orange .ranklist li{ background-color: #ff996c;}
-.orange .ranklist li:first-of-type{background-color: #ff996c;width: 100%; line-height: 45px; font-size: 1.6rem;}
+.orange .ranklist li:first-of-type{background-color: #ff996c;width: 100%; line-height: 40px; font-size: 1.6rem;}
 .orange .countdown-wrapper .countdown-label{ background-color: #ff996c}
 .orange .countdown span.num{ color: #ff996c}
 .orange .message .nickname{ color: #ff996c}
@@ -384,7 +384,7 @@ body.brown{ background-color: #fff}
 .brown .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .brown .discuss-input-pannel{ background-color: #fff}
 .brown .ranklist li{ background-color: #9e695b;}
-.brown .ranklist li:first-of-type{background-color: #9e695b;width: 100%; line-height: 45px; font-size: 1.6rem;}
+.brown .ranklist li:first-of-type{background-color: #9e695b;width: 100%; line-height: 40px; font-size: 1.6rem;}
 .brown .countdown-wrapper .countdown-label{ background-color: #9e695b}
 .brown .countdown span.num{ color: #9e695b}
 .brown .message .nickname{ color: #9e695b}
@@ -412,7 +412,7 @@ body.purple{ background-color: #fff}
 .purple .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .purple .discuss-input-pannel{ background-color: #fff}
 .purple .ranklist li{ background-color: #bc95df;}
-.purple .ranklist li:first-of-type{background-color: #bc95df;width: 100%; line-height: 45px; font-size: 1.6rem}
+.purple .ranklist li:first-of-type{background-color: #bc95df;width: 100%; line-height: 40px; font-size: 1.6rem}
 .purple .countdown-wrapper .countdown-label{ background-color: #bc95df}
 .purple .countdown span.num{ color: #bc95df}
 .purple .message .nickname{ color: #bc95df}
@@ -438,7 +438,7 @@ body.future{ background-color: #fff}
 .future .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .future .discuss-input-pannel{ background-color: #fff}
 .future .ranklist li{ background-color: #182033;}
-.future .ranklist li:first-of-type{background-color: #182033;width: 100%; line-height: 45px; font-size: 1.6rem}
+.future .ranklist li:first-of-type{background-color: #182033;width: 100%; line-height: 40px; font-size: 1.6rem}
 .future .countdown-wrapper .countdown{ background-color: rgba(49,104,130,.6)}
 .future .countdown-wrapper .countdown-label{ background-color: rgba(22,49,73,.8); color: #63e7e9}
 .future .countdown span.num{ color: #63e7e9; background-color: #163149}
@@ -476,7 +476,7 @@ border-image: linear-gradient(#6057fb, #8e6bc8 )  1 49%; padding: 4px 0
 .music .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .music .discuss-input-pannel{ background-color: #fff}
 .music .ranklist li{ background-color: #001121;}
-.music .ranklist li:first-of-type{background-color: #001121;width: 100%; line-height: 45px; font-size: 1.6rem}
+.music .ranklist li:first-of-type{background-color: #001121;width: 100%; line-height: 40px; font-size: 1.6rem}
 .music .countdown-wrapper .countdown{ background-color: rgba(1,35,83,.6)}
 .music .countdown-wrapper .countdown-label{ background-color: #012353; color: #5859ff}
 .music .countdown span.num{ color: #abc4ff; background-color: #163149}
@@ -511,7 +511,7 @@ body.greedtime{ background-color: #f9f9f9}
 .greedtime .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
 .greedtime .discuss-input-pannel{ background-color: #fff}
 .greedtime .ranklist li{ background-color: #a0b7ae;}
-.greedtime .ranklist li:first-of-type{background-color: #a0b7ae;width: 100%; line-height: 45px; font-size: 1.6rem;}
+.greedtime .ranklist li:first-of-type{background-color: #a0b7ae;width: 100%; line-height: 40px; font-size: 1.6rem;}
 .greedtime .countdown-wrapper .countdown-label{ background-color: #ff996c}
 .greedtime .countdown span.num{ color: #ff996c}
 .greedtime .message .nickname{ color: #a0b7ae}
@@ -527,6 +527,36 @@ body.greedtime{ background-color: #f9f9f9}
 .greedtime .icon-email {color: #a0b7ae;}
 .greedtime .discuss-input #msg-input{ border-bottom: 1px solid #a0b7ae;}
 .greedtime .weui-dialog__btn_primary {color: #a0b7ae;}
+
+/*orange start*/
+body.orange{ background-color: #f9f9f9}
+.dg .live-items{position: relative; background-color: #f9f9f9}
+.dg .hd{ background: #fff url(../images/dg/dgmenu.png) no-repeat bottom left; background-size: cover;background-size: cover;}
+.dg .hd li{ color: #333; line-height: 2;}
+.dg .hd li.active{  color: #fdd100}
+.dg .live-items .hd li.active:after{ background-color: #f5ba3b}
+.dg .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}
+.dg .discuss-input-pannel{ background-color: #fff}
+.dg .ranklist li{ background-color: #dbc464;}
+.dg .ranklist li:first-of-type{background-color: #dbc464;width: 100%; line-height: 40px; font-size: 1.6rem;}
+.dg .countdown-wrapper .countdown-label{ background-color: #ff996c}
+.dg .countdown span.num{ color: #ff996c}
+.dg .message .nickname{ color: #fdd100}
+.dg .redpacket-l {width: 4.5rem;}
+.dg .generate-card{background-color: #fdd100; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
+/*.orange section.discuss-input-pannel .dip-warp{background-color: #f5ba3b;}*/
+.dg .tocustomer{background-color: #ff996c;box-shadow: 2px 7px 15px 0px rgba(245, 186, 59,.15)}
+.dg li.sys-getrp .message{background-color: rgba(245, 186, 59,.15);}
+.dg .rank-hd li{border: 1px solid #dbc464; color: #dbc464;}
+.dg .rank-hd li.active{background-color: #dbc464;color:#fff;border: 1px solid #dbc464; }
+.dg .menutab{ background: url(../images/dg/dgbg.png?v=2) no-repeat left bottom; background-size: 100% auto;}
+.dg .icon-smile-o {color: #dbc464;}
+.dg .icon-circle-plus {color: #dbc464;}
+.dg .icon-email {color: #dbc464;}
+.dg .discuss-input #msg-input{ border-bottom: 1px solid #dbc464;}
+.dg .weui-dialog__btn_primary {color: #dbc464;}
+/*orange end*/
+
 
 @media (max-width:372px){
 	html{

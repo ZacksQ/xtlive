@@ -968,7 +968,7 @@ var getoken = new Promise(function (resolve) {
 			}
 			});
 		}else{
-			$(".callfunctionbtn").hide();
+			// $(".callfunctionbtn").hide();
 			$.ajax({
 				url: commonUrl + 'newlive/stemp/getChannelAuth.do',
 				type: 'post',
@@ -1153,7 +1153,7 @@ easemob.roomId = liveinfo["chatroomid"];
 								
 								document.querySelector(".discuss-pannel").addEventListener("scroll",handleControl.showhistorytop10,false);
 
-								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems.v a").click(function () {
+								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems.v a,#pickfiles").click(function () {
 										$("#iosDialog1").fadeIn(200);
 								});
 								$(".weui-dialog__btn_default").click(function () {

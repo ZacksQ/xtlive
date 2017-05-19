@@ -357,7 +357,7 @@ var xtAPI = function () {
 	var share = {
 		tit: "",
 		des: "我正在象塔看直播",
-		img: "http://" + commonUrl + "/newlive/web/images/sharelogo.png",
+		img: commonUrl + "newlive/web/images/sharelogo.png",
 		link: commonUrl + "newlive/web/index.html?liveid=" + request["liveid"]
 	};
 	var from = 1;
@@ -518,6 +518,14 @@ var xtAPI = function () {
 									break;
 									
 								}
+								var liveinfo = result[0]["data"];
+								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
+								share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
+								if (liveinfo["shareimg"]) {
+									share.img = liveinfo["shareimg"];
+									// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
+								}
+								xtAPI.getWxsign();
 							})();
 
 							$(".auth-model-tit").text(result[0]["auth"]["authtitle"]);

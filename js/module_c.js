@@ -424,7 +424,7 @@ var xtAPI = function () {
 								//欢迎页
 								$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
 								$(".welcome .skip span").click(function(){
-										$(this).fadeOut(1000);
+										$(".welcome").fadeOut(1000);
 									});
 								var welcome_countdown = null,
 									welcome_second = 3;
@@ -545,7 +545,7 @@ var xtAPI = function () {
 									//欢迎页
 									$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
 									$(".welcome .skip span").click(function(){
-										$(this).fadeOut(1000);
+										$(".welcome").fadeOut(1000);
 									});
 									var welcome_countdown = null,
 										welcome_second = 3;
@@ -1008,7 +1008,7 @@ var getoken = new Promise(function (resolve) {
 									//欢迎页
 									$(".welcome").css("backgroundImage","url("+d["data"]["leaderimg"]+")").show();
 									$(".welcome .skip").click(function(){
-										$(this).fadeOut(1000);
+										$(".welcome").fadeOut(1000);
 									});
 									var welcome_countdown = null,
 										welcome_second = 3;

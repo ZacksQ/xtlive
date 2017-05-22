@@ -105,7 +105,7 @@ li.sys-getrp .message{ width: 70%; left: 15%; color: #fff; background-color:rgba
 .redpacket-wrapper>div{font-size: 0; text-align: center;}
 .redpacket-wrapper .redpacked-xll-body{ background: url(../images/redpacket-xxl-body.png) repeat-y center; background-size: 100% auto; font-size: 2rem; padding-top: 1.8rem;}
 .redpacked-xll-body>div{ width: 80%; margin:0 auto;}
-.redpacket-wrapper .redpacked-xll-bottom{background: url(../images/redpacket-xxl-bottom.png) no-repeat bottom center; background-size:100% auto; font-size: 1.4rem; line-height: 2; text-decoration: underline; padding-bottom:1rem; color: #ffc000; display: block; text-align: center;}
+.redpacket-wrapper .redpacked-xll-bottom{background: url(../images/redpacket-xxl-bottom.png) no-repeat bottom center; background-size:100% auto; font-size: 1.4rem; line-height: 2; text-decoration: underline; padding-bottom:1rem; color: #ffc000; display: block; text-align: center; min-height: 2.8rem;}
 .redpacked-xll-body input{ font-size: 1.8rem; border: 0; border-radius: 6px; line-height: 2; padding: 0 1rem; width: 100%;margin-bottom: 1.3rem;}
 .money-choose li{ float: left; font-size: 1.4rem; width: 30%; margin-right: 4.6%; line-height: 2; color: #ffc000; border: 1px solid #ffc000; border-radius: 6px; margin-bottom: 1.3rem; font-family: '黑体'}
 .custom-money{ display: none;}

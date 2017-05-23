@@ -450,7 +450,7 @@ body.future{ background-color: #fff}
 .future .generate-card{background-color: #182033; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
 .future section.discuss-input-pannel .dip-warp{background-color: #182033;}
 .future .tocustomer{background-color: #ff3150;box-shadow: 2px 7px 15px 0px rgba(255, 49, 80, 0.61)}
-.future li.sys-getrp .message{background-color: rgba(151, 77, 164,.15);}
+.future li.sys-getrp .message{background-color: rgba(109, 109, 109, 0.6);}
 .future .rank-hd li{border: 1px solid #182033; color: #182033;}
 .future .rank-hd li.active{    background-color: #182033;color: #fff;border: 1px solid #182033;}
 .future .menutab{ background: url(../images/futurebg.png?v=2) no-repeat left bottom; background-size: 100% auto;}
@@ -488,7 +488,7 @@ border-image: linear-gradient(#6057fb, #8e6bc8 )  1 49%; padding: 4px 0
 .music .generate-card{background-color: #001121; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
 .music section.discuss-input-pannel .dip-warp{background-color: #001121;}
 .music .tocustomer{background-color: #ff3150;box-shadow: 2px 7px 15px 0px rgba(255, 49, 80, 0.61)}
-.music li.sys-getrp .message{background-color: rgba(151, 77, 164,.15);}
+.music li.sys-getrp .message{background-color: rgba(109, 109, 109, 0.6);}
 .music .rank-hd li{border: 1px solid #001121; color: #001121;}
 .music .rank-hd li.active{background-color: #001121;color:#abc4ff;border: 1px solid #001121;}
 .music .menutab{ background: url(../images/musicbg.png) no-repeat left bottom; background-size: 100% auto;}
@@ -520,7 +520,7 @@ body.greedtime{ background-color: #f9f9f9}
 .greedtime .generate-card{background-color: #ff996c; width: 70%; display: block; margin: 15px auto; line-height: 3.6rem; font-size: 1.6rem; color: #fff;  text-align: center; border-radius: 5px;}
 /*.greedtime section.discuss-input-pannel .dip-warp{background-color: #f5ba3b;}*/
 .greedtime .tocustomer{background-color: #ff996c;box-shadow: 2px 7px 15px 0px rgba(245, 186, 59,.15)}
-.greedtime li.sys-getrp .message{background-color: rgba(245, 186, 59,.15);}
+.greedtime li.sys-getrp .message{background-color: rgba(109, 109, 109, 0.6);}
 .greedtime .rank-hd li{border: 1px solid #a0b7ae; color: #a0b7ae;}
 .greedtime .rank-hd li.active{background-color: #a0b7ae;color:#fff;border: 1px solid #a0b7ae; }
 .greedtime .icon-smile-o {color: #a0b7ae;}

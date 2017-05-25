@@ -6,7 +6,7 @@ ol,ul{list-style:none;}
 input{-webkit-appearance: none;}
 blockquote,q{quotes:none;}
 table{border-collapse:collapse;border-spacing:0;}
-html,body{ height: 100%;font-family: Heiti SC,Droidsansfallback,黑体; overflow: hidden;}
+html,body{ height: 100%;font-family: Heiti SC,Droidsansfallback,黑体;}
 html{ font-size: 62.5%}
 
 *{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box; -webkit-tap-highlight-color:transparent}

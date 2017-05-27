@@ -357,6 +357,7 @@ var xtAPI = function () {
 	var share = {
 		tit: "",
 		des: "我正在象塔看直播",
+		timelinesharecontent: "我正在象塔看直播",
 		img: commonUrl + "newlive/web/images/sharelogo.png",
 		link: commonUrl + "newlive/web/index.html?liveid=" + request["liveid"]
 	};
@@ -627,6 +628,7 @@ var xtAPI = function () {
 								var liveinfo = result[0]["data"];
 								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
 								share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
+								share.timelinesharecontent = liveinfo["timelinesharecontent"]?liveinfo["timelinesharecontent"]:share.timelinesharecontent;
 								if (liveinfo["shareimg"]) {
 									share.img = liveinfo["shareimg"];
 									// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
@@ -747,6 +749,7 @@ var xtAPI = function () {
 								  }, 0);
 								}).appendTo($body);
 								share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
+								share.timelinesharecontent = liveinfo["timelinesharecontent"]?liveinfo["timelinesharecontent"]:share.timelinesharecontent;
 								// share.img = liveinfo["shareimg"];
 								applicationInit.init();
 								handleControl.playprop.width = liveinfo["width"];
@@ -770,7 +773,7 @@ var xtAPI = function () {
 											swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
 										break;
 										case 4:
-											swcontent += '<div class="content-slide discuss-pannel scroll">' + '<ul class="message-list">' + '<li>' +
+											swcontent += '<div class="content-slide discuss-pannel scroll"><div class="questionnaire"></div>' + '<ul class="message-list">' + '<li>' +
 											// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
 											// 						'<div class="message fl robredpacket">'+
 											// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
@@ -1132,6 +1135,7 @@ $("body").addClass(liveinfo["skinid"]);
 								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
 								document.title = liveinfo["channelname"];
 share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
+share.timelinesharecontent = liveinfo["timelinesharecontent"]?liveinfo["timelinesharecontent"]:share.timelinesharecontent;
 handleControl.playprop.width = liveinfo["width"];
 								handleControl.playprop.height = liveinfo["height"];
 if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
@@ -1159,7 +1163,7 @@ if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
 											swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
 										break;
 										case 4:
-											swcontent += '<div class="content-slide discuss-pannel">' + '<ul class="message-list">' + '<li>' +
+											swcontent += '<div class="content-slide discuss-pannel"><div class="questionnaire"></div>' + '<ul class="message-list">' + '<li>' +
 											// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
 											// 						'<div class="message fl robredpacket">'+
 											// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
@@ -1642,7 +1646,7 @@ easemob.roomId = liveinfo["chatroomid"];
 
 					wx.ready(function () {
 						wx.onMenuShareTimeline({
-							title: share.des, /*分享标题*/
+							title: share.timelinesharecontent, /*分享标题*/
 							link: share.link, /*分享链接*/
 							imgUrl: share.img, /*分享图标*/
 							success: function success() {

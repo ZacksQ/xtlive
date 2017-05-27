@@ -55,7 +55,9 @@ section.discuss-input-pannel .dip-warp{ height: 48px;/* background-color: #ff7c7
 .rose .hd li{ color: #fff; line-height: 2; padding-top: 10px;}
 .rose .decorate{ position: absolute; top: 0; left: 0; display: block; margin-top: -6%; z-index: 9}*/
 
-.discuss-pannel{overflow-y:auto;/*-webkit-overflow-scrolling: touch;*/ position: relative;}
+.discuss-pannel{overflow-y:auto;/*-webkit-overflow-scrolling: touch;*/ position: relative; padding: 1rem 1rem .5rem;}
+.discuss-pannel.content-slide{ padding: 3.6rem 1rem .5rem;}
+.followus.content-slide{ padding: 3rem 1rem .5rem;}
 .facebtn,.callfunctionbtn{ /*flex-grow:1;*/ width: 3.8rem; /*margin-top: .25rem;*/ display: flex; display: -webkit-flex;align-items:center;}
 /*.facebtn{ margin-right: 5px}*/
 #facelist{ position: absolute; /*height: 150px;*/ background-color: #000; top: -212px; /*width: 85%;*/ /*width: 245px;*/ border-radius: 6px; left: 0; z-index: 12; /*overflow-y:auto;*/ background-color: #f7f7f7; border:1px solid #ff7878; /*padding: .7rem*/ display: none;}
@@ -69,8 +71,8 @@ section.discuss-input-pannel .dip-warp{ height: 48px;/* background-color: #ff7c7
 /*.discuss-input #msg-input.disable{ background-color: #c7c7c7;}*/
 .discuss-input .sendbtn{ position: absolute; right: 0; width: 3.6rem; top:0; bottom: 0; margin:auto;display: flex; display: -webkit-flex;align-items:center; padding-right: .8rem}
 .content-slide{ padding: .5rem 1rem; height: 100%;overflow-y:auto;overflow-x: hidden;webkit-overflow-scrolling: touch;}
-.content-slide{ padding: 3.6rem 1rem .5rem;}
-.content-slide.contmenu{padding: 3.6rem 0 .5rem;}
+
+.content-slide.contmenu{padding: 1rem 0 .5rem;}
 .redpacket-l{ position: fixed; bottom: 7%; right: 1%; width: 5.5rem; z-index: 10}
 .headimg{ border-radius: 100%; border: 2px solid #fff; width: 40px; height: 40px;/* box-shadow: 1px 2px 3px rgba(0,0,0,.4);*/}
 .live-items .hd{    z-index: 2;position: relative;box-shadow: 0 1px 2px rgba(0,0,0,.2);}
@@ -146,7 +148,7 @@ li.sys-getrp .message{ width: 70%; left: 15%; color: #fff; background-color:rgba
 .auth-model-body>div #code{ width: 60%; display: inline-block;}
 .getcode{ width: 45%; display: inline-block; margin-left: -5%}
 .redtip{ text-align: center; text-align: center; color: #f00; font-size: 1.4rem; }
-.questionnaire{ position: absolute; top: 4px; left: 0; font-size: 1.4rem; /*line-height: 1.6; */width: 100%; padding: 6px 12px 0; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); z-index: 2; color: #555; height: 31px; overflow: hidden; display: none;}
+.questionnaire{ position: fixed; top: 4px; left: 0; font-size: 1.4rem; /*line-height: 1.6; */width: 100%; padding: 6px 12px 0; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); z-index: 2; color: #555; height: 31px; overflow: hidden; display: none;}
 .questionnaire .qtitems{ margin-bottom: 6px;}
 .questionnaire:nth-of-type(1){ top: 4px}
 /*.questionnaire:nth-of-type(2){ top: 37px}*/

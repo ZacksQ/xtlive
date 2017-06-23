@@ -1096,6 +1096,10 @@ var getoken = new Promise(function (resolve) {
 			});
 		}else{
 			// $(".callfunctionbtn").hide();
+			if(localStorage.getItem("isChooseLogined")){
+				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
+				return;
+			}
 			$.ajax({
 				url: commonUrl + 'newlive/stemp/getChannelAuth.do',
 				type: 'post',
@@ -1300,6 +1304,7 @@ easemob.roomId = liveinfo["chatroomid"];
 									$("#iosDialog1").fadeOut(200);
 								});
 								$(".weui-dialog__btn_primary").click(function(){
+									localStorage.setItem("isChooseLogined", 1);
 									window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 								});
 							

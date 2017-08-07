@@ -1089,10 +1089,26 @@ var xtAPI = function () {
 			});
 		} else {
 			// $(".callfunctionbtn").hide();
-			if (localStorage.getItem("isChooseLogined")) {
-				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=" + from + "#wechat_redirect";
-				return;
-			}
+			 var isWeixin = /MicroMessenger/i.test(navigator.userAgent);
+			 // if(!isWeixin){
+			 // 	layui.use(['layer'], function () {
+				// 	layer.msg("请在微信中打开授权");
+				// });
+			 // 	return;
+			 // }
+				if (localStorage.getItem("isChooseLogined") && isWeixin) {
+					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=" + from + "#wechat_redirect";
+					return;
+				}
+				// else{
+				// 	if(!isWeixin){
+				// 	 	layui.use(['layer'], function () {
+				// 			layer.msg("请在微信中打开授权");
+				// 		});
+				// 	 	// return;
+				// 	 }
+				// }
+
 			$.ajax({
 				url: commonUrl + 'newlive/stemp/getChannelAuth.do',
 				type: 'post',
@@ -1293,8 +1309,16 @@ var xtAPI = function () {
 								$("#iosDialog1").fadeOut(200);
 							});
 							$(".weui-dialog__btn_primary").click(function () {
-								localStorage.setItem("isChooseLogined", 1);
+								if(!isWeixin){
+								 	layui.use(['layer'], function () {
+										layer.msg("请在微信中打开授权");
+									});
+								 	// return;
+								 }else{
+								 	localStorage.setItem("isChooseLogined", 1);
 								window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+								 }
+								
 							});
 						});
 					}

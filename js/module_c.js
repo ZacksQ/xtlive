@@ -18,12 +18,12 @@ var handleControl = function () {
 		// console.log(emoji);
 	};
 
-	var showhistorytop10 = function showhistorytop10(){
-		if($(".discuss-pannel").scrollTop() <= 43){
-			document.querySelector(".discuss-pannel").removeEventListener("scroll",handleControl.showhistorytop10,false);
+	var showhistorytop10 = function showhistorytop10() {
+		if ($(".discuss-pannel").scrollTop() <= 43) {
+			document.querySelector(".discuss-pannel").removeEventListener("scroll", handleControl.showhistorytop10, false);
 			xtAPI.showhistory();
 		}
-	}
+	};
 
 	var countdown = function countdown() {
 		console.log("countdown");
@@ -42,14 +42,14 @@ var handleControl = function () {
 		return theRequest;
 	};
 
-	var rollQT = function rollQT(){
+	var rollQT = function rollQT() {
 		var qt = $(".questionnaire");
 		var distance = 25;
-		if(qt.scrollTop()>=qt.height()){
-			qt.animate({"scrollTop":0});
-		}else{
-			qt.animate({"scrollTop":qt.scrollTop()+distance});
-		}									
+		if (qt.scrollTop() >= qt.height()) {
+			qt.animate({ "scrollTop": 0 });
+		} else {
+			qt.animate({ "scrollTop": qt.scrollTop() + distance });
+		}
 	};
 
 	var formatSeconds = function formatSeconds(value) {
@@ -73,7 +73,7 @@ var handleControl = function () {
 					hour = parseInt(minute / 60);
 					minute = parseInt(minute % 60);
 				}
-				if(hour > 24){
+				if (hour > 24) {
 					day = parseInt(hour / 24);
 					hour = parseInt(hour % 24);
 				}
@@ -93,7 +93,7 @@ var handleControl = function () {
 				// $(".countdown .num").eq(1).text(hour[1]);
 				// $(".countdown .num").eq(0).text(hour[0]);
 			}
-			$(".countdownv2 span").text(day + "天" +hour + ":" + minute + ":"+second);
+			$(".countdownv2 span").text(day + "天" + hour + ":" + minute + ":" + second);
 			value--;
 			// console.log("second",hour+' '+minute+''+second)
 		}, 1000);
@@ -147,11 +147,11 @@ var handleControl = function () {
 			};
 			player.addEventListener("x5videoenterfullscreen", function () {
 				// alert("player enterfullscreen"); 
-				if(xtAPI.liveInfo["data"]["advopen"]){
+				if (xtAPI.liveInfo["data"]["advopen"]) {
 					player.style["object-position"] = "0px 78px";
-				}else{
-					player.style["object-position"] = "0px 43px";	
-				}				
+				} else {
+					player.style["object-position"] = "0px 43px";
+				}
 				$("body").addClass("androidfull androidpo");
 				player.style.background = "#000";
 			});
@@ -167,21 +167,21 @@ var handleControl = function () {
 		}
 
 		var isWeixin = /MicroMessenger/i.test(navigator.userAgent);
-		if(isWeixin){
-			document.querySelector("video").addEventListener("loadedmetadata",function(){
+		if (isWeixin) {
+			document.querySelector("video").addEventListener("loadedmetadata", function () {
 				//safari中直接执行
-	         		$(".player-wrapper").css("height", "auto");
-		     },false);
-		}else{
-			document.querySelector("video").addEventListener("play",function(){
-	         		$(".player-wrapper").css("height", "auto");
-		     },false);
+				$(".player-wrapper").css("height", "auto");
+			}, false);
+		} else {
+			document.querySelector("video").addEventListener("play", function () {
+				$(".player-wrapper").css("height", "auto");
+			}, false);
 		}
 
-		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
+		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - ( /*parseInt($(".adv").height())*/xtAPI.liveInfo["data"]["advopen"] ? 35 : 0) - parseInt($(".discuss-input-pannel").height()));
 		player.onplaying = function () {
 			// alert("op")
-			$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
+			$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - ( /*parseInt($(".adv").height())*/xtAPI.liveInfo["data"]["advopen"] ? 35 : 0) - parseInt($(".discuss-input-pannel").height()));
 			applicationInit.scrollIntoView();
 		};
 		applicationInit.scrollIntoView();
@@ -242,19 +242,18 @@ var applicationInit = function () {
 		// 	},false);
 		// }
 		facelist.find("li").on("touchend", function (e) {
-				// console.log($(this).find("img").attr("data-text"));
-				var _this = $(this);
-				$("#msg-input").val($("#msg-input").val() + _this.find("img").attr("data-text"));
-				e.stopPropagation();
-			});
-		document.querySelector(".facebtn").addEventListener("touchend",function (e) {
-			handleControl.showEmoji();			
+			// console.log($(this).find("img").attr("data-text"));
+			var _this = $(this);
+			$("#msg-input").val($("#msg-input").val() + _this.find("img").attr("data-text"));
 			e.stopPropagation();
-		},false);
-		document.querySelector("body").addEventListener("touchend",function (){
+		});
+		document.querySelector(".facebtn").addEventListener("touchend", function (e) {
+			handleControl.showEmoji();
+			e.stopPropagation();
+		}, false);
+		document.querySelector("body").addEventListener("touchend", function () {
 			$(".discuss-input-pannel").removeClass("showemoji");
-		},false)
-		
+		}, false);
 	};
 
 	var tabInit = function tabInit() {
@@ -322,7 +321,7 @@ var applicationInit = function () {
 		$(".player-wrapper").css("height", $(window).width() * 2 / 3);
 		// $(".player-wrapper").css("height",$(window).width()*4/5);
 		// console.log(parseInt($(window).height()) , parseInt($(".hd").height()) , parseInt($(".player-wrapper").height()) , parseInt($(".adv").height()) , parseInt($(".discuss-input-pannel").height()));
-		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - /*parseInt($(".adv").height())*/(xtAPI.liveInfo["data"]["advopen"]?35:0) - parseInt($(".discuss-input-pannel").height()));
+		$("#tabs-container").css("height", parseInt($(window).height()) - parseInt($(".hd").height()) - parseInt($(".player-wrapper").height()) - ( /*parseInt($(".adv").height())*/xtAPI.liveInfo["data"]["advopen"] ? 35 : 0) - parseInt($(".discuss-input-pannel").height()));
 	};
 
 	var scrollIntoView = function scrollIntoView() {
@@ -383,939 +382,927 @@ var xtAPI = function () {
 			}return fmt;
 		};
 
-				$.smartScroll = function(container, selectorScrollable) {
-	// 如果没有滚动容器选择器，或者已经绑定了滚动时间，忽略
-	if (!selectorScrollable || container.data('isBindScroll')) {
-		return;
-	}
-
-	// 是否是搓浏览器
-	// 自己在这里添加判断和筛选
-	var isSBBrowser;
-
-	var data = {
-		posY: 0,
-		maxscroll: 0
-	};
-
-	// 事件处理
-	container.on({
-		touchstart: function (event) {
-			// var events = event;
-			var events = event.originalEvent.touches[0] || event;
-			
-			// 先求得是不是滚动元素或者滚动元素的子元素
-			var elTarget = $(event.target);
-			
-			if (!elTarget.length) {
-				return;	
-			}
-			
-			var elScroll;
-			
-			// 获取标记的滚动元素，自身或子元素皆可
-			if (elTarget.is(selectorScrollable)) {
-				elScroll = elTarget;
-			} else if ((elScroll = elTarget.parents(selectorScrollable)).length == 0) {
-				elScroll = null;
-			}
-			
-			if (!elScroll) {
+		$.smartScroll = function (container, selectorScrollable) {
+			// 如果没有滚动容器选择器，或者已经绑定了滚动时间，忽略
+			if (!selectorScrollable || container.data('isBindScroll')) {
 				return;
 			}
-			
-			// 当前滚动元素标记
-			data.elScroll = elScroll;
-			
-			// 垂直位置标记
-			data.posY = events.pageY;
-			data.scrollY = elScroll.scrollTop();
-			// 是否可以滚动
-			data.maxscroll = elScroll[0].scrollHeight - elScroll[0].clientHeight;
-		},
-		touchmove: function () {
-			// 如果不足于滚动，则禁止触发整个窗体元素的滚动
-			if (data.maxscroll <= 0 || isSBBrowser) {
-				// 禁止滚动
-				event.preventDefault();
-			}
-			// 滚动元素
-			var elScroll = data.elScroll;
-			// 当前的滚动高度
-			var scrollTop = elScroll.scrollTop();
-	
-			// 现在移动的垂直位置，用来判断是往上移动还是往下
-			var events = event.touches[0] || event;
-			// 移动距离
-			var distanceY = events.pageY - data.posY;
-	
-			if (isSBBrowser) {
-				elScroll.scrollTop(data.scrollY - distanceY);
-				elScroll.trigger('scroll');
-				return;
-			}
-	
-			// 上下边缘检测
-			if (distanceY > 0 && scrollTop == 0) {
-				// 往上滑，并且到头
-				// 禁止滚动的默认行为
-				event.preventDefault();
-				return;
-			}
-	
-			// 下边缘检测
-			if (distanceY < 0 && (scrollTop + 1 >= data.maxscroll)) {
-				// 往下滑，并且到头
-				// 禁止滚动的默认行为
-				event.preventDefault();
-				return;
-			}
-		},
-		touchend: function () {
-			data.maxscroll = 0;
-		}	
-	});
 
-	// 防止多次重复绑定
-	container.data('isBindScroll', true);
-};
+			// 是否是搓浏览器
+			// 自己在这里添加判断和筛选
+			var isSBBrowser;
+
+			var data = {
+				posY: 0,
+				maxscroll: 0
+			};
+
+			// 事件处理
+			container.on({
+				touchstart: function touchstart(event) {
+					// var events = event;
+					var events = event.originalEvent.touches[0] || event;
+
+					// 先求得是不是滚动元素或者滚动元素的子元素
+					var elTarget = $(event.target);
+
+					if (!elTarget.length) {
+						return;
+					}
+
+					var elScroll;
+
+					// 获取标记的滚动元素，自身或子元素皆可
+					if (elTarget.is(selectorScrollable)) {
+						elScroll = elTarget;
+					} else if ((elScroll = elTarget.parents(selectorScrollable)).length == 0) {
+						elScroll = null;
+					}
+
+					if (!elScroll) {
+						return;
+					}
+
+					// 当前滚动元素标记
+					data.elScroll = elScroll;
+
+					// 垂直位置标记
+					data.posY = events.pageY;
+					data.scrollY = elScroll.scrollTop();
+					// 是否可以滚动
+					data.maxscroll = elScroll[0].scrollHeight - elScroll[0].clientHeight;
+				},
+				touchmove: function touchmove() {
+					// 如果不足于滚动，则禁止触发整个窗体元素的滚动
+					if (data.maxscroll <= 0 || isSBBrowser) {
+						// 禁止滚动
+						event.preventDefault();
+					}
+					// 滚动元素
+					var elScroll = data.elScroll;
+					// 当前的滚动高度
+					var scrollTop = elScroll.scrollTop();
+
+					// 现在移动的垂直位置，用来判断是往上移动还是往下
+					var events = event.touches[0] || event;
+					// 移动距离
+					var distanceY = events.pageY - data.posY;
+
+					if (isSBBrowser) {
+						elScroll.scrollTop(data.scrollY - distanceY);
+						elScroll.trigger('scroll');
+						return;
+					}
+
+					// 上下边缘检测
+					if (distanceY > 0 && scrollTop == 0) {
+						// 往上滑，并且到头
+						// 禁止滚动的默认行为
+						event.preventDefault();
+						return;
+					}
+
+					// 下边缘检测
+					if (distanceY < 0 && scrollTop + 1 >= data.maxscroll) {
+						// 往下滑，并且到头
+						// 禁止滚动的默认行为
+						event.preventDefault();
+						return;
+					}
+				},
+				touchend: function touchend() {
+					data.maxscroll = 0;
+				}
+			});
+
+			// 防止多次重复绑定
+			container.data('isBindScroll', true);
+		};
 
 		var postdata = {};
-		if(request["code"]){
-			postdata.code = request["code"];	
+		if (request["code"]) {
+			postdata.code = request["code"];
 			if (request["state"] != "STATE" && request["state"] != "") {
 				postdata.inviter = request["state"];
 				postdata.liveid = request["liveid"];
 			}
-		this.from = request["from"];
-		switch(this.from){
-			case "singlemessage":
-				this.from = 3;
-			break;
-			case "timeline":
-				this.from = 2;
-			break;
-			default:
-				this.from = 1;
-			break;
-		}
+			this.from = request["from"];
+			switch (this.from) {
+				case "singlemessage":
+					this.from = 3;
+					break;
+				case "timeline":
+					this.from = 2;
+					break;
+				default:
+					this.from = 1;
+					break;
+			}
 
-		$.ajax({
-			url: commonUrl + 'newlive/tUser/wxWeblogin.do',
-			type: 'post',
-			dataType: 'json',
-			data: postdata,
-			success: function success(d) {
+			$.ajax({
+				url: commonUrl + 'newlive/tUser/wxWeblogin.do',
+				type: 'post',
+				dataType: 'json',
+				data: postdata,
+				success: function success(d) {
 
-				if (d["success"] == true /*|| localStorage.getItem("userid") != null*/) {
-					xtAPI.user = d["data"];
-					// alert(d["data"]["usercode"])
-					// resolve(xtAPI.user);
-					Promise.all([xtAPI.liveInfo()]).then(function (result) {
-						console.log("result:", result); //用户信息返回
-						// var user = result[0],
-						var watchtype = result[0]["auth"]["authwatch"];
-						var defaultmask = 'images/authbg.png';
-						
-						if (watchtype == 0) {
-							if(result[0]["auth"]["leaderimgOpen"] != 0){
-								//欢迎页
-								$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
-								$(".welcome .skip span").click(function(){
-										$(".welcome").fadeOut(1000);
+					if (d["success"] == true /*|| localStorage.getItem("userid") != null*/) {
+							xtAPI.user = d["data"];
+							// alert(d["data"]["usercode"])
+							// resolve(xtAPI.user);
+							Promise.all([xtAPI.liveInfo()]).then(function (result) {
+								console.log("result:", result); //用户信息返回
+								// var user = result[0],
+								var watchtype = result[0]["auth"]["authwatch"];
+								var defaultmask = 'images/authbg.png';
+
+								if (watchtype == 0) {
+									if (result[0]["auth"]["leaderimgOpen"] != 0) {
+										//欢迎页
+										$(".welcome").css("backgroundImage", "url(" + result[0]["auth"]["leaderimg"] + ")").show();
+										$(".welcome .skip span").click(function () {
+											$(".welcome").fadeOut(1000);
+										});
+										var welcome_countdown = null,
+										    welcome_second = 3;
+										var welcome_countdown = setInterval(function () {
+											if (welcome_second > 0) {
+												$(".welcome .skip span").text(--welcome_second);
+											} else {
+												clearInterval(welcome_countdown);
+											}
+										}, 1000);
+										setTimeout(function () {
+											$(".welcome").fadeOut(1000);
+										}, 3000);
+									}
+									initLiving();
+								} else {
+									if (result[0]["auth"]["leaderimgOpen"] != 0) {
+										$(".auth-mask").css("backgroundImage", "url(" + result[0]["auth"]["leaderimg"] + ")");
+									} else {
+										$(".auth-mask").css("backgroundImage", "url(" + defaultmask + ")");
+									}
+
+									console.log('showmodel'); //授权观看
+									$(".auth-model-text").text(result[0]["auth"]["authtitle"]);
+									var ajaxurl = '';
+									postdata = { liveid: request["liveid"] };
+									var count_down, tsetcountd;
+
+									(function () {
+										$(".loading").fadeOut();
+										switch (watchtype) {
+											case 1:
+												$(".auth-model-body").prepend('<div>' + '<input type="text" placeholder="请输入直播密码" name="password">' + '</div>');
+												ajaxurl = 'newlive/tLivechannel/loadChannelByPwd.do';
+
+												break;
+											case 2:
+												$(".auth-model-body").prepend('<div>' + '<input type="tel" placeholder="输入你的手机号" name="telphone">' + '</div>' + '<div>' + '<input type="text" id="code" placeholder="输入短信验证码"><button class="btn-default getcode">获取验证码</button>' + '</div>');
+												count_down = 50;
+												tsetcountd = null;
+
+												// function countDownSendCode(){
+												//   if(count_down>0){
+												//     $(".getcode").text("重发("+count_down+"s)");
+												//     count_down--;
+												//   }else{
+												//     clearInterval(tsetcountd);
+												//     $(".getcode").text("获取验证码");
+												//     $(".getcode").bind("click",sendCode);     
+												//     count_down=50;   
+												//   }
+												// }
+
+												var sendCode = function sendCode() {
+													var phone = $("input[name=telphone]").val();
+													layui.use(['layer'], function () {
+														var rg = new RegExp(/^[1]+[3,4,5,7,8]+\d{9}$/);
+														if (!rg.test(phone)) {
+															layer.msg("请输入正确的手机号");
+															return false;
+														}
+														$(".getcode").unbind("click");
+
+														$.ajax({
+															url: xtAPI.commonUrl + 'newlive/tLivechannel/sendCodeBeforeLoad.do',
+															type: 'post',
+															data: { liveid: request["liveid"], phone: phone },
+															dataType: 'json',
+															success: function success(d) {
+																if (d["success"]) {
+																	layer.msg("验证码已发送");
+																	tsetcountd = setInterval(function () {
+																		if (count_down > 0) {
+																			$(".getcode").text("重发(" + count_down + "s)");
+																			count_down--;
+																		} else {
+																			clearInterval(tsetcountd);
+																			$(".getcode").text("获取验证码");
+																			$(".getcode").bind("click", sendCode);
+																			count_down = 50;
+																		}
+																	}, 1000);
+																} else {
+																	layer.msg("验证码发送失败，请稍后再试");
+																	$(".getcode").bind("click", sendCode);
+																}
+															}
+														});
+													});
+												};
+
+												$(".getcode").bind("click", sendCode);
+												ajaxurl = 'newlive/tLivechannel/loadChannelByPhone.do';
+
+												break;
+											case 3:
+												$(".auth-model-body").prepend('<div class="redtip">' + '本次直播需支付' + (result[0]["auth"]["paymoneyint"] / 100).toFixed(2) + '元' + '</div>');
+												$(".watchlive").text("付费观看");
+												break;
+
+										}
+										var liveinfo = result[0]["data"];
+										share.tit = liveinfo["sharetitle"] ? liveinfo["sharetitle"] : liveinfo["channelname"];
+										share.des = liveinfo["sharecontent"] ? liveinfo["sharecontent"] : share.des;
+										share.timelinesharecontent = liveinfo["timelinesharecontent"] ? liveinfo["timelinesharecontent"] : share.timelinesharecontent;
+										if (liveinfo["shareimg"]) {
+											share.img = liveinfo["shareimg"];
+											// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
+										}
+										xtAPI.getWxsign();
+									})();
+
+									$(".auth-model-tit").text(result[0]["auth"]["authtitle"]);
+									$("#auth-wrapper").show();
+									if (watchtype == 4) {
+										$("#auth-wrapper").hide();
+										if (result[0]["auth"]["leaderimgOpen"] != 0) {
+											//欢迎页
+											$(".welcome").css("backgroundImage", "url(" + result[0]["auth"]["leaderimg"] + ")").show();
+											$(".welcome .skip span").click(function () {
+												$(".welcome").fadeOut(1000);
+											});
+											var welcome_countdown = null,
+											    welcome_second = 3;
+											var welcome_countdown = setInterval(function () {
+												if (welcome_second > 0) {
+													$(".welcome .skip span").text(--welcome_second);
+												} else {
+													clearInterval(welcome_countdown);
+												}
+											}, 1000);
+											setTimeout(function () {
+												$(".welcome").fadeOut(1000);
+											}, 3000);
+										}
+										xtAPI.liveInfo = result[0];
+										initLiving();
+									}
+									$(".watchlive").click(function () {
+										if (watchtype == 3) {
+											//付费观看预支付
+											$.ajax({
+												url: xtAPI.commonUrl + 'newlive/tLivechannel/buyChannelBefore.do',
+												dataType: 'json',
+												type: 'post',
+												data: { liveId: request["liveid"] },
+												success: function success(d) {
+													var jsondata = d["data"];
+													wxPay.brandwcpayrequest["package"] = jsondata["package"];
+													wxPay.brandwcpayrequest["paySign"] = jsondata["paySign"];
+													wxPay.brandwcpayrequest["timeStamp"] = jsondata["timeStamp"];
+													wxPay.brandwcpayrequest["nonceStr"] = jsondata["nonceStr"];
+													WeixinJSBridge.invoke('getBrandWCPayRequest', wxPay.brandwcpayrequest, function (res) {
+														// alert(res.err_msg)
+														// if (res.errMsg == "getBrandWCPayRequest:fail,没有此SDK或暂不支持此SDK模拟") {
+														if (res.err_msg == "get_brand_wcpay_request:ok") {
+															$.ajax({
+																url: xtAPI.commonUrl + 'newlive/tLivechannel/loadChannelByFee.do',
+																dataType: 'json',
+																type: 'post',
+																data: postdata,
+																success: function success(d) {
+																	if (d["success"]) {
+																		$("#auth-wrapper").hide();
+																		xtAPI.liveInfo = d;
+																		initLiving();
+																	} else {
+																		layui.use(['layer'], function () {
+																			layer.msg("验证失败");
+																		});
+																	}
+																}
+															});
+														} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+													});
+												}
+											});
+										} else {
+											postdata.code = $("#code").val();
+											postdata.watchpwd = $("input[name=password]").val();
+											$.ajax({
+												url: xtAPI.commonUrl + ajaxurl,
+												dataType: 'json',
+												type: 'post',
+												data: postdata,
+												success: function success(d) {
+													if (d["success"]) {
+														$("#auth-wrapper").hide();
+														xtAPI.liveInfo = d;
+														initLiving();
+													} else {
+														layui.use(['layer'], function () {
+															layer.msg("验证失败");
+														});
+													}
+												}
+											});
+										}
 									});
-								var welcome_countdown = null,
-									welcome_second = 3;
-								var welcome_countdown = setInterval(function(){
-									if(welcome_second>0){
-										$(".welcome .skip span").text(--welcome_second);	
-									}else{
-										clearInterval(welcome_countdown);
-									}									
-								},1000);
-								setTimeout(function(){
-									$(".welcome").fadeOut(1000);
-								},3000);
-							}
-							initLiving();
-						} else {
-							if(result[0]["auth"]["leaderimgOpen"] != 0){
-								$(".auth-mask").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")");
-							}
-							else{
-								$(".auth-mask").css("backgroundImage","url("+defaultmask+")");
-							}								
+								}
 
-							console.log('showmodel'); //授权观看
-							$(".auth-model-text").text(result[0]["auth"]["authtitle"]);
-							var ajaxurl = '';
-							postdata = { liveid: request["liveid"] };
-							var count_down, tsetcountd;
+								function initLiving() {
+									Promise.all([xtAPI.loadindexitem(), xtAPI.giftlist(), easemob]).then(function (result) {
+										var liveinfo = xtAPI.liveInfo["data"],
+										    indexitem = result[0],
+										    giftlist = result[1],
+										    easemob = result[2];
+										// loadhistorymsg = result[4];
+										$(".loading").fadeOut();
+										$("body").addClass(liveinfo["skinid"]);
 
-							(function () {
-								$(".loading").fadeOut();
-								switch (watchtype) {
-									case 1:
-										$(".auth-model-body").prepend('<div>' + '<input type="text" placeholder="请输入直播密码" name="password">' + '</div>');
-										ajaxurl = 'newlive/tLivechannel/loadChannelByPwd.do';
+										var _request = xtAPI.request;
 
-										break;
-									case 2:
-										$(".auth-model-body").prepend('<div>' + '<input type="tel" placeholder="输入你的手机号" name="telphone">' + '</div>' + '<div>' + '<input type="text" id="code" placeholder="输入短信验证码"><button class="btn-default getcode">获取验证码</button>' + '</div>');
-										count_down = 50;
-										tsetcountd = null;
+										share.tit = liveinfo["sharetitle"] ? liveinfo["sharetitle"] : liveinfo["channelname"];
+										document.title = liveinfo["channelname"];
+										var $body = $('body');
+										var $iframe = $('<iframe style="display:none" src="images/sharelogo.png"></iframe>');
+										$iframe.on('load', function () {
+											setTimeout(function () {
+												$iframe.off('load').remove();
+											}, 0);
+										}).appendTo($body);
+										share.des = liveinfo["sharecontent"] ? liveinfo["sharecontent"] : share.des;
+										share.timelinesharecontent = liveinfo["timelinesharecontent"] ? liveinfo["timelinesharecontent"] : share.timelinesharecontent;
+										// share.img = liveinfo["shareimg"];
+										applicationInit.init();
+										handleControl.playprop.width = liveinfo["width"];
+										handleControl.playprop.height = liveinfo["height"];
+										// alert("user",user)
+										if (xtAPI.user) {
+											localStorage.setItem("nickname", xtAPI.user["nickname"]);
+											localStorage.setItem("headimg", xtAPI.user["headimg"]);
+											localStorage.setItem("usercode", xtAPI.user["usercode"]);
+											localStorage.setItem("password", xtAPI.user["password"]);
+											localStorage.setItem("userid", xtAPI.user["userid"]);
+										}
 
-										// function countDownSendCode(){
-										//   if(count_down>0){
-										//     $(".getcode").text("重发("+count_down+"s)");
-										//     count_down--;
-										//   }else{
-										//     clearInterval(tsetcountd);
-										//     $(".getcode").text("获取验证码");
-										//     $(".getcode").bind("click",sendCode);     
-										//     count_down=50;   
-										//   }
+										for (var i = 0, menu_length = indexitem["menu"].length; i < menu_length; i++) {
+											var menutype = indexitem["menu"][i]["menutype"];
+											$(".live-items .hd").append("<li>" + indexitem["menu"][i]["menuname"] + "</li>");
+
+											var swcontent = '<div class="swiper-slide swiper-no-swiping">';
+											switch (menutype) {
+												case 6:
+													swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
+													break;
+												case 4:
+													swcontent += '<div class="content-slide discuss-pannel scroll"><div class="questionnaire"></div>' + '<ul class="message-list">' + '<li>' +
+													// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
+													// 						'<div class="message fl robredpacket">'+
+													// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
+													// 					'<img src="images/redpacket-xl.png" class="response" />'+
+													// 				'</div>'+
+													'</li>' + '</ul>' + '<div id="sth"></div>' + '<div class="tocustomer">赏</div><div class="redpacket-l"><img src="images/redpacket-l.png" alt="" class="response"></div></div>';
+													break;
+												case 5:
+													swcontent += '<div class="content-slide rank-wrapper">';
+													if (indexitem["menu"][i]["menucontent"] == "3") {
+														swcontent += '<ul class="rank-hd"><li class="active">打赏榜</li><li>邀请榜</li></ul>';
+													}
+
+													swcontent += '<div id="rank-container" class="swiper-container"><div class="swiper-wrapper">';
+													if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "2") {
+														swcontent += '<div class="swiper-slide swiper-no-swiping"><ul class="ranklist" id="payrank"></ul></div>';
+													}
+													if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "1") {
+														swcontent += '<div class="swiper-slide swiper-no-swiping">';
+														if (liveinfo["inviteopen"] == 1) swcontent += '<a href="invite.html?liveid=' + _request["liveid"] + '&nickname=' + localStorage.getItem("nickname") + '&headImg=' + localStorage.getItem("headimg") + '&userId=' + localStorage.getItem("userid") + '" class="generate-card">点击生成我的邀请卡</a>';
+														swcontent += '<ul class="ranklist" id="inviterank"></ul></div>';
+													}
+													swcontent += '</div></div></div>';
+													break;
+												default:
+													swcontent += '<div class="content-slide contmenu">' + indexitem["menu"][i]["menucontent"] + '</div>';
+													break;
+											}
+											swcontent += '</div>';
+											$(".swiper-wrapper.menutab").append(swcontent);
+										}
+
+										if (liveinfo["questopen"]) {
+											// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>");
+
+											$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />" + liveinfo["questtitle"] + "</p><a href='" + liveinfo["questUrl"] + "' class='fr'>点击进入</a></div>");
+										}
+										if (liveinfo["voteopen"]) {
+											// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />互动投票："+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
+											$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />" + liveinfo["votename"] + "</p><a href='vote.html?voteid=" + liveinfo["voteId"] + "' class='fr'>点击进入</a></div>");
+										}
+
+										setInterval(handleControl.rollQT, 5000);
+
+										// if(liveinfo["logoopen"]){
+										if (indexitem["logo"]["logoimg"]) {
+											$(".anchorheadimg").html('<img src="' + indexitem["logo"]["logoimg"] + '" alt="" class="response">');
+											share.img = indexitem["logo"]["logoimg"];
+											// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
+										}
 										// }
 
-										var sendCode = function sendCode() {
-											var phone = $("input[name=telphone]").val();
-											layui.use(['layer'], function () {
-												var rg = new RegExp(/^[1]+[3,4,5,7,8]+\d{9}$/);
-												if (!rg.test(phone)) {
-													layer.msg("请输入正确的手机号");
-													return false;
-												}
-												$(".getcode").unbind("click");
 
-												$.ajax({
-													url: xtAPI.commonUrl + 'newlive/tLivechannel/sendCodeBeforeLoad.do',
-													type: 'post',
-													data: { liveid: request["liveid"], phone: phone },
-													dataType: 'json',
-													success: function success(d) {
-														if (d["success"]) {
-															layer.msg("验证码已发送");
-															tsetcountd = setInterval(function () {
-																if (count_down > 0) {
-																	$(".getcode").text("重发(" + count_down + "s)");
-																	count_down--;
-																} else {
-																	clearInterval(tsetcountd);
-																	$(".getcode").text("获取验证码");
-																	$(".getcode").bind("click", sendCode);
-																	count_down = 50;
-																}
-															}, 1000);
-														} else {
-															layer.msg("验证码发送失败，请稍后再试");
-															$(".getcode").bind("click", sendCode);
+										if (liveinfo["advopen"] && indexitem["adv"].length != 0) {
+											$(".adv").html('<a href="' + indexitem["adv"][0]["advurl"] + '"><img src="' + indexitem["adv"][0]["advtitle"] + '" class="response" alt=""></a>');
+										} else {
+											$(".adv").remove();
+										}
+										if (liveinfo["chatcheck"] == 1) {
+											chatCheck = true;
+											$(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '弹幕审核已开启' });
+										}
+										if (liveinfo["chatopen"] == 0) {
+											chatOpen = false;
+											$(".discuss-input #msg-input").attr({ "readonly": true, "placeholder": '全员禁言中' });
+										}
+										$(".live-items .hd li:first").addClass("active");
+
+										applicationInit.tabInit();
+										applicationInit.resizePlayer();
+										$.smartScroll($(".container"), '.content-slide');
+										$(".player-wrapper").css("backgroundImage", "url(" + liveinfo["bakimg"] + ")");
+										var timecountend = indexitem["timer"]["timecountend"];
+										if (liveinfo["liveopen"] == 0 && liveinfo["videoopen"] == 0) {
+											$(".countdown-label").hide();
+											$(".countdown-label").text("直播已结束");
+											if (liveinfo["timecountopen"] != 1) {
+												$(".countdown-wrapper").hide();
+											} else {
+												if (timecountend > 0) handleControl.formatSeconds(timecountend);
+											}
+										} else {
+											if (liveinfo["timecountopen"] != 1 || timecountend < 0) {
+												handleControl.showPlayer();
+												// $(".countdown").hide();
+											} else {
+												// console.log("调用倒计时");									
+												handleControl.formatSeconds(timecountend);
+												// setInterval(function(){										
+												// },1000);
+											}
+										}
+
+										for (var i = 0, giftlist_length = giftlist.length; i < giftlist_length; i++) {
+											$(".money-choose").append("<li data-gift-id=" + giftlist[i]["id"] + ">" + giftlist[i]["giftname"] + "</li>");
+										}
+
+										$(".money-choose li:first").addClass("money-selected");
+
+										$(".money-choose li").click(function () {
+											var _this = $(this);
+											$(".money-choose li[class=money-selected]").removeClass("money-selected");
+											_this.addClass("money-selected");
+											if (_this.attr("data-gift-id") == 6) {
+												$(".redpacked-xll-body").addClass("showcustom");
+											}
+										});
+
+										$(".sendbtn").click(function () {
+											easemob.sendToAPI($("#msg-input").val(), 1);
+											// easemob.sendMsg($("#msg-input").val());
+										});
+
+										// $(".generate-card").attr("href", "invite.html?liveid=" + _request["liveid"]);
+
+										var rewardlist = indexitem["rewardlist"],
+										    invitelist = indexitem["invitelist"],
+										    rewardlistlength = rewardlist.length,
+										    invitelistlength = invitelist.length;
+
+										for (var i = 0; i < rewardlistlength; i++) {
+											var uname = rewardlist[i]["sendername"];
+											$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i + 1) + ' ' + (uname.length > 6 ? uname.substring(0, 6) + '...' : uname) + '<span class="fr">打赏' + rewardlist[i]["total"] + '元</span></li>');
+										}
+
+										for (var i = 0; i < invitelistlength; i++) {
+											var uname = invitelist[i]["username"];
+											$("#inviterank").append('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i + 1) + ' ' + (uname.length > 6 ? uname.substring(0, 6) + '...' : uname) + '<span class="fr">邀请' + invitelist[i]["total"] + '人</span></li>');
+										}
+
+										// $(".numcount").text('1154人');
+										$(".numcount").text(liveinfo["uv"] + '人');
+										$(".anchorheadimg img").attr("src", indexitem["logo"]["logoimg"]);
+										// $(".adv img").attr("src",indexitem["adv"][0]["advurl"]);
+										// try{
+										easemob.roomId = liveinfo["chatroomid"];
+										easemob.options.user = localStorage.getItem("usercode");
+										easemob.options.pwd = localStorage.getItem("password");
+
+										$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": new Date().Format("yyyy-MM-dd hh:mm:ss") }, function (d) {
+											// console.log(d)
+											if (d["success"] == true) {
+												for (var _i = d["data"]["historylist"].length - 1; _i >= 0; _i--) {
+													easemob.appendMsg(d["data"]["historylist"][_i], 'txt');
+												}
+											}
+											easemob.initWEBIM();
+										});
+
+										var functions = indexitem["function"];
+										for (var i = 0; i < functions.length; i++) {
+											switch (functions[i]["functiontype"]) {
+												case 1:
+													$(".tocustomer").show();
+													break;
+												case 3:
+													$(".redpacket-l").show();
+													break;
+											}
+										}
+										// }
+										// catch(e){
+										// alert(e)
+										// }
+
+										//检查上传的照片格式是否正确
+										function checkFileType(dom) {
+											var rt = false;
+											layui.use(['layer'], function () {
+												var layer = layui.layer;
+												var filePath = dom.value;
+												if (filePath) {
+													var extname = filePath.substring(filePath.lastIndexOf(".") + 1, filePath.length).toLowerCase();
+													if (extname != "bmp" && extname != "jpg" && extname != "gif" && extname != "png" && extname != "jpeg") {
+														layer.msg("只能上传照片");
+														rt = false;
+													} else {
+														if (dom.files[0].size / 1024 > 15000) {
+															layer.msg("图片不能大于15M");
+															rt = false;
+														}
+														rt = true;
+													}
+												} else {
+													//     //layer.msg("请上传照片");
+													rt = false;
+												}
+											});
+											return rt;
+										}
+
+										$("input[name='sendpic']").change(function () {
+											var pic = $("input[name='sendpic']");
+											if (checkFileType(pic[0])) {
+												layui.use(['layer'], function () {
+													layer.open({
+														title: '发送图片',
+														area: ['80%', '80%'],
+														content: '<div style="justify-content: center;display: flex;align-items: center;height: 100%; margin-bottom:0"><img src="" id="previewsend" /></div>'
+														// ,content: `<div style="justify-content: center;display: flex;align-items: center;height: 100%; margin-bottom:0"><img src="" id="previewsend" /></div>`
+														, closeBtn: 0,
+														btn: ['发送', '取消'],
+														yes: function yes(index, layero) {
+															layer.close(index);
+														}
+													});
+												});
+												var oFile = pic[0].files[0];
+												var oReader = new FileReader();
+												oReader.onload = function (e) {
+													$("#previewsend").attr("src", e.target.result);
+												};
+												oReader.readAsDataURL(oFile);
+											}
+										});
+										$(".tocustomer").click(function () {
+											$(".moneysum").val('');
+											$(".redpacked-xll-body").removeClass("showcustom");
+											$("#redpacket-dialog").addClass('show');
+										});
+
+										$(".redpacket-l").click(function () {
+											$("#redpacket-dialog-to-customer").addClass("show");
+										});
+
+										document.querySelector(".discuss-pannel").addEventListener("scroll", handleControl.showhistorytop10, false);
+
+										var getoken = new Promise(function (resolve) {
+											$.post(xtAPI.commonUrl + "newlive/mImhistory/getImgUptoken.do", function (d) {
+												qiniu_token = d["data"]["uptoken"];
+												var uploader = Qiniu.uploader({
+													runtimes: 'html5,flash,html4', // 上传模式,依次退化
+													browse_button: 'pickfiles', // 上传选择的点选按钮，**必需**
+													// 在初始化时，uptoken, uptoken_url, uptoken_func 三个参数中必须有一个被设置
+													// 切如果提供了多个，其优先级为 uptoken > uptoken_url > uptoken_func
+													// 其中 uptoken 是直接提供上传凭证，uptoken_url 是提供了获取上传凭证的地址，如果需要定制获取 uptoken 的过程则可以设置 uptoken_func
+													uptoken: qiniu_token, // uptoken 是上传凭证，由其他程序生成
+													// uptoken_url: '/uptoken',         // Ajax 请求 uptoken 的 Url，**强烈建议设置**（服务端提供）
+													// uptoken_func: function(file){    // 在需要获取 uptoken 时，该方法会被调用
+													//    // do something
+													//    return uptoken;
+													// },
+													get_new_uptoken: false, // 设置上传文件的时候是否每次都重新获取新的 uptoken
+													// downtoken_url: '/downtoken',
+													// Ajax请求downToken的Url，私有空间时使用,JS-SDK 将向该地址POST文件的key和domain,服务端返回的JSON必须包含`url`字段，`url`值为该文件的下载地址
+													unique_names: true, // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
+													// save_key: true,                  // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+													domain: 'http://img.xiangtazhibo.com/', // bucket 域名，下载资源时用到，如：'http://xxx.bkt.clouddn.com/' **必需**
+													// container: 'container',             // 上传区域 DOM ID，默认是 browser_button 的父元素，
+													max_file_size: '100mb', // 最大文件体积限制
+													flash_swf_url: 'path/of/plupload/Moxie.swf', //引入 flash,相对路径
+													max_retries: 3, // 上传失败最大重试次数
+													dragdrop: false, // 开启可拖曳上传
+													drop_element: 'container', // 拖曳上传区域元素的 ID，拖曳文件或文件夹后可触发上传
+													chunk_size: '4mb', // 分块上传时，每块的体积
+													auto_start: true, // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+													multi_selection: false,
+													//x_vars : {
+													//    自定义变量，参考http://developer.qiniu.com/docs/v6/api/overview/up/response/vars.html
+													//    'time' : function(up,file) {
+													//        var time = (new Date()).getTime();
+													// do something with 'time'
+													//        return time;
+													//    },
+													//    'size' : function(up,file) {
+													//        var size = file.size;
+													// do something with 'size'
+													//        return size;
+													//    }
+													//},
+													init: {
+														'FilesAdded': function FilesAdded(up, files) {
+															plupload.each(files, function (file) {
+																// 文件添加进队列后,处理相关的事情
+															});
+														},
+														'BeforeUpload': function BeforeUpload(up, file) {
+															// 每个文件上传前,处理相关的事情
+														},
+														'UploadProgress': function UploadProgress(up, file) {
+															// 每个文件上传时,处理相关的事情
+														},
+														'FileUploaded': function FileUploaded(up, file, info) {
+															// 每个文件上传成功后,处理相关的事情
+															// 其中 info 是文件上传成功后，服务端返回的json，形式如
+															// {
+															//    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+															//    "key": "gogopher.jpg"
+															//  }
+															// 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+
+															var domain = up.getOption('domain');
+															var res = $.parseJSON(info);
+															var sourceLink = domain + res.key; //获取上传成功后的文件的Url
+															easemob.sendToAPI(sourceLink, 7);
+															$(".function-menu").removeClass("showfuntion");
+														},
+														'Error': function Error(up, err, errTip) {
+															//上传出错时,处理相关的事情
+														},
+														'UploadComplete': function UploadComplete() {
+															//队列文件处理完毕后,处理相关的事情
 														}
 													}
 												});
 											});
-										};
-
-										$(".getcode").bind("click", sendCode);
-										ajaxurl = 'newlive/tLivechannel/loadChannelByPhone.do';
-
-									break;
-									case 3:
-										$(".auth-model-body").prepend('<div class="redtip">' + '本次直播需支付' + (result[0]["auth"]["paymoneyint"] / 100).toFixed(2) + '元' + '</div>');
-										$(".watchlive").text("付费观看");
-									break;
-									
-								}
-								var liveinfo = result[0]["data"];
-								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
-								share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
-								share.timelinesharecontent = liveinfo["timelinesharecontent"]?liveinfo["timelinesharecontent"]:share.timelinesharecontent;
-								if (liveinfo["shareimg"]) {
-									share.img = liveinfo["shareimg"];
-									// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
-								}
-								xtAPI.getWxsign();
-							})();
-
-							$(".auth-model-tit").text(result[0]["auth"]["authtitle"]);
-							$("#auth-wrapper").show();
-							if(watchtype == 4){
-								$("#auth-wrapper").hide();
-								if(result[0]["auth"]["leaderimgOpen"] != 0){
-									//欢迎页
-									$(".welcome").css("backgroundImage","url("+result[0]["auth"]["leaderimg"]+")").show();
-									$(".welcome .skip span").click(function(){
-										$(".welcome").fadeOut(1000);
-									});
-									var welcome_countdown = null,
-										welcome_second = 3;
-									var welcome_countdown = setInterval(function(){
-										if(welcome_second>0){
-											$(".welcome .skip span").text(--welcome_second);	
-										}else{
-											clearInterval(welcome_countdown);
-										}									
-									},1000);
-									setTimeout(function(){
-										$(".welcome").fadeOut(1000);
-									},3000);
-								}
-								xtAPI.liveInfo = result[0];
-								initLiving();
-							}
-							$(".watchlive").click(function () {
-								if (watchtype == 3) {
-									//付费观看预支付
-									$.ajax({
-										url: xtAPI.commonUrl + 'newlive/tLivechannel/buyChannelBefore.do',
-										dataType: 'json',
-										type: 'post',
-										data: { liveId: request["liveid"] },
-										success: function success(d) {
-											var jsondata = d["data"];
-											wxPay.brandwcpayrequest["package"] = jsondata["package"];
-											wxPay.brandwcpayrequest["paySign"] = jsondata["paySign"];
-											wxPay.brandwcpayrequest["timeStamp"] = jsondata["timeStamp"];
-											wxPay.brandwcpayrequest["nonceStr"] = jsondata["nonceStr"];
-											WeixinJSBridge.invoke('getBrandWCPayRequest', wxPay.brandwcpayrequest, function (res) {
-												// alert(res.err_msg)
-												// if (res.errMsg == "getBrandWCPayRequest:fail,没有此SDK或暂不支持此SDK模拟") {
-												if (res.err_msg == "get_brand_wcpay_request:ok") {
-													$.ajax({
-														url: xtAPI.commonUrl + 'newlive/tLivechannel/loadChannelByFee.do',
-														dataType: 'json',
-														type: 'post',
-														data: postdata,
-														success: function success(d) {
-															if (d["success"]) {
-																$("#auth-wrapper").hide();
-																xtAPI.liveInfo = d;
-																initLiving();
-															} else {
-																layui.use(['layer'], function () {
-																	layer.msg("验证失败");
-																});
-															}
-														}
-													});
-												} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-											});
-										}
-									});
-								}else {
-									postdata.code = $("#code").val();
-									postdata.watchpwd = $("input[name=password]").val();
-									$.ajax({
-										url: xtAPI.commonUrl + ajaxurl,
-										dataType: 'json',
-										type: 'post',
-										data: postdata,
-										success: function success(d) {
-											if (d["success"]) {
-												$("#auth-wrapper").hide();
-												xtAPI.liveInfo = d;
-												initLiving();
-											} else {
-												layui.use(['layer'], function () {
-													layer.msg("验证失败");
-												});
-											}
-										}
+										});
 									});
 								}
-
-
+								//promise end
 							});
-						}
-
-						function initLiving() {
-							Promise.all([xtAPI.loadindexitem(), xtAPI.giftlist(), easemob]).then(function (result) {
-								var liveinfo = xtAPI.liveInfo["data"],
-								    indexitem = result[0],
-								    giftlist = result[1],
-								    easemob = result[2];
-								// loadhistorymsg = result[4];
-								$(".loading").fadeOut();
-								$("body").addClass(liveinfo["skinid"]);
-
-								var _request = xtAPI.request;
-
-								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
-								document.title = liveinfo["channelname"];
-								var $body = $('body');
-								var $iframe = $('<iframe style="display:none" src="images/sharelogo.png"></iframe>');
-								$iframe.on('load',function() {
-								  setTimeout(function() {
-								      $iframe.off('load').remove();
-								  }, 0);
-								}).appendTo($body);
-								share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
-								share.timelinesharecontent = liveinfo["timelinesharecontent"]?liveinfo["timelinesharecontent"]:share.timelinesharecontent;
-								// share.img = liveinfo["shareimg"];
-								applicationInit.init();
-								handleControl.playprop.width = liveinfo["width"];
-								handleControl.playprop.height = liveinfo["height"];
-								// alert("user",user)
-								if (xtAPI.user) {
-									localStorage.setItem("nickname", xtAPI.user["nickname"]);
-									localStorage.setItem("headimg", xtAPI.user["headimg"]);
-									localStorage.setItem("usercode", xtAPI.user["usercode"]);
-									localStorage.setItem("password", xtAPI.user["password"]);
-									localStorage.setItem("userid",xtAPI.user["userid"]);
-								}
-
-								for (var i = 0, menu_length = indexitem["menu"].length; i < menu_length; i++) {
-									var menutype = indexitem["menu"][i]["menutype"];
-									$(".live-items .hd").append("<li>" + indexitem["menu"][i]["menuname"] + "</li>");
-
-									var swcontent = '<div class="swiper-slide swiper-no-swiping">';
-									switch (menutype) {
-										case 6:
-											swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
-										break;
-										case 4:
-											swcontent += '<div class="content-slide discuss-pannel scroll"><div class="questionnaire"></div>' + '<ul class="message-list">' + '<li>' +
-											// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
-											// 						'<div class="message fl robredpacket">'+
-											// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
-											// 					'<img src="images/redpacket-xl.png" class="response" />'+
-											// 				'</div>'+
-											'</li>' + '</ul>' + '<div id="sth"></div>' + '<div class="tocustomer">赏</div><div class="redpacket-l"><img src="images/redpacket-l.png" alt="" class="response"></div></div>';
-											break;
-										case 5:
-											swcontent += '<div class="content-slide rank-wrapper">';
-											if (indexitem["menu"][i]["menucontent"] == "3") {
-												swcontent += '<ul class="rank-hd"><li class="active">打赏榜</li><li>邀请榜</li></ul>';
-											}
-
-											swcontent += '<div id="rank-container" class="swiper-container"><div class="swiper-wrapper">';
-											if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "2") {
-												swcontent += '<div class="swiper-slide swiper-no-swiping"><ul class="ranklist" id="payrank"></ul></div>';
-											}
-											if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "1") {
-												swcontent += '<div class="swiper-slide swiper-no-swiping">';
-												if (liveinfo["inviteopen"] == 1) swcontent += '<a href="invite.html?liveid=' + _request["liveid"] + '&nickname='+localStorage.getItem("nickname")+'&headImg='+localStorage.getItem("headimg")+'&userId='+localStorage.getItem("userid")+'" class="generate-card">点击生成我的邀请卡</a>';
-												swcontent += '<ul class="ranklist" id="inviterank"></ul></div>';
-											}
-											swcontent += '</div></div></div>';
-											break;
-										default:
-											swcontent += '<div class="content-slide contmenu">' + indexitem["menu"][i]["menucontent"] + '</div>';
-										break;
-									}
-									swcontent += '</div>';
-									$(".swiper-wrapper.menutab").append(swcontent);
-								}
-								
-								if(liveinfo["questopen"]){
-									// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />问卷调查："+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>");
-
-									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
-								}
-								if(liveinfo["voteopen"]){
-									// $("#tabs-container").prepend("<div class='questionnaire'> <p><img src='images/questionnarieicon.png' />互动投票："+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
-									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["votename"]+"</p><a href='vote.html?voteid="+liveinfo["voteId"]+"' class='fr'>点击进入</a></div>");
-								}
-
-								setInterval(handleControl.rollQT,5000);
-
-								// if(liveinfo["logoopen"]){
-								if (indexitem["logo"]["logoimg"]) {
-									$(".anchorheadimg").html('<img src="' + indexitem["logo"]["logoimg"] + '" alt="" class="response">');
-									share.img = indexitem["logo"]["logoimg"];
-									// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
-								}
-								// }
-
-
-								if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
-									$(".adv").html('<a href="' + indexitem["adv"][0]["advurl"] + '"><img src="' + indexitem["adv"][0]["advtitle"] + '" class="response" alt=""></a>');
-								} else {
-									$(".adv").remove();
-								}
-								if (liveinfo["chatcheck"] == 1) {
-									chatCheck=true
-									$(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '弹幕审核已开启' });
-								}
-								if (liveinfo["chatopen"] == 0) {
-									chatOpen=false;
-									$(".discuss-input #msg-input").attr({ "readonly": true, "placeholder": '全员禁言中' });
-								}
-								$(".live-items .hd li:first").addClass("active");
-
-								applicationInit.tabInit();
-								applicationInit.resizePlayer();
-								$.smartScroll($(".container"), '.content-slide');
-								$(".player-wrapper").css("backgroundImage", "url(" + liveinfo["bakimg"] + ")");
-								var timecountend = indexitem["timer"]["timecountend"];
-								if (liveinfo["liveopen"] == 0 && liveinfo["videoopen"] == 0) {
-									$(".countdown-label").hide();
-									$(".countdown-label").text("直播已结束");
-									if (liveinfo["timecountopen"] != 1 ){
-										$(".countdown-wrapper").hide();
-									}else{
-										if(timecountend > 0)
-											handleControl.formatSeconds(timecountend);
-									}
-									
-								} else {
-									if (liveinfo["timecountopen"] != 1 || timecountend < 0) {
-										handleControl.showPlayer();
-										// $(".countdown").hide();
-									} else {
-										// console.log("调用倒计时");									
-										handleControl.formatSeconds(timecountend);
-										// setInterval(function(){										
-										// },1000);
-									}
-								}
-
-								for (var i = 0, giftlist_length = giftlist.length; i < giftlist_length; i++) {
-									$(".money-choose").append("<li data-gift-id=" + giftlist[i]["id"] + ">" + giftlist[i]["giftname"] + "</li>");
-								}
-
-								$(".money-choose li:first").addClass("money-selected");
-
-								$(".money-choose li").click(function () {
-									var _this = $(this);
-									$(".money-choose li[class=money-selected]").removeClass("money-selected");
-									_this.addClass("money-selected");
-									if (_this.attr("data-gift-id") == 6) {
-										$(".redpacked-xll-body").addClass("showcustom");
-									}
-								});
-
-								$(".sendbtn").click(function () {
-									easemob.sendToAPI($("#msg-input").val(), 1);
-									// easemob.sendMsg($("#msg-input").val());
-								});
-
-								// $(".generate-card").attr("href", "invite.html?liveid=" + _request["liveid"]);
-
-								var rewardlist = indexitem["rewardlist"],
-								    invitelist = indexitem["invitelist"],
-								    rewardlistlength = rewardlist.length,
-								    invitelistlength = invitelist.length;
-
-								for (var i = 0; i < rewardlistlength; i++) {
-									var uname = rewardlist[i]["sendername"];
-									$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">打赏'+rewardlist[i]["total"]+'元</span></li>');
-								}
-
-								for (var i = 0; i < invitelistlength; i++) {
-									var uname = invitelist[i]["username"];
-									$("#inviterank").append('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">邀请'+invitelist[i]["total"]+'人</span></li>');
-								}
-
-								// $(".numcount").text('1154人');
-								$(".numcount").text(liveinfo["uv"] + '人');
-								$(".anchorheadimg img").attr("src", indexitem["logo"]["logoimg"]);
-								// $(".adv img").attr("src",indexitem["adv"][0]["advurl"]);
-								// try{
-								easemob.roomId = liveinfo["chatroomid"];
-								easemob.options.user = localStorage.getItem("usercode");
-								easemob.options.pwd = localStorage.getItem("password");
-
-								$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": new Date().Format("yyyy-MM-dd hh:mm:ss") }, function (d) {
-									// console.log(d)
-									if (d["success"] == true) {
-										for (var _i = d["data"]["historylist"].length - 1; _i >= 0; _i--) {
-											easemob.appendMsg(d["data"]["historylist"][_i], 'txt');
-										}
-									}
-									easemob.initWEBIM();
-								});
-
-								var functions = indexitem["function"];
-								for (var i = 0; i < functions.length; i++) {
-									switch (functions[i]["functiontype"]) {
-										case 1:
-											$(".tocustomer").show();
-											break;
-										case 3:
-											$(".redpacket-l").show();
-											break;
-									}
-								}
-								// }
-								// catch(e){
-								// alert(e)
-								// }
-
-								//检查上传的照片格式是否正确
-function checkFileType(dom) {
-	var rt = false;
-	layui.use(['layer'], function () {
-		var layer = layui.layer;
-		var filePath = dom.value;
-		if (filePath) {
-			var extname = filePath.substring(filePath.lastIndexOf(".") + 1, filePath.length).toLowerCase();
-			if (extname != "bmp" && extname != "jpg" && extname != "gif" && extname != "png" && extname != "jpeg") {
-				layer.msg("只能上传照片");
-				rt = false;
-			} else {
-				if (dom.files[0].size / 1024 > 15000) {
-					layer.msg("图片不能大于15M");
-					rt = false;
+						} else {
+						// resolve(false);
+						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=" + from + "#wechat_redirect";
+					}
 				}
-				rt = true;
-			}
+			});
 		} else {
-			//     //layer.msg("请上传照片");
-			rt = false;
-		}
-	});
-	return rt;
-}
-
-$("input[name='sendpic']").change(function () {
-	var pic = $("input[name='sendpic']");
-	if (checkFileType(pic[0])) {
-		layui.use(['layer'], function () {
-			layer.open({
-				title: '发送图片',
-				area: ['80%', '80%'],
-				content: '<div style="justify-content: center;display: flex;align-items: center;height: 100%; margin-bottom:0"><img src="" id="previewsend" /></div>'
-				// ,content: `<div style="justify-content: center;display: flex;align-items: center;height: 100%; margin-bottom:0"><img src="" id="previewsend" /></div>`
-				, closeBtn: 0,
-				btn: ['发送', '取消'],
-				yes: function yes(index, layero) {
-					layer.close(index);
-				}
-			});
-		});
-		var oFile = pic[0].files[0];
-		var oReader = new FileReader();
-		oReader.onload = function (e) {
-			$("#previewsend").attr("src", e.target.result);
-		};
-		oReader.readAsDataURL(oFile);
-	}
-});
-$(".tocustomer").click(function () {
-	$(".moneysum").val('');
-	$(".redpacked-xll-body").removeClass("showcustom");
-	$("#redpacket-dialog").addClass('show');
-});
-
-$(".redpacket-l").click(function () {
-	$("#redpacket-dialog-to-customer").addClass("show");
-});
-
-document.querySelector(".discuss-pannel").addEventListener("scroll",handleControl.showhistorytop10,false);
-
-var getoken = new Promise(function (resolve) {
-	$.post(xtAPI.commonUrl + "newlive/mImhistory/getImgUptoken.do", function (d) {
-		qiniu_token = d["data"]["uptoken"];
-		var uploader = Qiniu.uploader({
-			runtimes: 'html5,flash,html4', // 上传模式,依次退化
-			browse_button: 'pickfiles', // 上传选择的点选按钮，**必需**
-			// 在初始化时，uptoken, uptoken_url, uptoken_func 三个参数中必须有一个被设置
-			// 切如果提供了多个，其优先级为 uptoken > uptoken_url > uptoken_func
-			// 其中 uptoken 是直接提供上传凭证，uptoken_url 是提供了获取上传凭证的地址，如果需要定制获取 uptoken 的过程则可以设置 uptoken_func
-			uptoken: qiniu_token, // uptoken 是上传凭证，由其他程序生成
-			// uptoken_url: '/uptoken',         // Ajax 请求 uptoken 的 Url，**强烈建议设置**（服务端提供）
-			// uptoken_func: function(file){    // 在需要获取 uptoken 时，该方法会被调用
-			//    // do something
-			//    return uptoken;
-			// },
-			get_new_uptoken: false, // 设置上传文件的时候是否每次都重新获取新的 uptoken
-			// downtoken_url: '/downtoken',
-			// Ajax请求downToken的Url，私有空间时使用,JS-SDK 将向该地址POST文件的key和domain,服务端返回的JSON必须包含`url`字段，`url`值为该文件的下载地址
-			unique_names: true,              // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
-			// save_key: true,                  // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
-			domain: 'http://img.xiangtazhibo.com/', // bucket 域名，下载资源时用到，如：'http://xxx.bkt.clouddn.com/' **必需**
-			// container: 'container',             // 上传区域 DOM ID，默认是 browser_button 的父元素，
-			max_file_size: '100mb', // 最大文件体积限制
-			flash_swf_url: 'path/of/plupload/Moxie.swf', //引入 flash,相对路径
-			max_retries: 3, // 上传失败最大重试次数
-			dragdrop: false, // 开启可拖曳上传
-			drop_element: 'container', // 拖曳上传区域元素的 ID，拖曳文件或文件夹后可触发上传
-			chunk_size: '4mb', // 分块上传时，每块的体积
-			auto_start: true, // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
-			multi_selection: false,
-			//x_vars : {
-			//    自定义变量，参考http://developer.qiniu.com/docs/v6/api/overview/up/response/vars.html
-			//    'time' : function(up,file) {
-			//        var time = (new Date()).getTime();
-			// do something with 'time'
-			//        return time;
-			//    },
-			//    'size' : function(up,file) {
-			//        var size = file.size;
-			// do something with 'size'
-			//        return size;
-			//    }
-			//},
-			init: {
-				'FilesAdded': function FilesAdded(up, files) {
-					plupload.each(files, function (file) {
-						// 文件添加进队列后,处理相关的事情
-					});
-				},
-				'BeforeUpload': function BeforeUpload(up, file) {
-					// 每个文件上传前,处理相关的事情
-				},
-				'UploadProgress': function UploadProgress(up, file) {
-					// 每个文件上传时,处理相关的事情
-				},
-				'FileUploaded': function FileUploaded(up, file, info) {
-					// 每个文件上传成功后,处理相关的事情
-					// 其中 info 是文件上传成功后，服务端返回的json，形式如
-					// {
-					//    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-					//    "key": "gogopher.jpg"
-					//  }
-					// 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
-
-					var domain = up.getOption('domain');
-					var res = $.parseJSON(info);
-					var sourceLink = domain + res.key; //获取上传成功后的文件的Url
-					easemob.sendToAPI(sourceLink, 7);
-					$(".function-menu").removeClass("showfuntion");
-				},
-				'Error': function Error(up, err, errTip) {
-					//上传出错时,处理相关的事情
-				},
-				'UploadComplete': function UploadComplete() {
-					//队列文件处理完毕后,处理相关的事情
-				}
-			}
-		});
-	});
-});
-
-							});
-						}
-						//promise end
-					});
-				} else {
-					// resolve(false);
-					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
-				}		
-			}
-			});
-		}else{
 			// $(".callfunctionbtn").hide();
-			if(localStorage.getItem("isChooseLogined")){
-				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
+			if (localStorage.getItem("isChooseLogined")) {
+				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=" + from + "#wechat_redirect";
 				return;
 			}
 			$.ajax({
 				url: commonUrl + 'newlive/stemp/getChannelAuth.do',
 				type: 'post',
 				dataType: "json",
-				data: {liveId: request["liveid"]},
-				success: function(d){
-					if(d["data"]["authwatch"]!=0){
-						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state="+from+"#wechat_redirect";
-					}else{
-						if(d["data"]["leaderimgOpen"] != 0){
-									//欢迎页
-									$(".welcome").css("backgroundImage","url("+d["data"]["leaderimg"]+")").show();
-									$(".welcome .skip").click(function(){
-										$(".welcome").fadeOut(1000);
-									});
-									var welcome_countdown = null,
-										welcome_second = 3;
+				data: { liveId: request["liveid"] },
+				success: function success(d) {
+					if (d["data"]["authwatch"] != 0) {
+						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=" + from + "#wechat_redirect";
+					} else {
+						if (d["data"]["leaderimgOpen"] != 0) {
+							//欢迎页
+							$(".welcome").css("backgroundImage", "url(" + d["data"]["leaderimg"] + ")").show();
+							$(".welcome .skip").click(function () {
+								$(".welcome").fadeOut(1000);
+							});
+							var welcome_countdown = null,
+							    welcome_second = 3;
 
-									var welcome_countdown = setInterval(function(){
-										if(welcome_second>0){
-											$(".welcome .skip span").text(--welcome_second);	
-										}else{
-											clearInterval(welcome_countdown);
-										}									
-									},1000);
-									setTimeout(function(){
-										$(".welcome").fadeOut(1000);
-									},3000);
-								}
-						Promise.all([xtAPI.getChannelInfo(),xtAPI.loadindexitem()]).then(function (result) {
-								var liveinfo = xtAPI.liveInfo["data"] = result[0],
-									indexitem = result[1];
-									$(".loading").fadeOut();
-$("body").addClass(liveinfo["skinid"]);
-								var _request = xtAPI.request;
-
-								share.tit = liveinfo["sharetitle"]?liveinfo["sharetitle"]:liveinfo["channelname"];
-								document.title = liveinfo["channelname"];
-share.des = liveinfo["sharecontent"]?liveinfo["sharecontent"]:share.des;
-share.timelinesharecontent = liveinfo["timelinesharecontent"]?liveinfo["timelinesharecontent"]:share.timelinesharecontent;
-handleControl.playprop.width = liveinfo["width"];
-								handleControl.playprop.height = liveinfo["height"];
-if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
-									$(".adv").html('<a href="' + indexitem["adv"][0]["advurl"] + '"><img src="' + indexitem["adv"][0]["advtitle"] + '" class="response" alt=""></a>');
+							var welcome_countdown = setInterval(function () {
+								if (welcome_second > 0) {
+									$(".welcome .skip span").text(--welcome_second);
 								} else {
-									$(".adv").remove();
+									clearInterval(welcome_countdown);
 								}
-								if (liveinfo["chatcheck"] == 1) {
-									chatCheck=true
-									$(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '弹幕审核已开启' });
-								}
-								if (liveinfo["chatopen"] == 0) {
-									chatOpen=false;
-									$(".discuss-input #msg-input").attr({ "readonly": true, "placeholder": '全员禁言中' });
-								}						
-								applicationInit.init();
+							}, 1000);
+							setTimeout(function () {
+								$(".welcome").fadeOut(1000);
+							}, 3000);
+						}
+						Promise.all([xtAPI.getChannelInfo(), xtAPI.loadindexitem()]).then(function (result) {
+							var liveinfo = xtAPI.liveInfo["data"] = result[0],
+							    indexitem = result[1];
+							$(".loading").fadeOut();
+							$("body").addClass(liveinfo["skinid"]);
+							var _request = xtAPI.request;
 
-								for (var i = 0, menu_length = indexitem["menu"].length; i < menu_length; i++) {
-									var menutype = indexitem["menu"][i]["menutype"];
-									$(".live-items .hd").append("<li>" + indexitem["menu"][i]["menuname"] + "</li>");
+							share.tit = liveinfo["sharetitle"] ? liveinfo["sharetitle"] : liveinfo["channelname"];
+							document.title = liveinfo["channelname"];
+							share.des = liveinfo["sharecontent"] ? liveinfo["sharecontent"] : share.des;
+							share.timelinesharecontent = liveinfo["timelinesharecontent"] ? liveinfo["timelinesharecontent"] : share.timelinesharecontent;
+							handleControl.playprop.width = liveinfo["width"];
+							handleControl.playprop.height = liveinfo["height"];
+							if (liveinfo["advopen"] && indexitem["adv"].length != 0) {
+								$(".adv").html('<a href="' + indexitem["adv"][0]["advurl"] + '"><img src="' + indexitem["adv"][0]["advtitle"] + '" class="response" alt=""></a>');
+							} else {
+								$(".adv").remove();
+							}
+							if (liveinfo["chatcheck"] == 1) {
+								chatCheck = true;
+								$(".discuss-input #msg-input").attr({ "readonly": false, "placeholder": '弹幕审核已开启' });
+							}
+							if (liveinfo["chatopen"] == 0) {
+								chatOpen = false;
+								$(".discuss-input #msg-input").attr({ "readonly": true, "placeholder": '全员禁言中' });
+							}
+							applicationInit.init();
 
-									var swcontent = '<div class="swiper-slide swiper-no-swiping">';
-									switch (menutype) {
-										case 6:
-											swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
+							for (var i = 0, menu_length = indexitem["menu"].length; i < menu_length; i++) {
+								var menutype = indexitem["menu"][i]["menutype"];
+								$(".live-items .hd").append("<li>" + indexitem["menu"][i]["menuname"] + "</li>");
+
+								var swcontent = '<div class="swiper-slide swiper-no-swiping">';
+								switch (menutype) {
+									case 6:
+										swcontent += '<div class="content-slide followus" ><img src="' + indexitem["menu"][i]["menucontent"] + '"/></div>';
 										break;
-										case 4:
-											swcontent += '<div class="content-slide discuss-pannel"><div class="questionnaire"></div>' + '<ul class="message-list">' + '<li>' +
-											// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
-											// 						'<div class="message fl robredpacket">'+
-											// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
-											// 					'<img src="images/redpacket-xl.png" class="response" />'+
-											// 				'</div>'+
-											'</li>' + '</ul>' + '<div id="sth"></div>' + '<div class="tocustomer">赏</div><div class="redpacket-l"><img src="images/redpacket-l.png" alt="" class="response"></div></div>';
-											break;
-										case 5:
-											swcontent += '<div class="content-slide rank-wrapper">';
-											if (indexitem["menu"][i]["menucontent"] == "3") {
-												swcontent += '<ul class="rank-hd"><li class="active">打赏榜</li><li>邀请榜</li></ul>';
-											}
-
-											swcontent += '<div id="rank-container" class="swiper-container"><div class="swiper-wrapper">';
-											if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "2") {
-												swcontent += '<div class="swiper-slide swiper-no-swiping"><ul class="ranklist" id="payrank"></ul></div>';
-											}
-											if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "1") {
-												swcontent += '<div class="swiper-slide swiper-no-swiping">';
-												if (liveinfo["inviteopen"] == 1) swcontent += '<a href="javascript:;" class="generate-card">点击生成我的邀请卡</a>';
-												swcontent += '<ul class="ranklist" id="inviterank"></ul></div>';
-											}
-											swcontent += '</div></div></div>';
-											break;
-										default:
-											swcontent += '<div class="content-slide contmenu">' + indexitem["menu"][i]["menucontent"] + '</div>';
+									case 4:
+										swcontent += '<div class="content-slide discuss-pannel"><div class="questionnaire"></div>' + '<ul class="message-list">' + '<li>' +
+										// '<img src="http://wx.qlogo.cn/mmopen/dH8QVxmk2IXOezlo6KALUQqHlicM2xJoczZrLxib1fzGUN42e5FEibeKNeiccmRrs3ibM1xsszibPKSgiaruXibODZWpow/0" alt="" class="headimg fl">'+
+										// 						'<div class="message fl robredpacket">'+
+										// 							'<div class="rptxt"><p>恭喜发财.大吉大利</p><p>领取红包</p></div>'+
+										// 					'<img src="images/redpacket-xl.png" class="response" />'+
+										// 				'</div>'+
+										'</li>' + '</ul>' + '<div id="sth"></div>' + '<div class="tocustomer">赏</div><div class="redpacket-l"><img src="images/redpacket-l.png" alt="" class="response"></div></div>';
 										break;
-									}
-									swcontent += '</div>';
-									$(".swiper-wrapper.menutab").append(swcontent);
-								}
-								
-								$(".live-items .hd li:first").addClass("active");
-								if(liveinfo["questopen"]){
-									$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />"+liveinfo["questtitle"]+"</p><a href='"+liveinfo["questUrl"]+"' class='fr'>点击进入</a></div>")
-								}
-								if(liveinfo["voteopen"]){
-									$(".questionnaire").show().append("<div class='qtitems v'> <p><img src='images/questionnarieicon.png' />"+liveinfo["votename"]+"</p><a href='javascript:;' class='fr'>点击进入</a></div>");
-								}
-
-								setInterval(handleControl.rollQT,5000);
-
-if (indexitem["logo"]["logoimg"]) {
-									$(".anchorheadimg").html('<img src="' + indexitem["logo"]["logoimg"] + '" alt="" class="response">');
-									share.img = indexitem["logo"]["logoimg"];
-									// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
-								}
-if (liveinfo["advopen"]&&indexitem["adv"].length!=0) {
-									$(".adv").html('<a href="' + indexitem["adv"][0]["advurl"] + '"><img src="' + indexitem["adv"][0]["advtitle"] + '" class="response" alt=""></a>');
-								} else {
-									$(".adv").remove();
-								}
-var timecountend = indexitem["timer"]["timecountend"];
-if (liveinfo["liveopen"] == 0 && liveinfo["videoopen"] == 0) {
-									$(".countdown-label").hide();
-									$(".countdown-label").text("直播已结束");
-									if (liveinfo["timecountopen"] != 1 ){
-										$(".countdown-wrapper").hide();
-									}else{
-										if(timecountend > 0)
-											handleControl.formatSeconds(timecountend);
-									}
-									
-								} else {
-									if (liveinfo["timecountopen"] != 1 || timecountend < 0) {
-										handleControl.showPlayer();
-										// $(".countdown").hide();
-									} else {
-										// console.log("调用倒计时");									
-										handleControl.formatSeconds(timecountend);
-										// setInterval(function(){										
-										// },1000);
-									}
-								}
-var rewardlist = indexitem["rewardlist"],
-								    invitelist = indexitem["invitelist"],
-								    rewardlistlength = rewardlist.length,
-								    invitelistlength = invitelist.length;
-
-								for (var i = 0; i < rewardlistlength; i++) {
-									var uname = rewardlist[i]["sendername"];
-									$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">打赏'+rewardlist[i]["total"]+'元</span></li>');
-								}
-
-								for (var i = 0; i < invitelistlength; i++) {
-									var uname = invitelist[i]["username"];
-									$("#inviterank").append('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">邀请'+invitelist[i]["total"]+'人</span></li>');
-								}
-
-								// $(".numcount").text('1154人');
-								$(".numcount").text(liveinfo["uv"] + '人');
-								$(".anchorheadimg img").attr("src", indexitem["logo"]["logoimg"]);
-
-applicationInit.tabInit();
-$.smartScroll($(".container"), '.content-slide');
-								applicationInit.resizePlayer();
-								$(".player-wrapper").css("backgroundImage", "url(" + liveinfo["bakimg"] + ")");
-$(".numcount").text(liveinfo["uv"] + '人');
-
-easemob.roomId = liveinfo["chatroomid"];
-								easemob.options.user = '9a088d3826ae45cfbc7099857f487b8f';
-								easemob.options.pwd = '9a088d3826ae45cfbc7099857f487b8f';
-
-								$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": new Date().Format("yyyy-MM-dd hh:mm:ss") }, function (d) {
-									// console.log(d)
-									if (d["success"] == true) {
-										for (var _i = d["data"]["historylist"].length - 1; _i >= 0; _i--) {
-											easemob.appendMsg(d["data"]["historylist"][_i], 'txt');
+									case 5:
+										swcontent += '<div class="content-slide rank-wrapper">';
+										if (indexitem["menu"][i]["menucontent"] == "3") {
+											swcontent += '<ul class="rank-hd"><li class="active">打赏榜</li><li>邀请榜</li></ul>';
 										}
-									}
-									easemob.initWEBIM();
 
-									
-								});
+										swcontent += '<div id="rank-container" class="swiper-container"><div class="swiper-wrapper">';
+										if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "2") {
+											swcontent += '<div class="swiper-slide swiper-no-swiping"><ul class="ranklist" id="payrank"></ul></div>';
+										}
+										if (indexitem["menu"][i]["menucontent"] == "3" || indexitem["menu"][i]["menucontent"] == "1") {
+											swcontent += '<div class="swiper-slide swiper-no-swiping">';
+											if (liveinfo["inviteopen"] == 1) swcontent += '<a href="javascript:;" class="generate-card">点击生成我的邀请卡</a>';
+											swcontent += '<ul class="ranklist" id="inviterank"></ul></div>';
+										}
+										swcontent += '</div></div></div>';
+										break;
+									default:
+										swcontent += '<div class="content-slide contmenu">' + indexitem["menu"][i]["menucontent"] + '</div>';
+										break;
+								}
+								swcontent += '</div>';
+								$(".swiper-wrapper.menutab").append(swcontent);
+							}
 
-								var functions = indexitem["function"];
-								for (var i = 0; i < functions.length; i++) {
-									switch (functions[i]["functiontype"]) {
-										case 1:
-											$(".tocustomer").show();
-											break;
-										case 3:
-											$(".redpacket-l").show();
-											break;
+							$(".live-items .hd li:first").addClass("active");
+							if (liveinfo["questopen"]) {
+								$(".questionnaire").show().append("<div class='qtitems'> <p><img src='images/questionnarieicon.png' />" + liveinfo["questtitle"] + "</p><a href='" + liveinfo["questUrl"] + "' class='fr'>点击进入</a></div>");
+							}
+							if (liveinfo["voteopen"]) {
+								$(".questionnaire").show().append("<div class='qtitems v'> <p><img src='images/questionnarieicon.png' />" + liveinfo["votename"] + "</p><a href='javascript:;' class='fr'>点击进入</a></div>");
+							}
+
+							setInterval(handleControl.rollQT, 5000);
+
+							if (indexitem["logo"]["logoimg"]) {
+								$(".anchorheadimg").html('<img src="' + indexitem["logo"]["logoimg"] + '" alt="" class="response">');
+								share.img = indexitem["logo"]["logoimg"];
+								// $(".anchorheadimg").html(`<img src="${indexitem["logo"]["logoimg"]}" alt="" class="response">`);
+							}
+							if (liveinfo["advopen"] && indexitem["adv"].length != 0) {
+								$(".adv").html('<a href="' + indexitem["adv"][0]["advurl"] + '"><img src="' + indexitem["adv"][0]["advtitle"] + '" class="response" alt=""></a>');
+							} else {
+								$(".adv").remove();
+							}
+							var timecountend = indexitem["timer"]["timecountend"];
+							if (liveinfo["liveopen"] == 0 && liveinfo["videoopen"] == 0) {
+								$(".countdown-label").hide();
+								$(".countdown-label").text("直播已结束");
+								if (liveinfo["timecountopen"] != 1) {
+									$(".countdown-wrapper").hide();
+								} else {
+									if (timecountend > 0) handleControl.formatSeconds(timecountend);
+								}
+							} else {
+								if (liveinfo["timecountopen"] != 1 || timecountend < 0) {
+									handleControl.showPlayer();
+									// $(".countdown").hide();
+								} else {
+									// console.log("调用倒计时");									
+									handleControl.formatSeconds(timecountend);
+									// setInterval(function(){										
+									// },1000);
+								}
+							}
+							var rewardlist = indexitem["rewardlist"],
+							    invitelist = indexitem["invitelist"],
+							    rewardlistlength = rewardlist.length,
+							    invitelistlength = invitelist.length;
+
+							for (var i = 0; i < rewardlistlength; i++) {
+								var uname = rewardlist[i]["sendername"];
+								$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i + 1) + ' ' + (uname.length > 6 ? uname.substring(0, 6) + '...' : uname) + '<span class="fr">打赏' + rewardlist[i]["total"] + '元</span></li>');
+							}
+
+							for (var i = 0; i < invitelistlength; i++) {
+								var uname = invitelist[i]["username"];
+								$("#inviterank").append('<li>' + '<img src="' + invitelist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i + 1) + ' ' + (uname.length > 6 ? uname.substring(0, 6) + '...' : uname) + '<span class="fr">邀请' + invitelist[i]["total"] + '人</span></li>');
+							}
+
+							// $(".numcount").text('1154人');
+							$(".numcount").text(liveinfo["uv"] + '人');
+							$(".anchorheadimg img").attr("src", indexitem["logo"]["logoimg"]);
+
+							applicationInit.tabInit();
+							$.smartScroll($(".container"), '.content-slide');
+							applicationInit.resizePlayer();
+							$(".player-wrapper").css("backgroundImage", "url(" + liveinfo["bakimg"] + ")");
+							$(".numcount").text(liveinfo["uv"] + '人');
+
+							easemob.roomId = liveinfo["chatroomid"];
+							easemob.options.user = '9a088d3826ae45cfbc7099857f487b8f';
+							easemob.options.pwd = '9a088d3826ae45cfbc7099857f487b8f';
+
+							$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": new Date().Format("yyyy-MM-dd hh:mm:ss") }, function (d) {
+								// console.log(d)
+								if (d["success"] == true) {
+									for (var _i = d["data"]["historylist"].length - 1; _i >= 0; _i--) {
+										easemob.appendMsg(d["data"]["historylist"][_i], 'txt');
 									}
 								}
-								
-								document.querySelector(".discuss-pannel").addEventListener("scroll",handleControl.showhistorytop10,false);
+								easemob.initWEBIM();
+							});
 
-								$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems.v a,#pickfiles").click(function () {
-										$("#iosDialog1").fadeIn(200);
-								});
-								$(".weui-dialog__btn_default").click(function () {
-									$("#iosDialog1").fadeOut(200);
-								});
-								$(".weui-dialog__btn_primary").click(function(){
-									localStorage.setItem("isChooseLogined", 1);
-									window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-								});
-							
-						})
-						
+							var functions = indexitem["function"];
+							for (var i = 0; i < functions.length; i++) {
+								switch (functions[i]["functiontype"]) {
+									case 1:
+										$(".tocustomer").show();
+										break;
+									case 3:
+										$(".redpacket-l").show();
+										break;
+								}
+							}
+
+							document.querySelector(".discuss-pannel").addEventListener("scroll", handleControl.showhistorytop10, false);
+
+							$(".sendbtn,.generate-card,.tocustomer,.redpacket-l,.qtitems.v a,#pickfiles").click(function () {
+								$("#iosDialog1").fadeIn(200);
+							});
+							$(".weui-dialog__btn_default").click(function () {
+								$("#iosDialog1").fadeOut(200);
+							});
+							$(".weui-dialog__btn_primary").click(function () {
+								localStorage.setItem("isChooseLogined", 1);
+								window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + xtAPI.appid + "&redirect_uri=" + xtAPI.commonUrl + "newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+							});
+						});
 					}
 				}
 			});
 		}
-		
-			// }
+
+		// }
 		// });
 	};
 
@@ -1325,7 +1312,7 @@ easemob.roomId = liveinfo["chatroomid"];
 				url: commonUrl + 'newlive/tLivechannel/loadChannel.do',
 				type: 'post',
 				dataType: 'json',
-				data: { "liveid": request["liveid"],"userOrigin": xtAPI.from },
+				data: { "liveid": request["liveid"], "userOrigin": xtAPI.from },
 				success: function success(d) {
 					// checkSession(d["code"]);
 					if (d["code"] == 1013) {
@@ -1348,7 +1335,7 @@ easemob.roomId = liveinfo["chatroomid"];
 				url: commonUrl + 'newlive/stemp/getChannelInfo.do',
 				type: 'post',
 				dataType: 'json',
-				data: { "liveId": request["liveid"],"userOrigin": xtAPI.from },
+				data: { "liveId": request["liveid"], "userOrigin": xtAPI.from },
 				success: function success(d) {
 					// checkSession(d["code"]);
 					if (d["code"] == 1013) {
@@ -1381,7 +1368,7 @@ easemob.roomId = liveinfo["chatroomid"];
 
 	var showhistory = function showhistory() {
 		var topli = document.querySelector(".message-list li[data-createtime]");
-		$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": topli.getAttribute("data-createtime") },function(d){
+		$.post(commonUrl + "newlive/im/getoldMsg.do", { "chatroomid": easemob.roomId, "perNumber": 10, "createtime": topli.getAttribute("data-createtime") }, function (d) {
 			var historylist = d["data"]["historylist"];
 			if (d["success"] == true && historylist.length > 0) {
 				for (var _i = 0; _i < historylist.length; _i++) {
@@ -1390,7 +1377,7 @@ easemob.roomId = liveinfo["chatroomid"];
 			}
 			// console.log(topli.attr("data-createtime"))
 			topli.scrollIntoView();
-			document.querySelector(".discuss-pannel").addEventListener("scroll",handleControl.showhistorytop10,false);
+			document.querySelector(".discuss-pannel").addEventListener("scroll", handleControl.showhistorytop10, false);
 		});
 	};
 
@@ -1434,19 +1421,19 @@ easemob.roomId = liveinfo["chatroomid"];
 			dataType: 'json',
 			data: { 'liveid': request["liveid"], 'hongbaoid': rpid },
 			success: function success(d) {
-				if(d["success"]){					
+				if (d["success"]) {
 					var getmoney = parseInt(d["data"]["getMoney"]);
 					if (getmoney > 0) {
-						$("#getredpacket .desc").html("<p>恭喜您获得" + (getmoney/100).toFixed(2) + "元红包</p><p>红包直接发送到您的账户中，请注意查收</p>");
+						$("#getredpacket .desc").html("<p>恭喜您获得" + (getmoney / 100).toFixed(2) + "元红包</p><p>红包直接发送到您的账户中，请注意查收</p>");
 					} else {
 						$("#getredpacket .desc").html("<p>红包已经被抢光了</p><p></p>");
 					}
 					$("#getredpacket").addClass("show");
-				}else{
-						$("#getredpacket .desc").html("<p>"+d.msg+"</p><p></p>");
-						$("#getredpacket").addClass("show");	
-					}					
+				} else {
+					$("#getredpacket .desc").html("<p>" + d.msg + "</p><p></p>");
+					$("#getredpacket").addClass("show");
 				}
+			}
 		});
 	};
 
@@ -1758,24 +1745,23 @@ var wxPay = function () {
 					if (res.err_msg == "get_brand_wcpay_request:ok") {
 						$(".ctdialog").removeClass("show");
 
-					$.ajax({
-						url: xtAPI.commonUrl + 'newlive/tLivechannel/getLoaditems.do',
-						type: 'post',
-						dataType: 'json',
-						data: { "liveid": xtAPI.request["liveid"], types: 6 },
-						success: function success(d) {
-							if (d["success"] == true) {
-								var rewardlist = d["data"]["rewardlist"],
-					    			rewardlistlength = rewardlist.length;
-					    		$("#payrank").html('');
-								for (var i = 0; i < rewardlistlength; i++) {
-									var uname = rewardlist[i]["sendername"];
-									$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i+1) + ' ' + (uname.length>6?(uname.substring(0,6)+'...'):uname) + '<span class="fr">打赏'+rewardlist[i]["total"]+'元</span></li>');
+						$.ajax({
+							url: xtAPI.commonUrl + 'newlive/tLivechannel/getLoaditems.do',
+							type: 'post',
+							dataType: 'json',
+							data: { "liveid": xtAPI.request["liveid"], types: 6 },
+							success: function success(d) {
+								if (d["success"] == true) {
+									var rewardlist = d["data"]["rewardlist"],
+									    rewardlistlength = rewardlist.length;
+									$("#payrank").html('');
+									for (var i = 0; i < rewardlistlength; i++) {
+										var uname = rewardlist[i]["sendername"];
+										$("#payrank").append('<li>' + '<img src="' + rewardlist[i]["headimg"] + '" alt="" class="headimg fl">' + 'No.' + (i + 1) + ' ' + (uname.length > 6 ? uname.substring(0, 6) + '...' : uname) + '<span class="fr">打赏' + rewardlist[i]["total"] + '元</span></li>');
+									}
 								}
 							}
-						}
-					});
-						
+						});
 					} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
 				});
 			},
@@ -1786,7 +1772,7 @@ var wxPay = function () {
 	};
 
 	var sendtocustomer = function sendtocustomer(money, hongbaotype, sendtxt, detailnum) {
-		if(parseFloat((money / detailnum)) >= 0.01){
+		if (parseFloat(money / detailnum) >= 0.01) {
 			$.ajax({
 				type: "post",
 				url: xtAPI.commonUrl + "newlive/tHongbao/sendHongbao.do",
@@ -1809,7 +1795,7 @@ var wxPay = function () {
 					alert("请求异常");
 				}
 			});
-		}else{
+		} else {
 			layui.use(['layer'], function () {
 				layer.msg("红包数值填写的不正确");
 			});

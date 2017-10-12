@@ -8,7 +8,9 @@
 	<style>
 		body{ background-color: #fff; font-family: Heiti SC,Droidsansfallback,黑体,Helvetica;}
 		header{
-			background: url(images/usercenterbg.png) no-repeat center; background-size: 100%;
+			background-image: url(images/usercenterbg.png);
+			background-repeat: no-repeat;
+			background-position: center center; background-size: 100%;
 			text-align: center; color: #fff; font-size: 2rem; line-height: 1.8;
 			 padding: 5rem 0;
 		}
@@ -29,7 +31,7 @@
 		.channelist li p:last-of-type{ margin-top: 5px; line-height: 1.6}
 		.living{ border-radius: 2px; border: 1px solid #ff0000; color: #ff0000; background-color: transparent; font-size: 1.4rem;}
 		.channelist li a{display: block;}
-		.channelcover{ width: 35%;}
+		.channelcover{ width: 35%; height: 72px; overflow: hidden;}
 		.channelbody{ width: 65%; padding-left: 8px;}
 		.channelcover img{ width: 100%; }
 	</style>
@@ -81,8 +83,9 @@
 		// 	$(".nickname").text(localStorage.getItem("nickname"))
 		// }
 		var request = handleControl.getRequest();
-		Promise.all([xtAPI.webGetChannels()]).then(function (result) {
-		    var webGetChannels = result[0];
+		Promise.all([xtAPI.webGetChannels(), xtAPI.homeSetting()]).then(function (result) {
+		    var webGetChannels = result[0],
+		    	homeSetting = result[1];
 		    // if (webGetChannels == false) {
 		    //     window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa5af90cb393880b6&redirect_uri=http://www.xiangtazhibo.com/newlive/web/index.html?liveid=" + request["liveid"] + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 		    // }
@@ -116,7 +119,10 @@
 		    xtAPI.share.link = window.location.href;
 		    xtAPI.getWxsign();
 
-		    document.title = xtAPI.share.tit;
+		    var page_title = homeSetting["hometitle"]
+		    var header_bg = homeSetting["homecover"]
+		    $("header").css("backgroundImage", 'url(' + header_bg + ')')
+		    document.title = page_title;
 			var $body = $('body');
 			var $iframe = $('<iframe src="/sharelogo.png"></iframe>');
 			$iframe.on('load',function() {

@@ -363,6 +363,13 @@ var xtAPI = function () {
 	var from = 1;
 
 	var wechatlogin = function wechatlogin() {
+		
+		var isMobile = /Mobile/i.test(navigator.userAgent);
+		var ispcterminal = /pcvideo/i.test(window.location.pathname);
+
+		if (!isMobile) {
+			window.location.href = "pcvideo.html?liveid=" + xtAPI.request["liveid"];
+		}
 
 		Date.prototype.Format = function (fmt) {
 			//日期格式化处理
@@ -1540,6 +1547,24 @@ var xtAPI = function () {
 		});
 	};
 
+	var homeSetting = function homeSetting() {
+		return new Promise(function (resolve) {
+			$.ajax({
+				url: commonUrl + 'newlive/tLivechannel/homesetting.do',
+				type: 'post',
+				dataType: 'json',
+				data: { liveId: request["liveid"] },
+				success: function success(d) {
+					if (d["code"] == 1013) {
+						resolve(false);
+					} else {
+						resolve(d["data"]);
+					}
+				}
+			});
+		});
+	};
+
 	var webGetCases = function webGetCases() {
 		return new Promise(function (resolve) {
 			$.ajax({
@@ -1725,7 +1750,8 @@ var xtAPI = function () {
 		from: from,
 		webGetCases: webGetCases,
 		getChannelInfo: getChannelInfo,
-		showhistory: showhistory
+		showhistory: showhistory,
+		homeSetting: homeSetting
 	};
 }();
 

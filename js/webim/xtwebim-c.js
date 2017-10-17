@@ -48,6 +48,7 @@ var easemob = function () {
             },
             onClosed: function onClosed(message) {
                 console.log('connection close');
+                easemob.initWEBIM()
             }, //connection closed
             onTextMessage: function onTextMessage(message) {
                 // console.log("get message");      

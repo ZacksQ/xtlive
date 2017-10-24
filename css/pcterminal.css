@@ -2,7 +2,7 @@ body{ /*background: url(../images/banner.jpg) no-repeat center; background-size:
 #container{ width: 1300px; margin: 64px auto 100px; }
 .live-wrapper,.shopping-wrapper,.msg-list-wrapper li{display: flex; display: -webkit-flex;display: -moz-flex; display: -ms-flex; margin-bottom: 10px;}
 .product-box,.followus,.video-box,.discuss-box{ background-color: #fff;}
-
+.video-box{ position: relative;}
 .video-box,.product-box{ width: 76%; margin-right: 10px; }
 .video-box,.discuss-box{ height: 715px;}
 .followus,.discuss-box{ width: calc(100% - 76% - 10px);width: -webkit-calc(100% - 76% - 10px);width: -moz-calc(100% - 76% - 10px);width: -ms-calc(100% - 76% - 10px);}
@@ -54,3 +54,9 @@ body{ /*background: url(../images/banner.jpg) no-repeat center; background-size:
 .btn-primary{ background-color: #6aa2ed; border-radius: 15px; line-height: 30px; height: 30px; color: #fff; width: 70px;}
 .response{ width: 100%; max-width: 100%;}
 .redpacket-f img{ vertical-align: middle;}
+.countdown-wrapper{ position: absolute;/* width: 100%;*/ bottom: 50px; right: 20px; background-color: rgba(255,255,255,.26); color: #fff; /*margin-top: 15%;*/ text-align: center; border-radius: 20px;  text-align: center; width: 200px; }
+.countdown-wrapper .countdownv2{ font-size: 1rem; }
+.countdown-wrapper .countdown-label{font-size: 1.8rem;/* background-color: #ff8383;*/ color: #fff; text-align: center; width: 75%; display: block; margin: 0 auto; line-height: 1.6; border-radius: 1.4rem; box-shadow: 0 4px 10px rgba(83,83,83,.27); padding: 8px 0;}
+.countdown-wrapper .countdown{ background-color: rgba(255,255,255,.6); box-shadow: 0  4px 10px rgba(83,83,83,.27); width: 70%; margin: 0 auto; border-radius: 20px; margin-top: 15px; padding: 1.2rem 0; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif}
+.countdown span{ font-size: 3rem; margin:0 2.5px; color: #fff; line-height: 1.5; display: inline-block; padding-top: .4rem;padding-bottom: .4rem;}
+.countdown span.num{  background-color: #fff; border-radius: 6px; padding-left:.7rem;padding-right:.7rem; }

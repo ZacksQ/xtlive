@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="css/global.css?v=1.1.5">
 	<link rel="stylesheet" href="css/main.css?v=1.1.6">
 	<link rel="stylesheet" href="css/swiper.min.css">
+	<style type="text/css">
+		.totop{ top: 0; position: fixed; width: 100%}
+	</style>
 </head>
 <body>
 	 <!--BEGIN dialog1-->
@@ -334,6 +337,19 @@ $("#moneysum").keyup(function () {
 $(".callfunctionbtn").click(function () {
 	$(".function-menu").toggleClass("showfuntion");
 });
+
+document.getElementById("msg-input").addEventListener("focus", function(){
+	// document.getElementById("msg-input").scrollIntoViewIfNeeded()
+	// document.querySelector(".discuss-input-pannel").scrollIntoViewIfNeeded()
+	
+	$(".dip-warp").addClass("totop")
+	document.querySelector(".dip-warp").scrollIntoViewIfNeeded()
+})
+
+document.getElementById("msg-input").addEventListener("blur", function(){
+	// document.getElementById("msg-input").scrollIntoViewIfNeeded()
+	$(".dip-warp").removeClass("totop")
+})
 
 	</script>
 </body>

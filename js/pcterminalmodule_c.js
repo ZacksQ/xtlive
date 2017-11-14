@@ -161,6 +161,7 @@ var handleControl = function () {
 }
 
 	function ext(filename){
+		if(filename == null){ return false }
 		var ext = null;
 	    var name = filename.toLowerCase();
 	    var i = name.lastIndexOf(".");

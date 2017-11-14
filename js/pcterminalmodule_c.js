@@ -141,7 +141,8 @@ var handleControl = function () {
 		    var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
     		CKobject.embedSWF('player/ckplayer/ckplayer.swf','live-video','ckplayer_a1','100%','100%',flashvars,params);
 		}else{
-			var flashvars={
+			if(ext(xtAPI.liveInfo["m3u8"]) == '.m3u8'){
+							var flashvars={
 		        a: xtAPI.liveInfo["m3u8"],
 		        f:'player/m3u8.swf',
 		        c:0,
@@ -150,7 +151,24 @@ var handleControl = function () {
 		    var video=[xtAPI.liveInfo["m3u8"]];
 		     var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
 		    CKobject.embed('player/ckplayer/ckplayer.swf','live-video','ckplayer_a1','100%','100%',false,flashvars,video,params);
+
+		}else{
+			$("#live-video").html("<video src='"+xtAPI.liveInfo["m3u8"]+"' width='100%' height='100%' controls='true'></video>")
+
+		}
+
+		 
 }
+
+	function ext(filename){
+		var ext = null;
+	    var name = filename.toLowerCase();
+	    var i = name.lastIndexOf(".");
+	    if(i > -1){
+	    var ext = name.substring(i);
+	    }
+	    return ext;
+	}
 		$(".handleqr").click(function(){
 			$(".wim").toggle();
 		})

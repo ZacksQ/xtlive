@@ -10,9 +10,11 @@
 	<link rel="stylesheet" href="css/swiper.min.css">
 	<style type="text/css">
 		.totop{ top: 0; position: fixed; width: 100%}
+		.input-placeholder{ height: 48px; display: none;}
 	</style>
 </head>
 <body>
+	<div class="input-placeholder"></div>
 	 <!--BEGIN dialog1-->
     <div class="js_dialog" id="iosDialog1" style="display: none;">
         <div class="weui-mask"></div>
@@ -341,7 +343,7 @@ $(".callfunctionbtn").click(function () {
 document.getElementById("msg-input").addEventListener("focus", function(){
 	// document.getElementById("msg-input").scrollIntoViewIfNeeded()
 	// document.querySelector(".discuss-input-pannel").scrollIntoViewIfNeeded()
-	
+	$(".input-placeholder").show()
 	$(".dip-warp").addClass("totop")
 	document.querySelector(".dip-warp").scrollIntoViewIfNeeded()
 })
@@ -349,6 +351,7 @@ document.getElementById("msg-input").addEventListener("focus", function(){
 document.getElementById("msg-input").addEventListener("blur", function(){
 	// document.getElementById("msg-input").scrollIntoViewIfNeeded()
 	$(".dip-warp").removeClass("totop")
+	$(".input-placeholder").hide()
 })
 
 	</script>
